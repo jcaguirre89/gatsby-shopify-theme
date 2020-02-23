@@ -1,0 +1,23 @@
+{
+  "name": "gatsby-theme-shopify",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Cristobal Aguirre",
+  "license": "MIT",
+  "peerDependencies": {
+    "gatsby": "^2.19.19",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "dependencies": {
+    "gatsby-source-filesystem": "^2.1.48",
+    "gatsby-source-shopify": "^3.0.43",
+    "gatsby-transformer-yaml": "^2.2.25",
+    "shopify-buy": "^2.9.1"
+  },
+  "devDependencies": {
+    "gatsby": "^2.19.19",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}

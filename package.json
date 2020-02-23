@@ -1,0 +1,14 @@
+{
+  "name": "gatsby-theme-shopify-workspace",
+  "private": true,
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn workspace site build"
+  },
+  "workspaces": [
+    "gatsby-theme-shopify",
+    "site"
+  ]
+}
