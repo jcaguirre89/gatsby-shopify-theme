@@ -7,7 +7,7 @@ const ProductCardStyle = styled.div`
   justify-content: center;
   align-items: center;
   margin-left: 10px;
-  border: 1px solid goldenrod;
+  border: 1px solid ${props => props.theme.offBlack};
 `;
 
 export default function ProductCard({ product }) {
