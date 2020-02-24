@@ -1,6 +1,5 @@
 import React from "react";
-import { createGlobalStyle } from "styled-components";
-import { ThemeProvider } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 
 const theme = {
   offWhite: "#f0ead6",
@@ -25,7 +24,6 @@ const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
-    color: ${theme.black};
   }
 `;
 
