@@ -2,9 +2,14 @@ const fs = require("fs");
 // Make sure directory exists
 exports.onPreBootstrap = ({ reporter }) => {
   const contentPath = "data";
+  const imagePath = "images";
   if (!fs.existsSync(contentPath)) {
     reporter.info(`creating the ${contentPath} directory`);
     fs.makedirSync(contentPath);
+  }
+  if (!fs.existsSync(imagePath)) {
+    reporter.info(`creating the ${imagePath} directory`);
+    fs.makedirSync(imagePath);
   }
 };
 // Define the Product type

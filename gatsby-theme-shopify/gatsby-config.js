@@ -14,10 +14,18 @@ module.exports = ({ shopName, accessToken }) => ({
       }
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: "images"
+      }
+    },
+    {
       resolve: "gatsby-transformer-yaml",
       options: {
         typeName: "Product"
       }
-    }
+    },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`
   ]
 });

@@ -31,12 +31,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <div>
-          <h1>Gatsby Products Theme</h1>
-          {children}
-        </div>
-      </ThemeProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </>
   );
 };
