@@ -1,8 +1,8 @@
-const fs = require("fs");
+const fs = require('fs');
 // Make sure directory exists
 exports.onPreBootstrap = ({ reporter }) => {
-  const contentPath = "data";
-  const imagePath = "images";
+  const contentPath = 'data';
+  const imagePath = 'images';
   if (!fs.existsSync(contentPath)) {
     reporter.info(`creating the ${contentPath} directory`);
     fs.makedirSync(contentPath);
@@ -20,8 +20,9 @@ exports.sourceNodes = ({ actions }) => {
       brand: String!
       model: String!
       price: Int!
+      year: Int!
       description: String
-      dateCreated: Date! @dateformat @proxy(from: "date_created")
+      datePublished: Date! @dateformat @proxy(from: "date_published")
       slug: String!
       imgLarge: String
       imgSmall: String
@@ -30,14 +31,14 @@ exports.sourceNodes = ({ actions }) => {
 };
 // Define resolvers for custom fields
 exports.createResolvers = ({ createResolvers }) => {
-  const basePath = "/";
+  const basePath = '/';
   // Quick-and-dirty helper to convert strings into URL-friendly slugs.
   const slugify = str => {
     const slug = str
       .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)+/g, "");
-    return `/${basePath}/${slug}`.replace(/\/\/+/g, "/");
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)+/g, '');
+    return `/${basePath}/${slug}`.replace(/\/\/+/g, '/');
   };
   createResolvers({
     Product: {
@@ -50,10 +51,10 @@ exports.createResolvers = ({ createResolvers }) => {
 };
 // Query for products and create pages
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  const basePath = "/";
+  const basePath = '/';
   actions.createPage({
     path: basePath,
-    component: require.resolve("./src/templates/products.js")
+    component: require.resolve('./src/templates/products.js')
   });
   const result = await graphql(`
     query MyQuery {
@@ -66,16 +67,15 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     }
   `);
   if (result.errors) {
-    reporter.panic("error loading products", result.errors);
+    reporter.panic('error loading products', result.errors);
     return;
   }
   const products = result.data.allProduct.nodes;
   products.forEach(product => {
     const slug = product.slug;
-    console.log(slug);
     actions.createPage({
       path: slug,
-      component: require.resolve("./src/templates/product.js"),
+      component: require.resolve('./src/templates/product.js'),
       context: {
         productID: product.id
       }
