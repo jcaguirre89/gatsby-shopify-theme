@@ -1,8 +1,8 @@
-import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
-import Layout from "../components/layout";
-import ProductList from "../components/product-list";
-import LandingPage from "../components/landing-page";
+import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
+import Layout from '../components/layout';
+import ProductList from '../components/product-list';
+import LandingPage from '../components/landing-page';
 
 export default function ProductsTemplate() {
   const data = useStaticQuery(graphql`

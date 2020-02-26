@@ -1,6 +1,6 @@
-import React from "react";
-import ProductCard from "./product-card";
-import styled from "styled-components";
+import React from 'react';
+import ProductCard from './product-card';
+import styled from 'styled-components';
 
 const ProductGrid = styled.div`
   display: flex;

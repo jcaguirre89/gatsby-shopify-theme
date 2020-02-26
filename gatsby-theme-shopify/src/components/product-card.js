@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const ProductCardStyle = styled.div`
   display: flex;
@@ -13,7 +13,9 @@ const ProductCardStyle = styled.div`
 export default function ProductCard({ product }) {
   return (
     <ProductCardStyle>
-      <h3>{product.brand}</h3>
+      <h3>
+        <a href={product.slug}>{product.brand}</a>
+      </h3>
       <h4>{product.model}</h4>
       <p>{product.description}</p>
     </ProductCardStyle>
