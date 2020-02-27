@@ -1,11 +1,25 @@
-import React from "react";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import React from 'react';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import Header from './header';
 
 const theme = {
-  offWhite: "#f0ead6",
-  black: "#313639",
-  maxWidth: "1000px"
+  white: '#fff',
+  offWhite: '#f0ead6',
+  black: '#313639',
+  maxWidth: '1000px',
+  bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
 };
+
+const StyledPage = styled.div`
+  background: ${theme.white};
+  color: ${theme.black};
+`;
+
+const Inner = styled.div`
+  max-width: ${theme.maxWidth};
+  margin: 0 auto;
+  padding: 2rem;
+`;
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -31,7 +45,13 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <StyledPage>
+          {/* <Meta /> */}
+          <Header />
+          <Inner>{children}</Inner>
+        </StyledPage>
+      </ThemeProvider>
     </>
   );
 };
