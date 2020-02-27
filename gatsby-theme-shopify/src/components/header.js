@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'gatsby';
 import Logo from '../assets/mount-leaf.svg';
 import Nav from './nav';
 
@@ -27,14 +28,14 @@ export default function Header() {
   return (
     <StyledHeader>
       <StyledLogo>
-        <a href="/">
+        <Link to="/">
           <img
             style={{ height: `5rem`, width: `5rem`, marginRight: `1rem` }}
             src={Logo}
             alt="logo"
           />
           home
-        </a>
+        </Link>
       </StyledLogo>
       <Nav />
     </StyledHeader>
