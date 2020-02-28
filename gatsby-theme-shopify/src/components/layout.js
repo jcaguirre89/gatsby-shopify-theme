@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Header from './header';
+import SEO from './SEO';
 
 const theme = {
   white: '#fff',
@@ -47,7 +48,7 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <StyledPage>
-          {/* <Meta /> */}
+          <SEO />
           <Header />
           <Inner>{children}</Inner>
         </StyledPage>
