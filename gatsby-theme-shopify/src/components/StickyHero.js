@@ -3,20 +3,44 @@ import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
-const StickyHeroStyle = styled.div`
+const StickyHeroOuter = styled.section`
   position: fixed;
-  z-index: 1000;
   top: 0px;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+`;
+
+const StickyHeroInner = styled.div`
+  position: relative;
+  overflow: hidden;
+`;
+
+const HeroContent = styled.div`
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
 `;
 
 const HERO_QUERY = graphql`
   query {
-    file(relativePath: { eq: "landing/test.jpg" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fixed(width: 800) {
-          ...GatsbyImageSharpFixed
+    allSanityHero {
+      edges {
+        node {
+          title
+          subtitle
+          background {
+            asset {
+              fluid(maxWidth: 700) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
         }
       }
     }
@@ -25,9 +49,16 @@ const HERO_QUERY = graphql`
 
 export default function StickyHero() {
   const data = useStaticQuery(HERO_QUERY);
+
   return (
-    <StickyHeroStyle>
-      <Img src={data.file.childImageSharp.fixed} />
-    </StickyHeroStyle>
+    <StickyHeroOuter>
+      <StickyHeroInner>
+        <Img fluid={data.allSanityHero.edges[0].node.background.asset.fluid} />
+        <HeroContent>
+          <h2>{data.allSanityHero.edges[0].node.title}</h2>
+          <h3>{data.allSanityHero.edges[0].node.subtitle}</h3>
+        </HeroContent>
+      </StickyHeroInner>
+    </StickyHeroOuter>
   );
 }
