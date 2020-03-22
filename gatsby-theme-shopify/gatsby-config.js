@@ -35,6 +35,7 @@ module.exports = ({ shopName, accessToken }) => ({
       },
     },
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
   ],
 });

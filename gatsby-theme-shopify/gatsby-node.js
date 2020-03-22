@@ -1,3 +1,14 @@
+const path = require('path')
+
+function removeTrailingLeadingSlashes(string) {
+  return string.replace(/^\/*|\/*$/g, '');
+}
+
+
+
+
+
+
 const fs = require('fs');
 // Make sure directory exists
 exports.onPreBootstrap = ({ reporter }) => {

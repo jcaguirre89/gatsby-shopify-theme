@@ -11,15 +11,16 @@ const theme = {
   bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
 };
 
-const StyledPage = styled.div`
+const Wrapper = styled.div`
   background: ${theme.white};
   color: ${theme.black};
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 `;
 
 const Inner = styled.div`
-  max-width: ${theme.maxWidth};
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -47,11 +48,11 @@ const Layout = ({ children }) => {
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <StyledPage>
+        <Wrapper>
           <SEO />
           <Header />
           <Inner>{children}</Inner>
-        </StyledPage>
+        </Wrapper>
       </ThemeProvider>
     </>
   );
