@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import Logo from '../assets/mount-leaf.svg';
 import Nav from './nav';
+import Cart from './Cart';
 
 const StyledLogo = styled.div`
   margin-left: 2rem;
@@ -38,6 +39,7 @@ export default function Header() {
         </Link>
       </StyledLogo>
       <Nav />
+      <Cart />
     </StyledHeader>
   );
 }
