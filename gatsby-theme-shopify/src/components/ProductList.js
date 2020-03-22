@@ -12,7 +12,7 @@ const ProductGrid = styled.div`
 
 export default function ProductList() {
   const data = useStaticQuery(graphql`
-    query MyQuery {
+    query allProducts {
       allShopifyProduct(sort: { order: DESC, fields: handle }) {
         nodes {
           variants {
@@ -22,12 +22,13 @@ export default function ProductList() {
           images {
             localFile {
               childImageSharp {
-                resolutions(width: 500, height: 300) {
-                  ...GatsbyImageSharpResolutions_withWebp
+                fluid(maxWidth: 910) {
+                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
                 }
               }
             }
           }
+
           title
           description
           handle

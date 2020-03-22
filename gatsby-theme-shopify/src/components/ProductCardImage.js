@@ -8,6 +8,8 @@ import { GlobalDispatchContext } from '../context/GlobalContextProvider';
 const Container = styled.div`
   font-size: 1rem;
   position: relative;
+  width: 100%;
+  height: 100%;
 
   img {
     width: 100%;
@@ -31,13 +33,11 @@ const CTA = styled.button`
   cursor: pointer;
 `;
 
-export default function ProductCardImage({ img }) {
+export default function ProductCardImage({ image }) {
   const dispatch = useContext(GlobalDispatchContext);
-  console.log(img);
-
   return (
     <Container>
-      <Img fixed={img} />
+      <Img fluid={image} />
       <CTA onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
         <FaCartPlus size={30} />
       </CTA>

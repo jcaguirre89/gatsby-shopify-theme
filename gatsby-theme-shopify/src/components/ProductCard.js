@@ -23,18 +23,23 @@ const ProductCardStyle = styled.div`
 `;
 
 export default function ProductCard({ product }) {
-  const { title, description, handle, variants, images } = product;
-  const { id: variantId, price } = variants[0];
-  const image = images[0].localFile;
+  const {
+    title,
+    description,
+    handle,
+    variants: [firstVariant],
+    images: [firstImage],
+  } = product;
+  const { id: variantId, price } = firstVariant;
+  const image = firstImage.localFile.childImageSharp.fluid;
 
   return (
     <ProductCardStyle>
-      <ProductCardImage img={image} />
+      <ProductCardImage image={image} />
       <h3>
-        <Link to={handle}>{title}</Link>
+        <Link to={`shop/${handle}`}>{title}</Link>
       </h3>
-      <h4>{product.model}</h4>
-      <p>{product.description}</p>
+      <p>{description}</p>
     </ProductCardStyle>
   );
 }
