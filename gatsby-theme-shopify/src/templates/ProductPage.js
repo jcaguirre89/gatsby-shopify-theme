@@ -2,13 +2,15 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import SEO from '../components/SEO';
+import Layout from '../components/layout';
+import Header from '../components/header';
 
 export default function ProductPage({ data }) {
   const product = data.shopifyProduct;
-  console.log(product);
   return (
-    <>
+    <Layout>
       <SEO title={product.title} description={product.description} />
+      <Header />
       {product.images.map(image => (
         <Img
           fluid={image.localFile.childImageSharp.fluid}
@@ -18,7 +20,7 @@ export default function ProductPage({ data }) {
       ))}
       <h2>{product.title}</h2>
       <p dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}></p>
-    </>
+    </Layout>
   );
 }
 

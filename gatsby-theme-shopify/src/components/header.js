@@ -23,11 +23,13 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: flex-start;
   margin-top: 1rem;
+  background: ${props =>
+    props.transparent ? 'transparent' : props.theme.white};
 `;
 
-export default function Header() {
+export default function Header({ transparent }) {
   return (
-    <StyledHeader>
+    <StyledHeader transparent={transparent}>
       <StyledLogo>
         <Link to="/">
           <img

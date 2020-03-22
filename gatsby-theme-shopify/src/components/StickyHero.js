@@ -2,18 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import Header from './header';
 
 const StickyHeroOuter = styled.section`
-  position: fixed;
-  top: 0px;
-  z-index: 1000;
   width: 100vw;
   height: 100vh;
-`;
-
-const StickyHeroInner = styled.div`
   position: relative;
-  overflow: hidden;
 `;
 
 const HeroContent = styled.div`
@@ -23,9 +17,33 @@ const HeroContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: auto;
+  height: 100%;
   width: 100%;
 `;
+
+const HeaderContainer = styled.div`
+  position: absolute;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+`;
+
+export default function StickyHero() {
+  const data = useStaticQuery(HERO_QUERY);
+
+  return (
+    <StickyHeroOuter>
+      <HeaderContainer>
+        <Header transparent />
+      </HeaderContainer>
+      <Img fluid={data.allSanityHero.edges[0].node.background.asset.fluid} />
+      <HeroContent>
+        <h2>{data.allSanityHero.edges[0].node.title}</h2>
+        <h3>{data.allSanityHero.edges[0].node.subtitle}</h3>
+      </HeroContent>
+    </StickyHeroOuter>
+  );
+}
 
 const HERO_QUERY = graphql`
   query {
@@ -46,19 +64,3 @@ const HERO_QUERY = graphql`
     }
   }
 `;
-
-export default function StickyHero() {
-  const data = useStaticQuery(HERO_QUERY);
-
-  return (
-    <StickyHeroOuter>
-      <StickyHeroInner>
-        <Img fluid={data.allSanityHero.edges[0].node.background.asset.fluid} />
-        <HeroContent>
-          <h2>{data.allSanityHero.edges[0].node.title}</h2>
-          <h3>{data.allSanityHero.edges[0].node.subtitle}</h3>
-        </HeroContent>
-      </StickyHeroInner>
-    </StickyHeroOuter>
-  );
-}

@@ -50,7 +50,6 @@ const Layout = ({ children }) => {
       <ThemeProvider theme={theme}>
         <Wrapper>
           <SEO />
-          <Header />
           <Inner>{children}</Inner>
         </Wrapper>
       </ThemeProvider>
