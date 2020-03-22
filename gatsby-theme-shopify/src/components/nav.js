@@ -1,10 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'gatsby';
 import NavStyles from './styles/NavStyles';
-import {
-  GlobalDispatchContext,
-  GlobalStateContext,
-} from '../context/GlobalContextProvider';
+import { GlobalDispatchContext } from '../context/GlobalContextProvider';
 
 export default function Nav() {
   const dispatch = useContext(GlobalDispatchContext);
