@@ -1,13 +1,8 @@
-const path = require('path')
+const path = require('path');
 
 function removeTrailingLeadingSlashes(string) {
   return string.replace(/^\/*|\/*$/g, '');
 }
-
-
-
-
-
 
 const fs = require('fs');
 // Make sure directory exists
@@ -55,17 +50,17 @@ exports.createResolvers = ({ createResolvers }) => {
     Product: {
       slug: {
         resolve: source =>
-          slugify(`${source.brand} ${source.model} ${source.year}`)
-      }
-    }
+          slugify(`${source.brand} ${source.model} ${source.year}`),
+      },
+    },
   });
 };
 // Query for products and create pages
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  const basePath = '/';
+  const basePath = '/shop';
   actions.createPage({
     path: basePath,
-    component: require.resolve('./src/templates/products.js')
+    component: require.resolve('./src/templates/products.js'),
   });
   const result = await graphql(`
     query MyQuery {
@@ -88,8 +83,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       path: slug,
       component: require.resolve('./src/templates/product.js'),
       context: {
-        productID: product.id
-      }
+        productID: product.id,
+      },
     });
   });
 };
