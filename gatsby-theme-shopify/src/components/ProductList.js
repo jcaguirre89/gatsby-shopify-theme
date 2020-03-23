@@ -37,7 +37,6 @@ export default function ProductList() {
     }
   `);
   const products = data.allShopifyProduct.nodes;
-  console.log(products);
   return (
     <>
       <h2>Product List</h2>

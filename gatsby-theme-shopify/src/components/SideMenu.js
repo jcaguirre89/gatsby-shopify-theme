@@ -30,7 +30,6 @@ const MenuStyles = styled.div`
 export default function Menu() {
   const { isMenuOpen } = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
-  console.log(isMenuOpen);
   return (
     <MenuStyles open={isMenuOpen}>
       <button type="button" onClick={() => dispatch({ type: 'TOGGLE_MENU' })}>
