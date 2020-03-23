@@ -35,9 +35,9 @@ const StyledHeader = styled.header`
   }
 `;
 
-export default function Header({ transparent }) {
+export default function Header() {
   return (
-    <StyledHeader transparent={transparent}>
+    <StyledHeader>
       <StyledLogo>
         <Link to="/">
           <img
