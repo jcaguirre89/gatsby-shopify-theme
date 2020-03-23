@@ -3,7 +3,14 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Header from './header';
 import SEO from './SEO';
 
+const breakpoints = {
+  s: '400px',
+  m: '700px',
+  l: '900px',
+};
+
 const theme = {
+  breakpoints,
   white: '#fff',
   offWhite: '#f0ead6',
   black: '#313639',
@@ -50,6 +57,7 @@ const Layout = ({ children }) => {
       <ThemeProvider theme={theme}>
         <Wrapper>
           <SEO />
+          <Header />
           <Inner>{children}</Inner>
         </Wrapper>
       </ThemeProvider>
