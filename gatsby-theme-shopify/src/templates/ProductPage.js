@@ -31,6 +31,7 @@ export const query = graphql`
       handle
       descriptionHtml
       images {
+        id
         localFile {
           childImageSharp {
             fluid(maxWidth: 910) {
