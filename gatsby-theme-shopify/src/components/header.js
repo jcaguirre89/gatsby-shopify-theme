@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import Logo from '../assets/mount-leaf.svg';
 import Nav from './nav';
 import Cart from './Cart';
+import SideMenu from './SideMenu';
 
 const StyledLogo = styled.div`
   margin-left: 2rem;
@@ -49,6 +50,7 @@ export default function Header({ transparent }) {
       </StyledLogo>
       <Nav />
       <Cart />
+      <SideMenu />
     </StyledHeader>
   );
 }

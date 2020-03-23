@@ -5,6 +5,7 @@ export const GlobalDispatchContext = createContext();
 
 const initialState = {
   isCartOpen: false,
+  isMenuOpen: false,
 };
 
 function reducer(state, action) {
@@ -13,6 +14,11 @@ function reducer(state, action) {
       return {
         ...state,
         isCartOpen: !state.isCartOpen,
+      };
+    case 'TOGGLE_MENU':
+      return {
+        ...state,
+        isMenuOpen: !state.isMenuOpen,
       };
     default:
       throw new Error('Bad action type');
