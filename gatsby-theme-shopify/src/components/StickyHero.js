@@ -6,8 +6,6 @@ import Img from 'gatsby-image';
 const StickyHeroOuter = styled.section`
   width: 100vw;
   height: 100vh;
-  position: fixed;
-  overflow: hidden;
 `;
 
 const HeroContent = styled.div`
