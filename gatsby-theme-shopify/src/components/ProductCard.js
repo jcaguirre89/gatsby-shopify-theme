@@ -35,9 +35,9 @@ export default function ProductCard({ product }) {
 
   return (
     <ProductCardStyle>
-      <ProductCardImage image={image} />
+      <ProductCardImage variantId={variantId} image={image} />
       <h3>
-        <Link to={`shop/${handle}`}>{title}</Link>
+        <Link to={`store/${handle}`}>{title}</Link>
       </h3>
       <p>{description}</p>
     </ProductCardStyle>
