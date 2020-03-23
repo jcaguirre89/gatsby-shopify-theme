@@ -33,12 +33,18 @@ const CTA = styled.button`
   cursor: pointer;
 `;
 
-export default function ProductCardImage({ image }) {
+export default function ProductCardImage({ variantId, image }) {
   const dispatch = useContext(GlobalDispatchContext);
+
+  const handleClick = () => {
+    dispatch({ type: 'TOGGLE_CART' });
+    dispatch({ type: 'UPDATE_CART', payload: { variantId, quantity: 1 } });
+  };
+
   return (
     <Container>
       <Img fluid={image} />
-      <CTA onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
+      <CTA onClick={() => handleClick()}>
         <FaCartPlus size={30} />
       </CTA>
     </Container>

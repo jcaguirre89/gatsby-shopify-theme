@@ -24,7 +24,8 @@ const CartStyles = styled.div`
 `;
 
 export default function Cart() {
-  const { isCartOpen } = useContext(GlobalStateContext);
+  const { isCartOpen, cartItems } = useContext(GlobalStateContext);
+  console.log(cartItems);
   return (
     <CartStyles open={isCartOpen}>
       <div>Content</div>

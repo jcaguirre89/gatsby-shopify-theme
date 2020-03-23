@@ -6,6 +6,7 @@ export const GlobalDispatchContext = createContext();
 const initialState = {
   isCartOpen: false,
   isMenuOpen: false,
+  cartItems: [],
 };
 
 function reducer(state, action) {
@@ -20,6 +21,17 @@ function reducer(state, action) {
         ...state,
         isMenuOpen: !state.isMenuOpen,
       };
+    case 'UPDATE_CART': {
+      const { variantId } = action.payload;
+      // remove from cart
+      const updatedCartItems = state.cartItems.filter(
+        i => i.variantId !== variantId
+      );
+      return {
+        ...state,
+        cartItems: [...updatedCartItems, action.payload],
+      };
+    }
     default:
       throw new Error('Bad action type');
   }
