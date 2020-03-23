@@ -5,8 +5,7 @@ import ProductCardImage from './ProductCardImage';
 
 const ProductCardStyle = styled.div`
   background: ${props => props.theme.background};
-  border: 1px solid ${props => props.theme.offWhite};
-  box-shadow: ${props => props.theme.bs};
+  border: 0px solid;
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -35,10 +34,10 @@ export default function ProductCard({ product }) {
 
   return (
     <ProductCardStyle>
-      <ProductCardImage variantId={variantId} image={image} />
-      <h3>
-        <Link to={`store/${handle}`}>{title}</Link>
-      </h3>
+      <ProductCardImage handle={handle} variantId={variantId} image={image} />
+      <Link to={`/store/${handle}`}>
+        <h3>{title}</h3>
+      </Link>
       <p>{description}</p>
     </ProductCardStyle>
   );

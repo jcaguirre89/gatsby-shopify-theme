@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Img from 'gatsby-image';
+import Link from 'gatsby-link';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FaCartPlus } from 'react-icons/fa';
@@ -33,7 +34,7 @@ const CTA = styled.button`
   cursor: pointer;
 `;
 
-export default function ProductCardImage({ variantId, image }) {
+export default function ProductCardImage({ handle, variantId, image }) {
   const dispatch = useContext(GlobalDispatchContext);
 
   const handleClick = () => {
@@ -43,7 +44,9 @@ export default function ProductCardImage({ variantId, image }) {
 
   return (
     <Container>
-      <Img fluid={image} />
+      <Link to={`/store/${handle}`}>
+        <Img fluid={image} />
+      </Link>
       <CTA onClick={() => handleClick()}>
         <FaCartPlus size={30} />
       </CTA>
