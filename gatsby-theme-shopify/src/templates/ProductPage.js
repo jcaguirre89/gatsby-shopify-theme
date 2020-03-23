@@ -10,7 +10,6 @@ export default function ProductPage({ data }) {
   return (
     <Layout>
       <SEO title={product.title} description={product.description} />
-      <Header />
       {product.images.map(image => (
         <Img
           fluid={image.localFile.childImageSharp.fluid}

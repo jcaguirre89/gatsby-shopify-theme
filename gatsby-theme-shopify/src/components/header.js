@@ -23,8 +23,15 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: flex-start;
   margin-top: 1rem;
-  background: ${props =>
-    props.transparent ? 'transparent' : props.theme.white};
+  background: transparent;
+  position: fixed;
+  top: 0px;
+  z-index: 3000;
+  width: 100%;
+
+  @media (max-width: ${props => props.theme.breakpoints.m}) {
+    background: ${props => props.theme.white};
+  }
 `;
 
 export default function Header({ transparent }) {

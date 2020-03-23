@@ -2,44 +2,34 @@ import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import Header from './header';
 
 const StickyHeroOuter = styled.section`
   width: 100vw;
   height: 100vh;
-  position: relative;
+  position: fixed;
+  overflow: hidden;
 `;
 
 const HeroContent = styled.div`
+  display: block;
   position: absolute;
-  bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
   width: 100%;
-`;
-
-const HeaderContainer = styled.div`
-  position: absolute;
-  top: 0px;
-  z-index: 10;
-  width: 100%;
+  max-width: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  top: 50%;
 `;
 
 export default function StickyHero() {
   const data = useStaticQuery(HERO_QUERY);
+  const { background, title, subtitle } = data.allSanityHero.edges[0].node;
 
   return (
     <StickyHeroOuter>
-      <HeaderContainer>
-        <Header transparent />
-      </HeaderContainer>
-      <Img fluid={data.allSanityHero.edges[0].node.background.asset.fluid} />
+      <Img fluid={background.asset.fluid} />
       <HeroContent>
-        <h2>{data.allSanityHero.edges[0].node.title}</h2>
-        <h3>{data.allSanityHero.edges[0].node.subtitle}</h3>
+        <h2>{title}</h2>
+        <h3>{subtitle}</h3>
       </HeroContent>
     </StickyHeroOuter>
   );
@@ -54,7 +44,7 @@ const HERO_QUERY = graphql`
           subtitle
           background {
             asset {
-              fluid(maxWidth: 700) {
+              fluid(maxWidth: 910) {
                 ...GatsbySanityImageFluid
               }
             }
