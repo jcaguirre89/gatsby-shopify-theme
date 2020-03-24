@@ -9,12 +9,26 @@ const StickyHeroOuter = styled.section`
   position: relative;
 `;
 
+const handleHeroContentLocation = location => {
+  switch (location) {
+    case 'left':
+      return 'translateX(-80%)';
+    case 'right':
+      return 'translateX(80%)';
+    case 'center':
+      return 'translateX(0%)';
+    default:
+      return 'translateX(0%)';
+  }
+};
+
 const HeroContent = styled.div`
   display: block;
   position: absolute;
   width: 100%;
   max-width: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%)
+    ${({ location }) => handleHeroContentLocation(location)};
   right: 0;
   top: 50%;
   color: ${props => props.theme.white};
@@ -31,7 +45,7 @@ const HeroContent = styled.div`
     top: auto;
     right: 20%;
     bottom: 10%;
-    transform: translateY(0);
+    transform: translateX(0) translateY(0);
 
     h2 {
       font-size: 2.5rem;
@@ -45,12 +59,17 @@ const HeroContent = styled.div`
 
 export default function StickyHero() {
   const data = useStaticQuery(HERO_QUERY);
-  const { background, title, subtitle } = data.allSanityHero.edges[0].node;
+  const {
+    background,
+    title,
+    subtitle,
+    content_location,
+  } = data.allSanityHero.edges[0].node;
 
   return (
     <StickyHeroOuter>
       <Img fluid={background.asset.fluid} style={{ height: '100%' }} />
-      <HeroContent>
+      <HeroContent location={content_location}>
         <h2>{title}</h2>
         <h3>{subtitle}</h3>
       </HeroContent>
@@ -60,11 +79,12 @@ export default function StickyHero() {
 
 const HERO_QUERY = graphql`
   query {
-    allSanityHero {
+    allSanityHero(filter: { publish: { eq: true } }) {
       edges {
         node {
           title
           subtitle
+          content_location
           background {
             asset {
               fluid(maxWidth: 910) {
