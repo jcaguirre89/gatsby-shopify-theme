@@ -32,6 +32,12 @@ const CTA = styled.button`
   font-size: 1.2rem;
   font-weight: 700;
   cursor: pointer;
+  transition: transform 0.2s ease-out;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: ${props => props.theme.bs};
+  }
 `;
 
 export default function ProductCardImage({ handle, variantId, image }) {
