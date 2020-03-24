@@ -5,7 +5,7 @@ import Img from 'gatsby-image';
 
 const StickyHeroOuter = styled.section`
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
 `;
 
 const HeroContent = styled.div`
@@ -16,6 +16,30 @@ const HeroContent = styled.div`
   transform: translateY(-50%);
   right: 0;
   top: 50%;
+  color: ${props => props.theme.white};
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.m}) {
+    top: auto;
+    right: 20%;
+    bottom: 10%;
+    transform: translateY(0);
+
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    h3 {
+      font-size: 2rem;
+    }
+  }
 `;
 
 export default function StickyHero() {
@@ -24,7 +48,7 @@ export default function StickyHero() {
 
   return (
     <StickyHeroOuter>
-      <Img fluid={background.asset.fluid} />
+      <Img fluid={background.asset.fluid} style={{ height: '100%' }} />
       <HeroContent>
         <h2>{title}</h2>
         <h3>{subtitle}</h3>
