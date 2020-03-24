@@ -17,7 +17,7 @@ module.exports = {
       options: {
         shopName: process.env.GATSBY_SHOP_NAME,
         accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
-        storePath: this.siteMetadata.storePath,
+        storePath: "/store",
         sanityProjectId: process.env.SANITY_PROJECT_ID,
         sanityDataset: process.env.SANITY_DATASET,
         sanityToken: process.env.SANITY_TOKEN
