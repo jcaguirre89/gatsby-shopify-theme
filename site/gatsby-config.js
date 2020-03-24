@@ -8,7 +8,8 @@ module.exports = {
     url: "https://www.example.com", // no trailing slash
     twitterHandle: "@placeholder",
     instagramHandle: "@placeholder",
-    image: "/images/avatar.jpg"
+    image: "/images/avatar.jpg",
+    storePath: "/store"
   },
   plugins: [
     {
@@ -16,7 +17,7 @@ module.exports = {
       options: {
         shopName: process.env.GATSBY_SHOP_NAME,
         accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
-        basePath: "/store",
+        storePath: this.siteMetadata.storePath,
         sanityProjectId: process.env.SANITY_PROJECT_ID,
         sanityDataset: process.env.SANITY_DATASET,
         sanityToken: process.env.SANITY_TOKEN

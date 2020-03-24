@@ -40,7 +40,12 @@ const CTA = styled.button`
   }
 `;
 
-export default function ProductCardImage({ handle, variantId, image }) {
+export default function ProductCardImage({
+  storePath,
+  handle,
+  variantId,
+  image,
+}) {
   const dispatch = useContext(GlobalDispatchContext);
 
   const handleClick = () => {
@@ -50,7 +55,7 @@ export default function ProductCardImage({ handle, variantId, image }) {
 
   return (
     <Container>
-      <Link to={`/store/${handle}`}>
+      <Link to={`${storePath}/${handle}`}>
         <Img fluid={image} />
       </Link>
       <CTA onClick={() => handleClick()}>

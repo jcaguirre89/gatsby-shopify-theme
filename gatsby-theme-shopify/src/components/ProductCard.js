@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import ProductCardImage from './ProductCardImage';
 
 const ProductCardStyle = styled.div`
@@ -22,6 +22,15 @@ const ProductCardStyle = styled.div`
 `;
 
 export default function ProductCard({ product }) {
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          storePath
+        }
+      }
+    }
+  `);
   const {
     title,
     description,
@@ -31,11 +40,17 @@ export default function ProductCard({ product }) {
   } = product;
   const { id: variantId, price } = firstVariant;
   const image = firstImage.localFile.childImageSharp.fluid;
+  const { storePath } = data.site.siteMetadata;
 
   return (
     <ProductCardStyle>
-      <ProductCardImage handle={handle} variantId={variantId} image={image} />
-      <Link to={`/store/${handle}`}>
+      <ProductCardImage
+        handle={handle}
+        variantId={variantId}
+        image={image}
+        storePath={storePath}
+      />
+      <Link to={`${storePath}/${handle}`}>
         <h3>{title}</h3>
       </Link>
       <p>{description}</p>

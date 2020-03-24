@@ -6,8 +6,8 @@ function removeTrailingLeadingSlashes(string) {
 
 exports.createPages = async ({ graphql, actions }, options) => {
   const { createPage } = actions;
-  let { basePath = '' } = options;
-  basePath = removeTrailingLeadingSlashes(basePath);
+  let { storePath = '' } = options;
+  storePath = removeTrailingLeadingSlashes(storePath);
   const queryProducts = await graphql(`
     {
       allShopifyProduct {
@@ -19,7 +19,7 @@ exports.createPages = async ({ graphql, actions }, options) => {
   `);
   queryProducts.data.allShopifyProduct.nodes.forEach(({ handle }) => {
     createPage({
-      path: `${basePath}/${handle}/`,
+      path: `${storePath}/${handle}/`,
       component: productTemplate,
       context: { handle },
     });
