@@ -68,7 +68,6 @@ export default function Cart() {
   `);
   const products = data.allShopifyProduct.nodes;
   const productsInCart = filterCart(products, cartItems);
-  console.log(productsInCart);
   return (
     <CartStyles open={isCartOpen}>
       <button type="button" onClick={() => dispatch({ type: 'TOGGLE_CART' })}>

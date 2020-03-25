@@ -37,7 +37,6 @@ function reducer(state, action) {
       const updatedCartItems = state.cartItems.filter(
         i => i.variantId !== variantId
       );
-      console.log(updatedCartItems);
       return {
         ...state,
         cartItems: updatedCartItems,
