@@ -14,12 +14,6 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-
-  img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-  }
 `;
 
 const CTA = styled.button`
@@ -62,7 +56,7 @@ export default function ProductCardImage({
   return (
     <Container>
       <Link to={`${storePath}/${handle}`}>
-        <Img fluid={image} />
+        <Img fluid={image} style={{ height: '100%' }} />
       </Link>
       <CTA onClick={() => handleClick()}>
         <AiOutlineShopping size={30} />

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import ProductCardImage from './ProductCardImage';
+import MonetaryValue from './MonetaryValue';
 
 const ProductCardStyle = styled.div`
   background: ${props => props.theme.background};
@@ -9,15 +10,21 @@ const ProductCardStyle = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0;
-  p {
-    line-height: 2;
-    flex-grow: 1;
-    padding: 0 3rem;
-    font-size: 1.5rem;
+  width: 100%;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  h3 {
+    font-weight: 700;
+    margin: 10px auto;
   }
-  .content {
-    display: flex;
-    flex-direction: column;
+  p {
+    font-size: 1.3rem;
   }
 `;
 
@@ -39,7 +46,6 @@ export default function ProductCard({ product }) {
     images: [firstImage],
   } = product;
   const { id: variantId, price } = firstVariant;
-  const image = firstImage.localFile.childImageSharp.fluid;
   const { storePath } = data.site.siteMetadata;
 
   return (
@@ -47,13 +53,15 @@ export default function ProductCard({ product }) {
       <ProductCardImage
         handle={handle}
         variantId={variantId}
-        image={image}
+        image={firstImage.localFile.childImageSharp.fluid}
         storePath={storePath}
       />
-      <Link to={`${storePath}/${handle}`}>
-        <h3>{title}</h3>
-      </Link>
-      <p>{description}</p>
+      <Content>
+        <Link to={`${storePath}/${handle}`}>
+          <h3>{title}</h3>
+        </Link>
+        <MonetaryValue amount={price} />
+      </Content>
     </ProductCardStyle>
   );
 }

@@ -6,16 +6,18 @@ const Container = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
+  p {
+    margin: 0 4px;
+  }
 `;
 
-const Currency = styled.span`
+const Currency = styled.p`
   color: ${props => props.theme.grey};
   font-size: 0.8rem;
   text-transform: uppercase;
-  margin-right: 10px;
 `;
 
-const Amount = styled.span`
+const Amount = styled.p`
   font-size: 1.1rem;
   font-weight: 700;
 `;

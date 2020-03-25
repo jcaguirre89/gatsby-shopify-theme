@@ -4,6 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import ProductCard from './ProductCard';
 
 const ProductGrid = styled.div`
+  margin-top: 15px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 10px;
@@ -38,13 +39,10 @@ export default function ProductList() {
   `);
   const products = data.allShopifyProduct.nodes;
   return (
-    <>
-      <h2>Product List</h2>
-      <ProductGrid>
-        {products.map(product => (
-          <ProductCard product={product} />
-        ))}
-      </ProductGrid>
-    </>
+    <ProductGrid>
+      {products.map(product => (
+        <ProductCard key={product.handle} product={product} />
+      ))}
+    </ProductGrid>
   );
 }

@@ -17,6 +17,7 @@ const theme = {
   offWhite: '#f0ead6',
   green: '#77dd77',
   black: '#313639',
+  grey: '#aaa',
   maxWidth: '1000px',
   bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
 };
