@@ -29,9 +29,18 @@ const CartStyles = styled.div`
   }
 `;
 
+const filterCart = (products, cartItems) => {
+  const idsInCart = cartItems.map(item => item.variantId);
+  const filteredProducts = products.filter(item =>
+    idsInCart.includes(item.variants[0].id)
+  );
+  return filteredProducts;
+};
+
 export default function Cart() {
   const { isCartOpen, cartItems } = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
+
   const data = useStaticQuery(graphql`
     query MyQuery {
       allShopifyProduct {
@@ -58,14 +67,15 @@ export default function Cart() {
     }
   `);
   const products = data.allShopifyProduct.nodes;
+  const productsInCart = filterCart(products, cartItems);
+  console.log(productsInCart);
   return (
     <CartStyles open={isCartOpen}>
       <button type="button" onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
         &times;
       </button>
-      {products.map(item => (
-        <CartItem key={item.handle} item={item} />
-      ))}
+      {productsInCart &&
+        productsInCart.map(item => <CartItem key={item.handle} item={item} />)}
     </CartStyles>
   );
 }

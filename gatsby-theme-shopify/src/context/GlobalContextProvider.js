@@ -32,6 +32,17 @@ function reducer(state, action) {
         cartItems: [...updatedCartItems, action.payload],
       };
     }
+    case 'REMOVE_FROM_CART': {
+      const { variantId } = action.payload;
+      const updatedCartItems = state.cartItems.filter(
+        i => i.variantId !== variantId
+      );
+      console.log(updatedCartItems);
+      return {
+        ...state,
+        cartItems: updatedCartItems,
+      };
+    }
     default:
       throw new Error('Bad action type');
   }
