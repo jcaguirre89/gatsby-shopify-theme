@@ -2,6 +2,8 @@ import React from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Header from './header';
 import SEO from './SEO';
+import Cart from './Cart';
+import SideMenu from './SideMenu';
 
 const breakpoints = {
   s: '400px',
@@ -58,6 +60,8 @@ const Layout = ({ children }) => {
       <ThemeProvider theme={theme}>
         <Wrapper>
           <SEO />
+          <Cart />
+          <SideMenu />
           <Header />
           <Inner>{children}</Inner>
         </Wrapper>
