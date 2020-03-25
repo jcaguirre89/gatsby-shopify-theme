@@ -33,6 +33,18 @@ module.exports = ({
       },
     },
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /\.inline\.svg$/,
+        },
+      },
+    },
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-transformer-sharp`,
+    // Safe to remove these?
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: 'data',
@@ -50,8 +62,5 @@ module.exports = ({
         typeName: 'Product',
       },
     },
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-styled-components`,
-    `gatsby-transformer-sharp`,
   ],
 });
