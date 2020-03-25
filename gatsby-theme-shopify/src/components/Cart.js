@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
+import { FaLongArrowAltLeft } from 'react-icons/fa';
 import {
   GlobalStateContext,
   GlobalDispatchContext,
@@ -15,17 +16,43 @@ const CartStyles = styled.div`
   z-index: 5;
   min-width: 400px;
   width: 40%;
-  height: 100%;
+  height: 85%;
   transition: all 0.3s;
   background: white;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
   transform: translateX(100%);
   ${props => props.open && `transform: translateX(0);`};
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  place-items: center;
+  grid-template-rows: 20px 50px 1fr auto;
   @media (max-width: 400px) {
     min-width: auto;
     width: 100%;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-y: scroll;
+  }
+
+  .close-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: none;
+    border: none;
+  }
+
+  header {
+    text-transform: uppercase;
+    font-size: 1.6rem;
   }
 `;
 
@@ -70,11 +97,25 @@ export default function Cart() {
   const productsInCart = filterCart(products, cartItems);
   return (
     <CartStyles open={isCartOpen}>
-      <button type="button" onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
-        &times;
+      <button
+        className="close-button"
+        type="button"
+        onClick={() => dispatch({ type: 'TOGGLE_CART' })}
+      >
+        <FaLongArrowAltLeft size={30} />
       </button>
-      {productsInCart &&
-        productsInCart.map(item => <CartItem key={item.handle} item={item} />)}
+      <header>
+        <h3>YOUR BAG</h3>
+      </header>
+      <ul>
+        {productsInCart &&
+          productsInCart.map(item => (
+            <CartItem key={item.handle} item={item} />
+          ))}
+      </ul>
+      <footer>
+        <h4>Checkout</h4>
+      </footer>
     </CartStyles>
   );
 }
