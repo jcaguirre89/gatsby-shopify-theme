@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import Img from 'gatsby-image';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { FaCartPlus } from 'react-icons/fa';
+import { AiOutlineShopping } from 'react-icons/ai';
 import { GlobalDispatchContext } from '../context/GlobalContextProvider';
 
 const Container = styled.div`
@@ -59,7 +59,7 @@ export default function ProductCardImage({
         <Img fluid={image} />
       </Link>
       <CTA onClick={() => handleClick()}>
-        <FaCartPlus size={30} />
+        <AiOutlineShopping size={30} />
       </CTA>
     </Container>
   );
