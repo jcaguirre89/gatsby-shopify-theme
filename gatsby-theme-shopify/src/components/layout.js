@@ -13,11 +13,16 @@ const breakpoints = {
 
 const theme = {
   breakpoints,
+  red: '#FF0000',
+  gold: '#9d8755',
+  black: '#000',
+  offBlack: '#393939',
+  grey: '#808080',
+  lightGrey: '#d1d1cf',
+  blue: '#243485',
+  green: '#00ffff',
+  offWhite: '#EDEDED',
   white: '#fff',
-  offWhite: '#f0ead6',
-  green: '#77dd77',
-  black: '#313639',
-  grey: '#aaa',
   maxWidth: '1000px',
   bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
 };
