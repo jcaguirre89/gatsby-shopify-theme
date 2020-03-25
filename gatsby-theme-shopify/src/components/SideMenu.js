@@ -7,7 +7,7 @@ import {
 
 const MenuStyles = styled.div`
   position: fixed;
-  top: 0;
+  top: 90px;
   left: 0;
   bottom: 0;
   z-index: 5;

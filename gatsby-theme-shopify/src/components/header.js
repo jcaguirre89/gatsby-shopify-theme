@@ -15,6 +15,7 @@ const HeaderBase = styled.nav`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  height: 90px;
 `;
 
 const StyledHeader = styled(HeaderBase)`

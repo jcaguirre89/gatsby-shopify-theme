@@ -9,7 +9,7 @@ import CartItem from './CartItem';
 
 const CartStyles = styled.div`
   position: fixed;
-  top: 0;
+  top: 90px;
   right: 0;
   bottom: 0;
   z-index: 5;
