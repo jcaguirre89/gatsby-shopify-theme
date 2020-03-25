@@ -4,7 +4,10 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { AiOutlineShopping } from 'react-icons/ai';
-import { GlobalDispatchContext } from '../context/GlobalContextProvider';
+import {
+  GlobalStateContext,
+  GlobalDispatchContext,
+} from '../context/GlobalContextProvider';
 
 const Container = styled.div`
   font-size: 1rem;
@@ -47,10 +50,13 @@ export default function ProductCardImage({
   image,
 }) {
   const dispatch = useContext(GlobalDispatchContext);
+  const { isCartOpen } = useContext(GlobalStateContext);
 
   const handleClick = () => {
-    dispatch({ type: 'TOGGLE_CART' });
     dispatch({ type: 'UPDATE_CART', payload: { variantId, quantity: 1 } });
+    if (!isCartOpen) {
+      dispatch({ type: 'TOGGLE_CART' });
+    }
   };
 
   return (
