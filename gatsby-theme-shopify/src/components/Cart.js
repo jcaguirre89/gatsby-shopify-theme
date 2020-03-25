@@ -1,6 +1,11 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { GlobalStateContext } from '../context/GlobalContextProvider';
+import { graphql, useStaticQuery } from 'gatsby';
+import {
+  GlobalStateContext,
+  GlobalDispatchContext,
+} from '../context/GlobalContextProvider';
+import CartItem from './CartItem';
 
 const CartStyles = styled.div`
   position: fixed;
@@ -12,6 +17,7 @@ const CartStyles = styled.div`
   width: 40%;
   height: 100%;
   transition: all 0.3s;
+  background: white;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
   transform: translateX(100%);
   ${props => props.open && `transform: translateX(0);`};
@@ -25,9 +31,41 @@ const CartStyles = styled.div`
 
 export default function Cart() {
   const { isCartOpen, cartItems } = useContext(GlobalStateContext);
+  const dispatch = useContext(GlobalDispatchContext);
+  const data = useStaticQuery(graphql`
+    query MyQuery {
+      allShopifyProduct {
+        nodes {
+          description
+          handle
+          images {
+            id
+            localFile {
+              childImageSharp {
+                fixed(width: 120, height: 120) {
+                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
+                }
+              }
+            }
+          }
+          title
+          variants {
+            id
+            price
+          }
+        }
+      }
+    }
+  `);
+  const products = data.allShopifyProduct.nodes;
   return (
     <CartStyles open={isCartOpen}>
-      <div>Content</div>
+      <button type="button" onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
+        &times;
+      </button>
+      {products.map(item => (
+        <CartItem key={item.handle} item={item} />
+      ))}
     </CartStyles>
   );
 }

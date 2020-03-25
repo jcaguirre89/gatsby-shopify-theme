@@ -22,7 +22,7 @@ function reducer(state, action) {
         isMenuOpen: !state.isMenuOpen,
       };
     case 'UPDATE_CART': {
-      const { variantId } = action.payload;
+      const { variantId, quantity } = action.payload;
       // remove from cart
       const updatedCartItems = state.cartItems.filter(
         i => i.variantId !== variantId
