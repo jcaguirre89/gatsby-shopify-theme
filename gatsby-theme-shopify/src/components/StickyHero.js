@@ -35,9 +35,11 @@ const HeroContent = styled.div`
 
   h2 {
     font-size: 3rem;
+    font-family: 'Spartan';
   }
 
   h3 {
+    font-family: 'Spartan';
     font-size: 2rem;
   }
 
