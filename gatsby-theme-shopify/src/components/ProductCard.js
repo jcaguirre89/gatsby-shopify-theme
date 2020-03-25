@@ -22,6 +22,7 @@ const Content = styled.div`
   h3 {
     font-weight: 700;
     margin: 10px auto;
+    text-transform: uppercase;
   }
   p {
     font-size: 1.3rem;
