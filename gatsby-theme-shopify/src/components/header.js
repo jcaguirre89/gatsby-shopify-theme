@@ -26,7 +26,7 @@ const HeaderBase = styled.nav`
   border-bottom: 1px solid ${props => props.theme.gold};
   a,
   button {
-    padding: 1rem 3rem;
+    margin: 1rem 3rem;
     display: flex;
     align-items: center;
     position: relative;
@@ -42,6 +42,14 @@ const StyledHeader = styled(HeaderBase)`
   visibility: ${props => (props.show ? 'visible' : 'hidden')};
   transition: all 200ms ${props => (props.show ? 'ease-in' : 'ease-out')};
   transform: ${props => (props.show ? 'none' : 'translate(0, -100%)')};
+`;
+
+const StyledMenuIcon = styled(MdMenu)`
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: ${props => props.theme.gold};
+    transform: rotate(-90deg);
+  }
 `;
 
 export default function Header() {
@@ -65,7 +73,7 @@ export default function Header() {
   return (
     <StyledHeader show={hideNavbarOnScroll} transparent={transparent}>
       <button type="button" onClick={() => dispatch({ type: 'TOGGLE_MENU' })}>
-        <MdMenu size={35} />
+        <StyledMenuIcon size={35} />
       </button>
       <Link to="/">
         <Logo
