@@ -46,11 +46,17 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
+    font-family: 'Spartan';
     line-height: 2;
     color: ${theme.black}
   }
+  h1,h2,h3,h3,h5,h6 {
+    font-family: 'Playfair Display';
+
+  }
   a {
     text-decoration: none;
+    color: ${theme.black}
   }
 `;
 
@@ -58,6 +64,14 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyle />
+      <link
+        href="https://fonts.googleapis.com/css?family=Playfair+Display:900&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css?family=Spartan&display=swap"
+        rel="stylesheet"
+      ></link>
       <ThemeProvider theme={theme}>
         <Wrapper>
           <SEO />
