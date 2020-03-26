@@ -14,6 +14,10 @@ const StyledButton = styled.button`
   border: 0px solid;
   margin: 0;
   cursor: pointer;
+
+  &:disabled {
+    color: ${props => props.theme.grey};
+  }
 `;
 
 const Container = styled.div`
