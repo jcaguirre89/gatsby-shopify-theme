@@ -56,6 +56,10 @@ const CartItemStyle = styled.div`
     padding: 0 5px;
     background: transparent;
     border: 0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: ${props => props.theme.blue};
+    letter-spacing: 1px;
   }
 `;
 
