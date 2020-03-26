@@ -59,6 +59,13 @@ const CartItemStyle = styled.div`
   }
 `;
 
+const getQuantityInCart = (id, cartItems) => {
+  // gets quantity of given variantId in cart or 0
+  const item = cartItems.filter(item => item.variantId === id);
+  if (item.length === 0) return 0;
+  return item[0].quantity;
+};
+
 export default function CartItem({ item }) {
   const dispatch = useContext(GlobalDispatchContext);
   const { cartItems } = useContext(GlobalStateContext);
@@ -66,11 +73,13 @@ export default function CartItem({ item }) {
   const {
     title,
     description,
-    quantityInCart,
     variants: [firstVariant],
     images: [firstImage],
   } = item;
   const { id: variantId, price } = firstVariant;
+
+  const quantityInCart = getQuantityInCart(variantId, cartItems);
+  console.log(quantityInCart);
   return (
     <CartItemStyle>
       <Img

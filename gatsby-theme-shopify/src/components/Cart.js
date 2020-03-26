@@ -57,6 +57,7 @@ const CartStyles = styled.div`
 `;
 
 const filterCart = (products, cartItems) => {
+  // takes query of all shopify products and returns only ones in cart
   const idsInCart = cartItems.map(item => item.variantId);
   const filteredProducts = products.filter(item =>
     idsInCart.includes(item.variants[0].id)
@@ -78,7 +79,7 @@ export default function Cart() {
             id
             localFile {
               childImageSharp {
-                fixed(width: 70, height: 70) {
+                fixed(width: 80, height: 80) {
                   ...GatsbyImageSharpFixed_withWebp_tracedSVG
                 }
               }
