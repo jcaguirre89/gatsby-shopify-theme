@@ -90,7 +90,7 @@ export default function CartItem({ item }) {
         fixed={firstImage.localFile.childImageSharp.fixed}
         alt={description}
         key={firstImage.id}
-        style={{ height: '100%' }}
+        style={{ height: '100%', width: '100%' }}
       />
       <div className="middle-col">
         <h3 className="title">{title}</h3>
