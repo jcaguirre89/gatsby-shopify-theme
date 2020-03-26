@@ -10,20 +10,17 @@ const StyledButton = styled.button`
   height: 20px;
   width: 20px;
   background: transparent;
-  color: ${props => props.theme.lightGrey};
+  color: ${props => props.theme.offBlack};
   border: 0px solid;
   margin: 0;
   cursor: pointer;
-  &:hover {
-    background: ${props => props.theme.black};
-    color: white;
-  }
 `;
 
 const Container = styled.div`
   width: 20px;
-  height: 80px;
+  height: 60px;
   margin-right: 5px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

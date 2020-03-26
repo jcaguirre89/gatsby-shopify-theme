@@ -13,7 +13,6 @@ import {
 import UpdateQuantityButton from './UpdateCartButton';
 
 const CartItemStyle = styled.div`
-  max-height: 110px;
   width: 100%;
   margin-bottom: 5px;
   display: grid;
@@ -29,7 +28,7 @@ const CartItemStyle = styled.div`
     padding: 0 5px;
   }
   .middle-col {
-    height: 100%;
+    height: 80px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 15px 15px 1fr;
@@ -37,9 +36,8 @@ const CartItemStyle = styled.div`
   .last-col {
     height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
   }
   .price {
     padding: 0 5px;
