@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { FaLongArrowAltRight } from 'react-icons/fa';
 import {
   GlobalStateContext,
   GlobalDispatchContext,
@@ -11,7 +12,7 @@ const MenuStyles = styled.div`
   left: 0;
   bottom: 0;
   z-index: 5;
-  min-width: 400px;
+  min-width: 350px;
   width: 40%;
   height: 100%;
   background: ${props => props.theme.white};
@@ -25,6 +26,15 @@ const MenuStyles = styled.div`
     min-width: auto;
     width: 100%;
   }
+
+  .close-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: none;
+    border: none;
+  }
 `;
 
 export default function Menu() {
@@ -32,8 +42,12 @@ export default function Menu() {
   const dispatch = useContext(GlobalDispatchContext);
   return (
     <MenuStyles open={isMenuOpen}>
-      <button type="button" onClick={() => dispatch({ type: 'TOGGLE_MENU' })}>
-        Close
+      <button
+        className="close-button"
+        type="button"
+        onClick={() => dispatch({ type: 'TOGGLE_MENU' })}
+      >
+        <FaLongArrowAltRight size={30} />
       </button>
       <div>Content</div>
     </MenuStyles>
