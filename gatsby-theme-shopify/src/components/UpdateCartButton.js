@@ -24,10 +24,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const QuantityContainer = styled.span`
   flex-grow: 2;
+  margin-left: 8px;
   display: grid;
   place-items: center center;
   font-size: 0.9rem;
@@ -50,7 +52,7 @@ export default function UpdateQuantityButton({ variantId, quantity }) {
       >
         <IoIosArrowUp size={16} />
       </StyledButton>
-      <QuantityContainer>{quantity}x</QuantityContainer>
+      <QuantityContainer>{quantity}</QuantityContainer>
       <StyledButton
         disabled={quantity <= 1}
         onClick={() => handleClick(variantId, quantity - 1)}
