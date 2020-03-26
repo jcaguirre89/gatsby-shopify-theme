@@ -33,7 +33,7 @@ const Container = styled.div`
 
 const QuantityContainer = styled.span`
   flex-grow: 2;
-  margin-left: 8px;
+  margin-left: 10px;
   display: grid;
   place-items: center center;
   font-size: 0.9rem;
