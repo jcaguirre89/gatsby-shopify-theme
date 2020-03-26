@@ -14,7 +14,7 @@ const CartStyles = styled.div`
   right: 0;
   bottom: 0;
   z-index: 5;
-  min-width: 400px;
+  min-width: 350px;
   width: 40%;
   height: 85%;
   transition: all 0.3s;
