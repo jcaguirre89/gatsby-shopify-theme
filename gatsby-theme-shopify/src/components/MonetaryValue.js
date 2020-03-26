@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Container = styled.span`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   p {
     margin: 0 4px;
   }

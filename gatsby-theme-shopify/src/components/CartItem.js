@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FaTimes } from 'react-icons/fa';
 import MonetaryValue from './MonetaryValue';
+import { formatMoney } from './MonetaryValue';
 import {
   GlobalDispatchContext,
   GlobalStateContext,
@@ -13,34 +14,25 @@ import UpdateQuantityButton from './UpdateCartButton';
 
 const CartItemStyle = styled.div`
   max-height: 110px;
+  width: 100%;
   margin-bottom: 5px;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 70px 1fr 40px;
   grid-gap: 5px;
   grid-template-rows: minmax(0, 1fr);
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
   .title {
+    font-family: 'Spartan';
     text-transform: uppercase;
     font-weight: 700;
     margin: 0;
-    font-size: 1.1rem;
-  }
-  .description {
-    font-size: 1rem;
-    margin: 0;
-    color: #b7b7b5;
+    font-size: 1.2rem;
+    padding: 0 5px;
   }
   .middle-col {
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 30px 1fr 1fr;
-  }
-  .update-quantity {
-    align-self: end;
+    grid-template-rows: 15px 15px 1fr;
   }
   .last-col {
     height: 100%;
@@ -50,26 +42,22 @@ const CartItemStyle = styled.div`
     align-items: flex-end;
   }
   .price {
+    padding: 0 5px;
     margin-bottom: 0;
     margin-right: 0;
     font-size: 1rem;
     font-weight: 700;
   }
+
   .remove-button {
-    height: 30px;
-    width: 30px;
-    margin-top: 0;
-    margin-right: 0;
-    margin-left: auto;
-    height: 30px;
-    background: white;
-    font-size: 1.5rem;
-    color: ${props => props.theme.black};
-    border: 0px solid transparent;
-  }
-  .remove-button:hover {
-    background: ${props => props.theme.black};
-    color: white;
+    align-self: end;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 0 5px;
+    background: transparent;
+    border: 0;
   }
 `;
 
@@ -91,18 +79,11 @@ export default function CartItem({ item }) {
         fixed={firstImage.localFile.childImageSharp.fixed}
         alt={description}
         key={firstImage.id}
+        style={{ height: '100%' }}
       />
       <div className="middle-col">
         <h3 className="title">{title}</h3>
-        <p className="description">{description}</p>
-        <div className="update-quantity">
-          <UpdateQuantityButton
-            variantId={variantId}
-            quantity={quantityInCart}
-          />
-        </div>
-      </div>
-      <div className="last-col">
+        <p className="price">{formatMoney(price)}</p>
         <button
           className="remove-button"
           type="button"
@@ -110,11 +91,16 @@ export default function CartItem({ item }) {
             dispatch({ type: 'REMOVE_FROM_CART', payload: { variantId } })
           }
         >
-          <FaTimes />
+          Remove
         </button>
-        <p className="price">
-          <MonetaryValue amount={price} />
-        </p>
+      </div>
+      <div className="last-col">
+        <div className="update-quantity">
+          <UpdateQuantityButton
+            variantId={variantId}
+            quantity={quantityInCart}
+          />
+        </div>
       </div>
     </CartItemStyle>
   );

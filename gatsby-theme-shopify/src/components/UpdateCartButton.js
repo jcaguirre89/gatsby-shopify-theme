@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { FaMinus, FaPlus } from 'react-icons/fa';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { GlobalDispatchContext } from '../context/GlobalContextProvider';
 
 const StyledButton = styled.button`
@@ -9,9 +9,9 @@ const StyledButton = styled.button`
   place-items: center;
   height: 20px;
   width: 20px;
-  background: white;
+  background: transparent;
   color: ${props => props.theme.lightGrey};
-  border: 0.5px solid ${props => props.theme.lightGrey};
+  border: 0px solid;
   margin: 0;
   cursor: pointer;
   &:hover {
@@ -21,11 +21,12 @@ const StyledButton = styled.button`
 `;
 
 const Container = styled.div`
-  width: 80px;
-  height: 20px;
+  width: 20px;
+  height: 80px;
+  margin-right: 5px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  place-items: center center;
 `;
 
 const QuantityContainer = styled.span`
@@ -35,7 +36,7 @@ const QuantityContainer = styled.span`
   font-size: 0.9rem;
   font-weight: 700;
   height: 20px;
-  border: 0.5px solid ${props => props.theme.lightGrey};
+  border: 0px solid;
 `;
 
 export default function UpdateQuantityButton({ variantId, quantity }) {
@@ -47,17 +48,17 @@ export default function UpdateQuantityButton({ variantId, quantity }) {
   return (
     <Container>
       <StyledButton
-        disabled={quantity <= 1}
-        onClick={() => handleClick(variantId, quantity - 1)}
-      >
-        <FaMinus size={8} />
-      </StyledButton>
-      <QuantityContainer>{quantity}x</QuantityContainer>
-      <StyledButton
         variantId={variantId}
         onClick={() => handleClick(variantId, quantity + 1)}
       >
-        <FaPlus size={8} />
+        <IoIosArrowUp size={16} />
+      </StyledButton>
+      <QuantityContainer>{quantity}x</QuantityContainer>
+      <StyledButton
+        disabled={quantity <= 1}
+        onClick={() => handleClick(variantId, quantity - 1)}
+      >
+        <IoIosArrowDown size={16} />
       </StyledButton>
     </Container>
   );

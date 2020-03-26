@@ -35,8 +35,8 @@ const CartStyles = styled.div`
     flex-direction: column;
     align-items: flex-start;
     height: 100%;
-    margin: 0;
-    padding: 0;
+    width: 100%;
+    padding: 10px;
     list-style: none;
     overflow-y: scroll;
   }
@@ -78,7 +78,7 @@ export default function Cart() {
             id
             localFile {
               childImageSharp {
-                fixed(width: 120, height: 120) {
+                fixed(width: 70, height: 70) {
                   ...GatsbyImageSharpFixed_withWebp_tracedSVG
                 }
               }
