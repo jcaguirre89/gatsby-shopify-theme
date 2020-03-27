@@ -13,6 +13,8 @@ module.exports = ({
     twitterHandle: '@placeholder',
     instagramHandle: '@placeholder',
     image: '/images/avatar.jpg',
+    email: 'contact@example.com',
+    phone: '+569 xxxx xxxx',
     shopify: {
       domain: `${shopName}.myshopify.com`,
       accessToken,

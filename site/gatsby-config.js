@@ -8,8 +8,14 @@ module.exports = {
     url: "https://www.example.com", // no trailing slash
     twitterHandle: "@placeholder",
     instagramHandle: "@placeholder",
+    email: "contact@example.com",
+    phone: "+569 xxxx xxxx",
     image: "/images/avatar.jpg",
-    storePath: "/store"
+    storePath: "/store",
+    shopify: {
+      domain: `${shopName}.myshopify.com`,
+      accessToken
+    }
   },
   plugins: [
     {

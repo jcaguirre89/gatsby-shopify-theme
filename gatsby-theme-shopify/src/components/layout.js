@@ -4,6 +4,7 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import SEO from './SEO';
 import Cart from './Cart';
 import SideMenu from './SideMenu';
+import Footer from './Footer';
 
 const breakpoints = {
   s: '400px',
@@ -36,7 +37,8 @@ const Wrapper = styled.div`
 `;
 
 const Inner = styled.div`
-  margin: 0;
+  padding-bottom: 50px;
+  box-shadow: 0px 100px 3px -100px ${theme.offBlack};
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -82,6 +84,7 @@ const Layout = ({ children }) => (
         <Cart />
         <SideMenu />
         <Inner>{children}</Inner>
+        <Footer />
       </Wrapper>
     </ThemeProvider>
   </>
