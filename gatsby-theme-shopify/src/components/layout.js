@@ -19,7 +19,7 @@ const theme = {
   offBlack: '#393939',
   grey: '#808080',
   lightGrey: '#d1d1cf',
-  blue: '#243485',
+  blue: 'rgb(43, 20, 83)',
   green: '#00ffff',
   offWhite: '#EDEDED',
   white: '#fff',

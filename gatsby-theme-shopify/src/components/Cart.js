@@ -9,6 +9,61 @@ import {
 import CartItem from './CartItem';
 import useCheckoutAmout from '../hooks/useCheckoutAmount';
 import { ShopifyClientContext } from '../context/ShopifyClientProvider';
+import MonetaryValue from './MonetaryValue';
+
+const CartInner = styled.div`
+  display: grid;
+  place-items: center;
+  grid-template-rows: 20px 50px 1fr auto;
+  padding: 20px 10px;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    max-height: 230px;
+    width: 100%;
+    padding: 2px;
+    list-style: none;
+    overflow-y: scroll;
+  }
+
+  .close-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: none;
+    border: none;
+  }
+
+  footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .checkout-button {
+    width: 100%;
+    background: ${props => props.theme.gold};
+    border: 1px solid ${props => props.theme.gold};
+    color: ${props => props.theme.white};
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: -0.1px;
+    font-weight: 500;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  header {
+    text-transform: uppercase;
+    font-size: 1.6rem;
+  }
+`;
 
 const CartStyles = styled.div`
   position: fixed;
@@ -25,37 +80,9 @@ const CartStyles = styled.div`
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
   transform: translateX(100%);
   ${props => props.open && `transform: translateX(0);`};
-  display: grid;
-  place-items: center;
-  grid-template-rows: 20px 50px 1fr auto;
   @media (max-width: ${props => props.theme.breakpoints.s}) {
     min-width: auto;
     width: 100%;
-  }
-
-  ul {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 100%;
-    width: 100%;
-    padding: 10px;
-    list-style: none;
-    overflow-y: scroll;
-  }
-
-  .close-button {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background: none;
-    border: none;
-  }
-
-  header {
-    text-transform: uppercase;
-    font-size: 1.6rem;
   }
 `;
 
@@ -101,7 +128,6 @@ export default function Cart() {
   `);
   const products = data.allShopifyProduct.nodes;
   const productsInCart = filterCart(products, cartItems);
-  console.log(cartItems);
 
   const handleCheckout = async () => {
     const checkout = await shopifyClient.checkout.create();
@@ -122,28 +148,35 @@ export default function Cart() {
 
   return (
     <CartStyles open={isCartOpen}>
-      <button
-        className="close-button"
-        type="button"
-        onClick={() => dispatch({ type: 'TOGGLE_CART' })}
-      >
-        <FaLongArrowAltLeft size={30} />
-      </button>
-      <header>
-        <h3>YOUR BAG</h3>
-      </header>
-      <ul>
-        {productsInCart &&
-          productsInCart.map(item => (
-            <CartItem key={item.handle} item={item} />
-          ))}
-      </ul>
-      <footer>
-        <button type="button" onClick={() => handleCheckout()}>
+      <CartInner>
+        <button
+          className="close-button"
+          type="button"
+          onClick={() => dispatch({ type: 'TOGGLE_CART' })}
+        >
+          <FaLongArrowAltLeft size={30} />
+        </button>
+        <header>
+          <h3>YOUR BAG</h3>
+        </header>
+        <ul>
+          {productsInCart &&
+            productsInCart.map(item => (
+              <CartItem key={item.handle} item={item} />
+            ))}
+        </ul>
+        <footer>
+          <p>Total</p>
+          <MonetaryValue amount={amount} />
+        </footer>
+        <button
+          className="checkout-button"
+          type="button"
+          onClick={() => handleCheckout()}
+        >
           Checkout
         </button>
-        <p>{amount}</p>
-      </footer>
+      </CartInner>
     </CartStyles>
   );
 }
