@@ -107,12 +107,10 @@ export default function Cart() {
     const checkout = await shopifyClient.checkout.create();
     const { id: checkoutId, webUrl } = checkout;
     if (cartItems.length === 0) return 'No items in cart';
-    const lineItems = cartItems.map(item => {
-      return {
-        variantId: item.variantId.replace('Shopify__ProductVariant__', ''),
-        quantity: item.quantity,
-      };
-    });
+    const lineItems = cartItems.map(item => ({
+      variantId: item.variantId.replace('Shopify__ProductVariant__', ''),
+      quantity: item.quantity,
+    }));
     await shopifyClient.checkout.addLineItems(checkoutId, lineItems);
 
     window.open(
