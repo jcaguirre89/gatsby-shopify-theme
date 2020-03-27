@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
@@ -83,10 +83,10 @@ const filterCart = (products, cartItems) => {
 
 export default function Cart() {
   const { isCartOpen, cartItems } = useContext(GlobalStateContext);
+  const [isCheckoutLoading, setCheckoutLoading] = useState(false);
   const dispatch = useContext(GlobalDispatchContext);
   const shopifyClient = useContext(ShopifyClientContext);
   const amount = useCheckoutAmout();
-  console.log(cartItems);
 
   const data = useStaticQuery(graphql`
     query MyQuery {
@@ -117,6 +117,7 @@ export default function Cart() {
   const productsInCart = filterCart(products, cartItems);
 
   const handleCheckout = async () => {
+    setCheckoutLoading(true);
     const checkout = await shopifyClient.checkout.create();
     const { id: checkoutId, webUrl } = checkout;
     if (cartItems.length === 0) return 'No items in cart';
@@ -131,6 +132,7 @@ export default function Cart() {
       'Popup',
       'toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30'
     );
+    setCheckoutLoading(false);
   };
 
   return (
@@ -156,7 +158,12 @@ export default function Cart() {
           <p>Total</p>
           <MonetaryValue amount={amount} />
         </footer>
-        <BaseButton onClick={() => handleCheckout()}>Checkout</BaseButton>
+        <BaseButton
+          disabled={isCheckoutLoading}
+          onClick={() => handleCheckout()}
+        >
+          Checkout
+        </BaseButton>
       </CartInner>
     </CartStyles>
   );

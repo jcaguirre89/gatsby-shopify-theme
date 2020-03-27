@@ -13,6 +13,12 @@ const BaseButton = styled.button`
   font-weight: 500;
   font-size: 1.5rem;
   cursor: pointer;
+
+  &:disabled {
+    background: ${props => props.theme.grey};
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 `;
 
 export default BaseButton;
