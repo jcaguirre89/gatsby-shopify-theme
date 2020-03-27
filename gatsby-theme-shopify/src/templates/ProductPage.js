@@ -15,6 +15,7 @@ import {
 import BaseButton from '../components/styles/BaseButton';
 
 const Container = styled.div`
+  min-height: 100vh;
   transform: translateY(90px);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
