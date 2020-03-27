@@ -10,6 +10,7 @@ import CartItem from './CartItem';
 import useCheckoutAmout from '../hooks/useCheckoutAmount';
 import { ShopifyClientContext } from '../context/ShopifyClientProvider';
 import MonetaryValue from './MonetaryValue';
+import BaseButton from './styles/BaseButton';
 
 const CartInner = styled.div`
   display: grid;
@@ -42,21 +43,6 @@ const CartInner = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
-  }
-
-  .checkout-button {
-    width: 100%;
-    background: ${props => props.theme.gold};
-    border: 1px solid ${props => props.theme.gold};
-    color: ${props => props.theme.white};
-    height: 48px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    letter-spacing: -0.1px;
-    font-weight: 500;
-    font-size: 1.5rem;
-    cursor: pointer;
   }
 
   header {
@@ -100,6 +86,7 @@ export default function Cart() {
   const dispatch = useContext(GlobalDispatchContext);
   const shopifyClient = useContext(ShopifyClientContext);
   const amount = useCheckoutAmout();
+  console.log(cartItems);
 
   const data = useStaticQuery(graphql`
     query MyQuery {
@@ -169,13 +156,7 @@ export default function Cart() {
           <p>Total</p>
           <MonetaryValue amount={amount} />
         </footer>
-        <button
-          className="checkout-button"
-          type="button"
-          onClick={() => handleCheckout()}
-        >
-          Checkout
-        </button>
+        <BaseButton onClick={() => handleCheckout()}>Checkout</BaseButton>
       </CartInner>
     </CartStyles>
   );

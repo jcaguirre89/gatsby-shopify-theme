@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types, react/no-danger */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
@@ -8,15 +8,23 @@ import SEO from '../components/SEO';
 import Layout from '../components/layout';
 import Header from '../components/header';
 import { formatMoney } from '../components/MonetaryValue';
+import {
+  GlobalDispatchContext,
+  GlobalStateContext,
+} from '../context/GlobalContextProvider';
+import BaseButton from '../components/styles/BaseButton';
 
 const Container = styled.div`
   transform: translateY(90px);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 100px;
+  width: 100%;
+  padding: 0 20px;
 
   h2 {
     font-size: 4rem;
+    text-transform: uppercase;
   }
 
   .price {
@@ -25,7 +33,9 @@ const Container = styled.div`
   }
 `;
 
-const ContentContainer = styled.div``;
+const ContentContainer = styled.div`
+  max-width: 350px;
+`;
 
 const ImageContainer = styled.ul`
   height: 70vh;
@@ -42,7 +52,17 @@ export default function ProductPage({ data }) {
     images,
     variants: [firstVariant],
   } = data.shopifyProduct;
-  const { variantId, price } = firstVariant;
+  const { id: variantId, price } = firstVariant;
+  const dispatch = useContext(GlobalDispatchContext);
+  const { isCartOpen } = useContext(GlobalStateContext);
+
+  const handleClick = () => {
+    dispatch({ type: 'UPDATE_CART', payload: { variantId, quantity: 1 } });
+    if (!isCartOpen) {
+      dispatch({ type: 'TOGGLE_CART' });
+    }
+  };
+
   return (
     <Layout>
       <SEO title={title} description={description} />
@@ -62,6 +82,9 @@ export default function ProductPage({ data }) {
           <h2>{title}</h2>
           <p className="price">{formatMoney(price)}</p>
           <p dangerouslySetInnerHTML={{ __html: descriptionHtml }}></p>
+          <BaseButton type="button" onClick={() => handleClick()}>
+            Add to Cart
+          </BaseButton>
         </ContentContainer>
       </Container>
     </Layout>
