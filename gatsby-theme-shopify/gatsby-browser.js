@@ -1,6 +1,11 @@
 import React from 'react';
 import GlobalContextProvider from './src/context/GlobalContextProvider';
+import ShopifyClientProvider from './src/context/ShopifyClientProvider';
 
 export const wrapRootElement = ({ element }) => {
-  return <GlobalContextProvider>{element}</GlobalContextProvider>;
+  return (
+    <GlobalContextProvider>
+      <ShopifyClientProvider>{element}</ShopifyClientProvider>
+    </GlobalContextProvider>
+  );
 };

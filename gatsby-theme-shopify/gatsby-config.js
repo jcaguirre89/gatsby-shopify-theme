@@ -13,6 +13,10 @@ module.exports = ({
     twitterHandle: '@placeholder',
     instagramHandle: '@placeholder',
     image: '/images/avatar.jpg',
+    shopify: {
+      domain: `${shopName}.myshopify.com`,
+      accessToken,
+    },
   },
   plugins: [
     {

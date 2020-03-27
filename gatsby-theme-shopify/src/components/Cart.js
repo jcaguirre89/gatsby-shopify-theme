@@ -8,6 +8,7 @@ import {
 } from '../context/GlobalContextProvider';
 import CartItem from './CartItem';
 import useCheckoutAmout from '../hooks/useCheckoutAmount';
+import { ShopifyClientContext } from '../context/ShopifyClientProvider';
 
 const CartStyles = styled.div`
   position: fixed;
@@ -70,6 +71,7 @@ const filterCart = (products, cartItems) => {
 export default function Cart() {
   const { isCartOpen, cartItems } = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
+  const shopifyClient = useContext(ShopifyClientContext);
   const amount = useCheckoutAmout();
 
   const data = useStaticQuery(graphql`
