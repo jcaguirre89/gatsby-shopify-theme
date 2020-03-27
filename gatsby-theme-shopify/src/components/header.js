@@ -1,12 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import { MdMenu } from 'react-icons/md';
 import { AiOutlineShopping } from 'react-icons/ai';
 import Logo from './Logo';
-// import NavStyles from './styles/NavStyles';
 import { GlobalDispatchContext } from '../context/GlobalContextProvider';
+import useSmartHeader from '../hooks/useSmartHeader';
 
 const HeaderBase = styled.nav`
   background: transparent;
@@ -52,26 +52,13 @@ const StyledMenuIcon = styled(MdMenu)`
   }
 `;
 
-export default function Header() {
-  const [hideNavbarOnScroll, setHideNavbarOnScroll] = useState(true);
-  const [transparent, setTransparent] = useState(true);
+export default function Header({ smart }) {
   const dispatch = useContext(GlobalDispatchContext);
+  const [hideNavbarOnScroll, transparent] = useSmartHeader();
+  const isTransparent = smart ? transparent : false;
 
-  useScrollPosition(
-    ({ prevPos, currPos }) => {
-      const isShow = currPos.y > prevPos.y || prevPos.y > -100;
-      if (isShow !== hideNavbarOnScroll) setHideNavbarOnScroll(isShow);
-
-      const isTransparent = currPos.y >= -100;
-      if (isTransparent !== transparent) setTransparent(isTransparent);
-    },
-    [hideNavbarOnScroll, transparent],
-    null,
-    false,
-    100
-  );
   return (
-    <StyledHeader show={hideNavbarOnScroll} transparent={transparent}>
+    <StyledHeader show={hideNavbarOnScroll} transparent={isTransparent}>
       <button type="button" onClick={() => dispatch({ type: 'TOGGLE_MENU' })}>
         <StyledMenuIcon size={35} />
       </button>
@@ -79,7 +66,7 @@ export default function Header() {
         <Logo
           width="50px"
           height="50px"
-          color={transparent ? 'white' : 'black'}
+          color={isTransparent ? 'white' : 'black'}
         />
       </Link>
       <button type="button" onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
@@ -88,3 +75,11 @@ export default function Header() {
     </StyledHeader>
   );
 }
+
+Header.propTypes = {
+  fixed: PropTypes.bool,
+};
+
+Header.defaultProps = {
+  smart: true,
+};

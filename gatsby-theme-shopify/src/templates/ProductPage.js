@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import SEO from '../components/SEO';
 import Layout from '../components/layout';
+import Header from '../components/header';
 
 const Container = styled.div`
   transform: translateY(90px);
@@ -23,6 +24,7 @@ export default function ProductPage({ data }) {
   return (
     <Layout>
       <SEO title={product.title} description={product.description} />
+      <Header smart={false} />
       <Container>
         <ImageContainer>
           {product.images.map(image => (

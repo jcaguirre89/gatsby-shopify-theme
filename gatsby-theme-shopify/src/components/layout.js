@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
-import Header from './header';
 import SEO from './SEO';
 import Cart from './Cart';
 import SideMenu from './SideMenu';
@@ -82,7 +81,6 @@ const Layout = ({ children }) => (
         <SEO />
         <Cart />
         <SideMenu />
-        <Header />
         <Inner>{children}</Inner>
       </Wrapper>
     </ThemeProvider>
