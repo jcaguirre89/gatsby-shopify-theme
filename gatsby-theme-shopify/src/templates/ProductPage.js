@@ -7,38 +7,62 @@ import Img from 'gatsby-image';
 import SEO from '../components/SEO';
 import Layout from '../components/layout';
 import Header from '../components/header';
+import { formatMoney } from '../components/MonetaryValue';
 
 const Container = styled.div`
   transform: translateY(90px);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 100px;
+
+  h2 {
+    font-size: 4rem;
+  }
+
+  .price {
+    color: ${props => props.theme.grey};
+    font-size: 1.5rem;
+  }
 `;
 
+const ContentContainer = styled.div``;
+
 const ImageContainer = styled.ul`
+  height: 70vh;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
 `;
 
 export default function ProductPage({ data }) {
-  const product = data.shopifyProduct;
+  const {
+    title,
+    description,
+    descriptionHtml,
+    images,
+    variants: [firstVariant],
+  } = data.shopifyProduct;
+  const { variantId, price } = firstVariant;
   return (
     <Layout>
-      <SEO title={product.title} description={product.description} />
+      <SEO title={title} description={description} />
       <Header smart={false} />
       <Container>
         <ImageContainer>
-          {product.images.map(image => (
+          {images.map(image => (
             <Img
               fluid={image.localFile.childImageSharp.fluid}
               key={image.id}
-              alt={product.title}
+              alt={title}
+              style={{ minHeight: '500px' }}
             />
           ))}
         </ImageContainer>
-        <div>
-          <h2>{product.title}</h2>
-          <p dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}></p>
-        </div>
+        <ContentContainer>
+          <h2>{title}</h2>
+          <p className="price">{formatMoney(price)}</p>
+          <p dangerouslySetInnerHTML={{ __html: descriptionHtml }}></p>
+        </ContentContainer>
       </Container>
     </Layout>
   );
@@ -56,7 +80,7 @@ export const query = graphql`
         id
         localFile {
           childImageSharp {
-            fluid(maxWidth: 910) {
+            fluid(maxWidth: 800) {
               ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }
