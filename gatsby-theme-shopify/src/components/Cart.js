@@ -101,6 +101,27 @@ export default function Cart() {
   `);
   const products = data.allShopifyProduct.nodes;
   const productsInCart = filterCart(products, cartItems);
+  console.log(cartItems);
+
+  const handleCheckout = async () => {
+    const checkout = await shopifyClient.checkout.create();
+    const { id: checkoutId, webUrl } = checkout;
+    if (cartItems.length === 0) return 'No items in cart';
+    const lineItems = cartItems.map(item => {
+      return {
+        variantId: item.variantId.replace('Shopify__ProductVariant__', ''),
+        quantity: item.quantity,
+      };
+    });
+    await shopifyClient.checkout.addLineItems(checkoutId, lineItems);
+
+    window.open(
+      webUrl,
+      'Popup',
+      'toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30'
+    );
+  };
+
   return (
     <CartStyles open={isCartOpen}>
       <button
@@ -120,7 +141,9 @@ export default function Cart() {
           ))}
       </ul>
       <footer>
-        <h4>Checkout</h4>
+        <button type="button" onClick={() => handleCheckout()}>
+          Checkout
+        </button>
         <p>{amount}</p>
       </footer>
     </CartStyles>
