@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Header from './header';
 import SEO from './SEO';
@@ -65,28 +66,31 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Layout = ({ children }) => {
-  return (
-    <>
-      <GlobalStyle />
-      <link
-        href="https://fonts.googleapis.com/css?family=Playfair+Display:900&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css?family=Spartan&display=swap"
-        rel="stylesheet"
-      ></link>
-      <ThemeProvider theme={theme}>
-        <Wrapper>
-          <SEO />
-          <Cart />
-          <SideMenu />
-          <Header />
-          <Inner>{children}</Inner>
-        </Wrapper>
-      </ThemeProvider>
-    </>
-  );
-};
+const Layout = ({ children }) => (
+  <>
+    <GlobalStyle />
+    <link
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Spartan&display=swap"
+      rel="stylesheet"
+    ></link>
+    <ThemeProvider theme={theme}>
+      <Wrapper>
+        <SEO />
+        <Cart />
+        <SideMenu />
+        <Header />
+        <Inner>{children}</Inner>
+      </Wrapper>
+    </ThemeProvider>
+  </>
+);
+
 export default Layout;
+
+Layout.propTypes = {
+  children: PropTypes.any,
+};

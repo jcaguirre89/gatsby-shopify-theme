@@ -3,7 +3,6 @@ import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import SEO from '../components/SEO';
 import Layout from '../components/layout';
-import Header from '../components/header';
 
 export default function ProductPage({ data }) {
   const product = data.shopifyProduct;

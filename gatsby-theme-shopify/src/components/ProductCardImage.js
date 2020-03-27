@@ -64,3 +64,13 @@ export default function ProductCardImage({
     </Container>
   );
 }
+
+ProductCardImage.propTypes = {
+  storePath: PropTypes.string,
+  handle: PropTypes.string.isRequired,
+  variantId: PropTypes.string.isRequired,
+};
+
+ProductCardImage.defaultProps = {
+  storePath: '/store',
+};

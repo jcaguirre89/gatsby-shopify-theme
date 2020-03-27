@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
-import { FaTimes } from 'react-icons/fa';
-import MonetaryValue from './MonetaryValue';
 import { formatMoney } from './MonetaryValue';
 import {
   GlobalDispatchContext,
@@ -66,7 +64,7 @@ const CartItemStyle = styled.div`
 
 const getQuantityInCart = (id, cartItems) => {
   // gets quantity of given variantId in cart or 0
-  const item = cartItems.filter(item => item.variantId === id);
+  const item = cartItems.filter(i => i.variantId === id);
   if (item.length === 0) return 0;
   return item[0].quantity;
 };

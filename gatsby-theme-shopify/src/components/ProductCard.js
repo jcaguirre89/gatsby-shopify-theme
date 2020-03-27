@@ -41,7 +41,6 @@ export default function ProductCard({ product }) {
   `);
   const {
     title,
-    description,
     handle,
     variants: [firstVariant],
     images: [firstImage],
