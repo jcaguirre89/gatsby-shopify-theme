@@ -60,6 +60,7 @@ const CartItemStyle = styled.div`
     font-size: 0.9rem;
     color: ${props => props.theme.blue};
     letter-spacing: 1px;
+    cursor: pointer;
   }
 `;
 
