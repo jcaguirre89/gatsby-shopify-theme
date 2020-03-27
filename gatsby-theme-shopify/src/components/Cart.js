@@ -7,6 +7,7 @@ import {
   GlobalDispatchContext,
 } from '../context/GlobalContextProvider';
 import CartItem from './CartItem';
+import useCheckoutAmout from '../hooks/useCheckoutAmount';
 
 const CartStyles = styled.div`
   position: fixed;
@@ -68,6 +69,7 @@ const filterCart = (products, cartItems) => {
 export default function Cart() {
   const { isCartOpen, cartItems } = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
+  const amount = useCheckoutAmout();
 
   const data = useStaticQuery(graphql`
     query MyQuery {
@@ -116,6 +118,7 @@ export default function Cart() {
       </ul>
       <footer>
         <h4>Checkout</h4>
+        <p>{amount}</p>
       </footer>
     </CartStyles>
   );
