@@ -15,7 +15,8 @@ const CartStyles = styled.div`
   right: 0;
   bottom: 0;
   z-index: 5;
-  min-width: 350px;
+  min-width: 300px;
+  max-width: 400px;
   width: 40%;
   height: 85%;
   transition: all 0.3s;
@@ -26,7 +27,7 @@ const CartStyles = styled.div`
   display: grid;
   place-items: center;
   grid-template-rows: 20px 50px 1fr auto;
-  @media (max-width: 400px) {
+  @media (max-width: ${props => props.theme.breakpoints.s}) {
     min-width: auto;
     width: 100%;
   }

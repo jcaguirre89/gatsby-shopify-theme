@@ -12,7 +12,8 @@ const MenuStyles = styled.div`
   left: 0;
   bottom: 0;
   z-index: 5;
-  min-width: 350px;
+  min-width: 300px;
+  max-width: 400px;
   width: 40%;
   height: 100%;
   background: ${props => props.theme.white};
