@@ -9,6 +9,10 @@ const ProductGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 10px;
   min-height: 500px;
+
+  @media (min-width: ${props => props.theme.breakpoints.m}) {
+    margin: 20px;
+  }
 `;
 
 export default function ProductList({ products }) {
