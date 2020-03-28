@@ -13,6 +13,7 @@ import {
   GlobalStateContext,
 } from '../context/GlobalContextProvider';
 import BaseButton from '../components/styles/BaseButton';
+import ImageSlider from '../components/ImageSlider';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -58,9 +59,6 @@ const ContentContainer = styled.div`
 const ImageContainer = styled.ul`
   padding: 0;
   height: 70vh;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
 `;
 
 export default function ProductPage({ data }) {
@@ -81,6 +79,9 @@ export default function ProductPage({ data }) {
       dispatch({ type: 'TOGGLE_CART' });
     }
   };
+  const imagesFluid = images.map(
+    image => image.localFile.childImageSharp.fluid
+  );
 
   return (
     <Layout>
@@ -88,14 +89,15 @@ export default function ProductPage({ data }) {
       <Header smart={false} />
       <Container>
         <ImageContainer>
-          {images.map(image => (
+          <ImageSlider images={imagesFluid} />
+          {/* {images.map(image => (
             <Img
               fluid={image.localFile.childImageSharp.fluid}
               key={image.id}
               alt={title}
               style={{ minHeight: '500px' }}
             />
-          ))}
+          ))} */}
         </ImageContainer>
         <ContentContainer>
           <h2>{title}</h2>
