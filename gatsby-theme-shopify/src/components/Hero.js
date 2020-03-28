@@ -24,6 +24,7 @@ const HeroContainer = styled.section`
 
 const Content = styled.div`
   display: flex;
+  flex-direction: column;
   ${({ location }) => handleHeroContentLocation(location)};
   align-items: center;
   position: absolute;
@@ -44,7 +45,7 @@ const Content = styled.div`
   }
 
   @media (max-width: ${props => props.theme.breakpoints.m}) {
-    transform: translateY(0);
+    transform: translateY(-20%);
     justify-content: center;
 
     h2 {

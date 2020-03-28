@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import Layout from '../components/layout';
 import StickyHero from '../components/StickyHero';
 import ProductList from '../components/ProductList';
 import Header from '../components/header';
+import Hero from '../components/Hero';
 
 const Content = styled.div`
   margin: 0;
@@ -13,11 +14,22 @@ const Content = styled.div`
 
 export default function Home({ data }) {
   const products = data.products.nodes;
+  const {
+    background,
+    title,
+    subtitle,
+    content_location,
+  } = data.allSanityHero.edges[0].node;
   console.log(products);
   return (
     <Layout>
       <Header smart />
-      <StickyHero />
+      <Hero
+        title={title}
+        subtitle={subtitle}
+        contentLocation={content_location}
+        imageFluid={background.asset.fluid}
+      />
       <Content>
         <ProductList products={products} />
       </Content>
@@ -42,6 +54,22 @@ export const query = graphql`
             childImageSharp {
               fluid(maxWidth: 910) {
                 ...GatsbyImageSharpFluid_withWebp_tracedSVG
+              }
+            }
+          }
+        }
+      }
+    }
+    allSanityHero(filter: { publish: { eq: true } }) {
+      edges {
+        node {
+          title
+          subtitle
+          content_location
+          background {
+            asset {
+              fluid(maxWidth: 1400) {
+                ...GatsbySanityImageFluid_withWebp
               }
             }
           }
