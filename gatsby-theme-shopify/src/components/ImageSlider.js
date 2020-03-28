@@ -15,7 +15,7 @@ const SliderContainer = styled.div`
 
 const SliderContent = styled.div`
   transform: translateX(-${props => props.translate}px);
-  transition: transform ease-in ${props => props.transition}s;
+  transition: transform ease-in-out ${props => props.transition}s;
   height: 100%;
   width: ${props => props.width}px;
   display: flex;
@@ -37,6 +37,23 @@ const Arrow = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+`;
+
+const Dot = styled.span`
+  padding: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: ${props => (props.active ? 'black' : 'white')};
+`;
+
+const Dots = styled.div`
+  position: absolute;
+  bottom: 25px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default function ImageSlider({ images }) {
@@ -89,6 +106,11 @@ export default function ImageSlider({ images }) {
       <Arrow direction="right" onClick={() => nextSlide()}>
         <IoIosArrowForward />
       </Arrow>
+      <Dots>
+        {images.map((_, i) => (
+          <Dot key={i} active={activeIndex === i} />
+        ))}
+      </Dots>
     </SliderContainer>
   );
 }
