@@ -59,6 +59,7 @@ const MenuStyles = styled.div`
     justify-content: flex-end;
     background: none;
     border: none;
+    cursor: pointer;
   }
 `;
 

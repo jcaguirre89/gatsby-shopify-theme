@@ -37,6 +37,7 @@ const CartInner = styled.div`
     justify-content: flex-start;
     background: none;
     border: none;
+    cursor: pointer;
   }
 
   footer {
