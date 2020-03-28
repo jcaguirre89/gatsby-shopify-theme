@@ -16,12 +16,11 @@ import BaseButton from '../components/styles/BaseButton';
 
 const Container = styled.div`
   min-height: 100vh;
-  transform: translateY(90px);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 100px;
   width: 100%;
-  margin: 0;
+  margin: 100px 0;
   padding: 0 20px;
 
   h2 {
