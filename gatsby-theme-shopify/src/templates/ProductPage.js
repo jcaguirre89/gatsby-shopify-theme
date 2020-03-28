@@ -18,9 +18,10 @@ const Container = styled.div`
   min-height: 100vh;
   transform: translateY(90px);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 100px;
   width: 100%;
+  margin: 0;
   padding: 0 20px;
 
   h2 {
@@ -32,6 +33,10 @@ const Container = styled.div`
     color: ${props => props.theme.grey};
     font-size: 1.5rem;
   }
+
+  @media (max-width: ${props => props.theme.breakpoints.m}) {
+    padding: 0;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -39,6 +44,7 @@ const ContentContainer = styled.div`
 `;
 
 const ImageContainer = styled.ul`
+  padding: 0;
   height: 70vh;
   overflow-y: scroll;
   display: flex;
