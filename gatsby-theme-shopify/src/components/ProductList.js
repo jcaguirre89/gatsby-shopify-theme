@@ -5,7 +5,7 @@ import ProductCard from './ProductCard';
 const ProductGrid = styled.div`
   margin-top: 15px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 10px;
   min-height: 500px;
 `;
