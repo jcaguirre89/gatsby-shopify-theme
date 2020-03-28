@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { Link } from 'gatsby';
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import {
   GlobalStateContext,
@@ -50,7 +51,11 @@ export default function Menu() {
       >
         <FaLongArrowAltRight size={30} />
       </button>
-      <div>Content</div>
+      <div>
+        <Link to="/store">
+          <a>Store</a>
+        </Link>
+      </div>
     </MenuStyles>
   );
 }

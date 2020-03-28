@@ -63,11 +63,13 @@ export default function Header({ smart }) {
         <StyledMenuIcon size={35} />
       </button>
       <Link to="/">
-        <Logo
-          width="50px"
-          height="50px"
-          color={isTransparent ? 'white' : 'black'}
-        />
+        <a>
+          <Logo
+            width="50px"
+            height="50px"
+            color={isTransparent ? 'white' : 'black'}
+          />
+        </a>
       </Link>
       <button type="button" onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
         <AiOutlineShopping size={35} />
