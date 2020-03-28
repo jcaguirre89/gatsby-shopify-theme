@@ -20,7 +20,6 @@ export default function Home({ data }) {
     subtitle,
     content_location,
   } = data.allSanityHero.edges[0].node;
-  console.log(products);
   return (
     <Layout>
       <Header smart />

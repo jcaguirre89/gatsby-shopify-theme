@@ -82,7 +82,6 @@ export default function CartItem({ item }) {
   const { id: variantId, price } = firstVariant;
 
   const quantityInCart = getQuantityInCart(variantId, cartItems);
-  console.log(quantityInCart);
   return (
     <CartItemStyle>
       <Img

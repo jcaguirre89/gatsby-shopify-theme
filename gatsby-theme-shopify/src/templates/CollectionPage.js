@@ -7,7 +7,6 @@ import Hero from '../components/Hero';
 
 export default function CollectionPage({ data }) {
   const { title, image, products } = data.shopifyCollection;
-  console.log('a', title);
   return (
     <Layout>
       <Header smart />
