@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import StickyHero from '../components/StickyHero';
 import ProductList from '../components/ProductList';
 import Header from '../components/header';
 import Hero from '../components/Hero';
