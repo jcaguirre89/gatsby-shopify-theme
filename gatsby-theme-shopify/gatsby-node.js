@@ -29,7 +29,7 @@ exports.createPages = async ({ graphql, actions }, options) => {
   storePath = removeTrailingLeadingSlashes(storePath);
   collectionPath = removeTrailingLeadingSlashes(collectionPath);
 
-  // Products Pages
+  // Product Pages
   const queryProducts = await graphql(`
     {
       allShopifyProduct {
