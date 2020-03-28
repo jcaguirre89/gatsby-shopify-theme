@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { graphql, useStaticQuery } from 'gatsby';
 import ProductCard from './ProductCard';
 
 const ProductGrid = styled.div`
@@ -11,33 +10,7 @@ const ProductGrid = styled.div`
   min-height: 500px;
 `;
 
-export default function ProductList() {
-  const data = useStaticQuery(graphql`
-    query allProducts {
-      allShopifyProduct(sort: { order: DESC, fields: handle }) {
-        nodes {
-          variants {
-            id
-            price
-          }
-          images {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 910) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                }
-              }
-            }
-          }
-
-          title
-          description
-          handle
-        }
-      }
-    }
-  `);
-  const products = data.allShopifyProduct.nodes;
+export default function ProductList({ products }) {
   return (
     <ProductGrid>
       {products.map(product => (
