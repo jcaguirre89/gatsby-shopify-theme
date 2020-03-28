@@ -34,12 +34,25 @@ const Container = styled.div`
   }
 
   @media (max-width: ${props => props.theme.breakpoints.m}) {
+    grid-gap: 40px;
     padding: 0;
   }
 `;
 
 const ContentContainer = styled.div`
-  max-width: 350px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  button {
+    max-width: 350px;
+  }
+  @media (max-width: ${props => props.theme.breakpoints.m}) {
+    align-items: center;
+    padding: 0;
+  }
 `;
 
 const ImageContainer = styled.ul`
