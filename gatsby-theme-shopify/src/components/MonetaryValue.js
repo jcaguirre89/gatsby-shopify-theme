@@ -45,7 +45,7 @@ export default function MonetaryValue({ amount, currencyCode }) {
 }
 
 MonetaryValue.propTypes = {
-  amount: PropTypes.string.isRequired,
+  amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   currencyCode: PropTypes.string,
 };
 
