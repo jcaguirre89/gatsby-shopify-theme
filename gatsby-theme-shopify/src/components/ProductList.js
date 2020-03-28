@@ -18,9 +18,11 @@ const ProductGrid = styled.div`
 export default function ProductList({ products }) {
   return (
     <ProductGrid>
-      {products.map(product => (
-        <ProductCard key={product.handle} product={product} />
-      ))}
+      {products
+        .filter(p => p.availableForSale)
+        .map(product => (
+          <ProductCard key={product.handle} product={product} />
+        ))}
     </ProductGrid>
   );
 }
