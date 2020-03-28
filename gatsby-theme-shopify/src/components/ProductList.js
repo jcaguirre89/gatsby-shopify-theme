@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ProductCard from './ProductCard';
 
@@ -19,3 +20,7 @@ export default function ProductList({ products }) {
     </ProductGrid>
   );
 }
+
+ProductList.propTypes = {
+  products: PropTypes.array.isRequired,
+};
