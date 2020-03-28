@@ -10,11 +10,12 @@ module.exports = ({
     titleTemplate: '%s | Store',
     description: 'Placeholder descripion',
     url: 'https://www.example.com', // no trailing slash
-    twitterHandle: '@placeholder',
-    instagramHandle: '@placeholder',
     image: '/images/avatar.jpg',
     email: 'contact@example.com',
     phone: '+569 xxxx xxxx',
+    twitterHandle: '@placeholder',
+    instagramHandle: '@placeholder',
+    facebookHandle: 'placeholder',
     shopify: {
       domain: `${shopName}.myshopify.com`,
       accessToken,

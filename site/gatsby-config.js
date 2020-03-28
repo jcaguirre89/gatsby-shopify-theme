@@ -8,6 +8,7 @@ module.exports = {
     url: "https://www.example.com", // no trailing slash
     twitterHandle: "@placeholder",
     instagramHandle: "@placeholder",
+    facebookHandle: "placeholder",
     email: "contact@example.com",
     phone: "+569 xxxx xxxx",
     image: "/images/avatar.jpg",
