@@ -6,13 +6,13 @@ import Img from 'gatsby-image';
 const handleHeroContentLocation = location => {
   switch (location) {
     case 'left':
-      return 'justify-content: flex-start';
+      return 'align-self: flex-start';
     case 'right':
-      return 'justify-content: flex-end';
+      return 'align-self: flex-end';
     case 'center':
-      return 'justify-content: center';
+      return 'align-self: center';
     default:
-      return 'justify-content: flex-start';
+      return 'align-self: flex-start';
   }
 };
 
@@ -25,7 +25,6 @@ const HeroContainer = styled.section`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  ${({ location }) => handleHeroContentLocation(location)};
   align-items: center;
   position: absolute;
   padding: 100px;
@@ -35,11 +34,13 @@ const Content = styled.div`
   color: ${props => props.color};
 
   h2 {
+    ${({ location }) => handleHeroContentLocation(location)};
     font-size: 3rem;
     font-family: 'Spartan';
   }
 
   h3 {
+    ${({ location }) => handleHeroContentLocation(location)};
     font-family: 'Spartan';
     font-size: 2rem;
   }
