@@ -19,6 +19,11 @@ module.exports = ({
       domain: `${shopName}.myshopify.com`,
       accessToken,
     },
+    gatsbyStorefrontConfig: {
+      storePath: '/store',
+      collectionPath: '/collections',
+      productsPerCollectionPage: 9,
+    },
   },
   plugins: [
     {

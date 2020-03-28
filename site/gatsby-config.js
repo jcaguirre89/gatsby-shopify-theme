@@ -11,10 +11,10 @@ module.exports = {
     email: "contact@example.com",
     phone: "+569 xxxx xxxx",
     image: "/images/avatar.jpg",
-    storePath: "/store",
-    shopify: {
-      domain: `${shopName}.myshopify.com`,
-      accessToken
+    gatsbyStorefrontConfig: {
+      storePath: "/store",
+      collectionsPath: "/collections",
+      productsPerCollectionPage: 9
     }
   },
   plugins: [
@@ -23,7 +23,6 @@ module.exports = {
       options: {
         shopName: process.env.GATSBY_SHOP_NAME,
         accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
-        storePath: "/store",
         sanityProjectId: process.env.SANITY_PROJECT_ID,
         sanityDataset: process.env.SANITY_DATASET,
         sanityToken: process.env.SANITY_TOKEN

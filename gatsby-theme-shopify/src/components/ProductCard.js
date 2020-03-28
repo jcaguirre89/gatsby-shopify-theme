@@ -34,7 +34,9 @@ export default function ProductCard({ product }) {
     query {
       site {
         siteMetadata {
-          storePath
+          gatsbyStorefrontConfig {
+            storePath
+          }
         }
       }
     }
@@ -46,7 +48,7 @@ export default function ProductCard({ product }) {
     images: [firstImage],
   } = product;
   const { id: variantId, price } = firstVariant;
-  const { storePath } = data.site.siteMetadata;
+  const { storePath } = data.site.siteMetadata.gatsbyStorefrontConfig;
 
   return (
     <ProductCardStyle>
