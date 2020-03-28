@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
+import useElementSize from '../hooks/useElementSizeDynamic';
 
 const SliderContainer = styled.div`
   position: relative;
@@ -14,7 +15,7 @@ const SliderContainer = styled.div`
 
 const SliderContent = styled.div`
   transform: translateX(-${props => props.translate}px);
-  transition: transform ease-out ${props => props.transition}s;
+  transition: transform ease-in ${props => props.transition}s;
   height: 100%;
   width: ${props => props.width}px;
   display: flex;
@@ -38,27 +39,12 @@ const Arrow = styled.button`
   }
 `;
 
-function useElementSize() {
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
-
-  const measuredRef = useCallback(node => {
-    if (node !== null) {
-      setWidth(node.getBoundingClientRect().width);
-      setHeight(node.getBoundingClientRect().height);
-    }
-  }, []);
-  return [measuredRef, { height, width }];
-}
-
 export default function ImageSlider({ images }) {
-  const [ref, { height, width }] = useElementSize();
+  const { ref, width } = useElementSize();
 
   const [translate, setTranslate] = useState(0);
   const [transition, setTransition] = useState(0.45);
   const [activeIndex, setActiveIndex] = useState(0);
-
-  console.log(width);
 
   const nextSlide = () => {
     // If on the last slide
@@ -108,12 +94,5 @@ export default function ImageSlider({ images }) {
 }
 
 ImageSlider.propTypes = {
-  height: PropTypes.string,
-  width: PropTypes.string,
   images: PropTypes.array.isRequired,
-};
-
-ImageSlider.defaultProps = {
-  height: '100%',
-  width: '100%',
 };

@@ -90,14 +90,6 @@ export default function ProductPage({ data }) {
       <Container>
         <ImageContainer>
           <ImageSlider images={imagesFluid} />
-          {/* {images.map(image => (
-            <Img
-              fluid={image.localFile.childImageSharp.fluid}
-              key={image.id}
-              alt={title}
-              style={{ minHeight: '500px' }}
-            />
-          ))} */}
         </ImageContainer>
         <ContentContainer>
           <h2>{title}</h2>
