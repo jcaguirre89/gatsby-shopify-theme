@@ -36,7 +36,7 @@ export default function Store({ data }) {
 }
 
 export const query = graphql`
-  query allProducts {
+  query StoreQuery {
     products: allShopifyProduct(sort: { order: DESC, fields: handle }) {
       nodes {
         title
