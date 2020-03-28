@@ -5,7 +5,10 @@ import { Link } from 'gatsby';
 import { MdMenu } from 'react-icons/md';
 import { AiOutlineShopping } from 'react-icons/ai';
 import Logo from './Logo';
-import { GlobalDispatchContext } from '../context/GlobalContextProvider';
+import {
+  GlobalDispatchContext,
+  GlobalStateContext,
+} from '../context/GlobalContextProvider';
 import useSmartHeader from '../hooks/useSmartHeader';
 
 const HeaderBase = styled.nav`
@@ -52,10 +55,33 @@ const StyledMenuIcon = styled(MdMenu)`
   }
 `;
 
+const BadgeContainer = styled.div`
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center center;
+  border-radius: 20px;
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  color: white;
+  background: ${props => props.theme.blue};
+  font-size: 0.8em;
+`;
+
 export default function Header({ smart }) {
   const dispatch = useContext(GlobalDispatchContext);
+  const { cartItems } = useContext(GlobalStateContext);
   const [hideNavbarOnScroll, transparent] = useSmartHeader();
   const isTransparent = smart ? transparent : false;
+
+  const getCartSize = () => {
+    if (cartItems.length === 0) return 0;
+    const n = cartItems.reduce((agg, item) => agg + item.quantity, 0);
+    return n;
+  };
+
+  const n = getCartSize();
 
   return (
     <StyledHeader show={hideNavbarOnScroll} transparent={isTransparent}>
@@ -72,6 +98,7 @@ export default function Header({ smart }) {
         </a>
       </Link>
       <button type="button" onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
+        {n > 0 && <BadgeContainer>{n}</BadgeContainer>}
         <AiOutlineShopping size={35} />
       </button>
     </StyledHeader>
@@ -79,7 +106,7 @@ export default function Header({ smart }) {
 }
 
 Header.propTypes = {
-  fixed: PropTypes.bool,
+  smart: PropTypes.bool,
 };
 
 Header.defaultProps = {
