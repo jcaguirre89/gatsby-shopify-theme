@@ -4,7 +4,7 @@ import { GlobalStateContext } from '../context/GlobalContextProvider';
 
 export default function useCheckoutAmount() {
   const data = useStaticQuery(graphql`
-    query {
+    query CheckoutAmountQuery {
       allShopifyProduct {
         nodes {
           variants {

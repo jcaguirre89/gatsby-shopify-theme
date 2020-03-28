@@ -89,7 +89,7 @@ export default function Cart() {
   const amount = useCheckoutAmout();
 
   const data = useStaticQuery(graphql`
-    query MyQuery {
+    query CartQuery {
       allShopifyProduct {
         nodes {
           description
