@@ -55,24 +55,5 @@ module.exports = ({
     `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
-    // Safe to remove these?
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: 'data',
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: 'images',
-      },
-    },
-    {
-      resolve: 'gatsby-transformer-yaml',
-      options: {
-        typeName: 'Product',
-      },
-    },
   ],
 });
