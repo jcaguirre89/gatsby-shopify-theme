@@ -28,6 +28,14 @@ module.exports = {
         sanityDataset: process.env.SANITY_DATASET,
         sanityToken: process.env.SANITY_TOKEN
       }
+    },
+    {
+      resolve: "gatsby-plugin-google-analyitcs",
+      options: {
+        trackingId: "TRACKING-ID",
+        head: true,
+        anonymize: true
+      }
     }
   ]
 };
