@@ -32,12 +32,12 @@ module.exports = {
     {
       resolve: "gatsby-plugin-google-analyitcs",
       options: {
-        trackingId: "TRACKING-ID",
+        trackingId: process.env.GA_ID,
         head: true,
         anonymize: true
       }
     },
-    'gatsby-plugin-robots-txt',
+    "gatsby-plugin-robots-txt",
     "gatsby-plugin-netlify" // make sure to keep last
   ]
 };
