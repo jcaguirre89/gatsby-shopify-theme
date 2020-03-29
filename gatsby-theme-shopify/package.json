@@ -1,9 +1,13 @@
 {
-  "name": "gatsby-theme-shopify",
+  "name": "@jcaguirre/gatsby-theme-shopify",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Cristobal Aguirre",
   "license": "MIT",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build"
+  },
   "peerDependencies": {
     "gatsby": "^2.19.19",
     "react": "^16.12.0",
