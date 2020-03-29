@@ -18,9 +18,9 @@ const CartItemStyle = styled.div`
   grid-gap: 5px;
   grid-template-rows: minmax(0, 1fr);
   .title {
-    font-family: 'Spartan';
+    font-family: ${props => props.theme.fonts.body};
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: ${props => props.theme.fontWeights.bold};
     margin: 0;
     font-size: 1.2rem;
     padding: 0 5px;
@@ -56,7 +56,7 @@ const CartItemStyle = styled.div`
     border: 0;
     text-transform: uppercase;
     font-size: 0.9rem;
-    color: ${props => props.theme.blue};
+    color: ${props => props.theme.colors.accent};
     letter-spacing: 1px;
     cursor: pointer;
   }

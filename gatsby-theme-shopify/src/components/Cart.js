@@ -63,7 +63,7 @@ const CartStyles = styled.div`
   width: 40%;
   height: 85%;
   transition: all 0.3s;
-  background: white;
+  background: ${props => props.theme.colors.background};
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
   transform: translateX(100%);
   ${props => props.open && `transform: translateX(0);`};

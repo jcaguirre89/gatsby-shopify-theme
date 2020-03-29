@@ -8,7 +8,7 @@ import Hero from '../components/Hero';
 
 const Content = styled.div`
   margin: 0;
-  background: ${props => props.theme.white};
+  background: ${props => props.theme.colors.background};
 `;
 
 const ctas = [{ text: 'Shop Now', link: '/store' }];

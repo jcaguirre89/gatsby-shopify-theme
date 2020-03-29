@@ -12,7 +12,7 @@ const Container = styled.span`
 `;
 
 const Currency = styled.p`
-  color: ${props => props.theme.grey};
+  color: ${props => props.theme.colors.grey};
   font-size: 0.8rem;
   text-transform: uppercase;
 `;

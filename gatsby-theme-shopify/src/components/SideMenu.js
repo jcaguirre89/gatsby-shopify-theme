@@ -23,7 +23,7 @@ const MenuStyles = styled.div`
   width: 40%;
   height: 100%;
   padding: 20px;
-  background: ${props => props.theme.white};
+  background: ${props => props.theme.colors.background};
   transition: all 0.3s;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
   transform: translateX(-100%);
@@ -47,8 +47,8 @@ const MenuStyles = styled.div`
 
   a {
     font-size: 3.5rem;
-    font-weight: 700;
-    color: ${props => props.theme.gold};
+    font-weight: ${props => props.theme.fontWeights.bold};
+    color: ${props => props.theme.colors.primary};
     margin-right: 10px;
   }
 

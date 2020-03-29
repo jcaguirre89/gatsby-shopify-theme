@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 const BaseButton = styled.button`
   width: 100%;
-  background: ${props => props.theme.gold};
-  border: 1px solid ${props => props.theme.gold};
-  color: ${props => props.theme.white};
+  background: ${props => props.theme.colors.accent};
+  border: 1px solid ${props => props.theme.colors.accent};
+  color: white;
   height: 48px;
   display: flex;
   justify-content: center;
@@ -15,7 +15,7 @@ const BaseButton = styled.button`
   cursor: pointer;
 
   &:disabled {
-    background: ${props => props.theme.grey};
+    background: #808080;
     cursor: not-allowed;
     pointer-events: none;
   }

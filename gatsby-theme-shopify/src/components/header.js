@@ -26,7 +26,7 @@ const HeaderBase = styled.nav`
   justify-content: space-between;
   align-items: center;
   font-size: 2rem;
-  border-bottom: 1px solid ${props => props.theme.gold};
+  border-bottom: 1px solid ${props => props.theme.colors.secondary};
   a,
   button {
     margin: 1rem 3rem;
@@ -50,7 +50,7 @@ const StyledHeader = styled(HeaderBase)`
 const StyledMenuIcon = styled(MdMenu)`
   transition: all 0.2s ease-in-out;
   &:hover {
-    color: ${props => props.theme.gold};
+    color: ${props => props.theme.colors.primary};
     transform: rotate(-90deg);
   }
 `;
@@ -65,7 +65,7 @@ const BadgeContainer = styled.div`
   top: 0px;
   left: 30px;
   color: white;
-  background: ${props => props.theme.blue};
+  background: ${props => props.theme.colors.accent};
   font-size: 0.8em;
 `;
 

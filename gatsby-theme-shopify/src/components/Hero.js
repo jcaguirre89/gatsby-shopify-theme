@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
+import BaseButton from './styles/BaseButton';
 
 const handleHeroContentLocation = location => {
   switch (location) {
@@ -73,25 +74,19 @@ const CTAContainer = styled.div`
   }
 `;
 
-const CTA = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  width: 150px;
-  margin: 0;
+const CTA = styled(BaseButton)`
+  width: 170px;
   padding: 10px 15px;
   background: transparent;
   transition: all 0.5s ease;
-  border: 2px solid ${props => props.theme.white};
+  border: 2px solid white;
   cursor: pointer;
-  color: ${props => props.theme.white};
+  color: white;
   font-size: 1.3rem;
   &:hover {
-    background: ${props => props.theme.offWhite};
-    border: 2px solid ${props => props.theme.offWhite};
-    color: ${props => props.theme.gold};
+    background: ${props => props.theme.colors.secondary};
+    border: 2px solid ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.accent};
   }
 `;
 

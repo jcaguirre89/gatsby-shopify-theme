@@ -10,13 +10,13 @@ const StyledButton = styled.button`
   height: 20px;
   width: 20px;
   background: transparent;
-  color: ${props => props.theme.offBlack};
-  border: 0px solid;
+  color: ${props => props.theme.colors.offBlack};
+  border: 0;
   margin: 0;
   cursor: pointer;
 
   &:disabled {
-    color: ${props => props.theme.grey};
+    color: ${props => props.theme.colors.grey};
   }
 `;
 
