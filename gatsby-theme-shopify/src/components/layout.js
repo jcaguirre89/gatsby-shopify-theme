@@ -5,32 +5,11 @@ import SEO from './SEO';
 import Cart from './Cart';
 import SideMenu from './SideMenu';
 import Footer from './Footer';
-
-const breakpoints = {
-  s: '400px',
-  m: '700px',
-  l: '900px',
-};
-
-const theme = {
-  breakpoints,
-  red: '#FF0000',
-  gold: '#9d8755',
-  black: '#000',
-  offBlack: '#393939',
-  grey: '#808080',
-  lightGrey: '#d1d1cf',
-  blue: 'rgb(43, 20, 83)',
-  green: '#00ffff',
-  offWhite: '#EDEDED',
-  white: '#fff',
-  maxWidth: '1000px',
-  bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
-};
+import theme from './styles/theme';
 
 const Wrapper = styled.div`
-  background: ${theme.white};
-  color: ${theme.black};
+  background: ${theme.colors.background};
+  color: ${theme.colors.text};
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -38,7 +17,7 @@ const Wrapper = styled.div`
 
 const Inner = styled.div`
   padding-bottom: 50px;
-  box-shadow: 0px 100px 3px -100px ${theme.offBlack};
+  box-shadow: 0px 100px 3px -100px #393939;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -53,17 +32,19 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
-    font-family: 'Spartan';
-    line-height: 2;
-    color: ${theme.black}
+    font-family: ${theme.fonts.body};
+    line-height: ${theme.lineHeights.body};
+    color: ${theme.black};
   }
   h1,h2,h3,h3,h5,h6 {
-    font-family: 'Playfair Display';
+    font-family: ${theme.fonts.heading};
+    line-height: ${theme.lineHeights.heading};
+
 
   }
   a {
     text-decoration: none;
-    color: ${theme.black}
+    color: ${theme.colors.primary}
   }
 `;
 
@@ -93,5 +74,5 @@ const Layout = ({ children }) => (
 export default Layout;
 
 Layout.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.element,
 };
