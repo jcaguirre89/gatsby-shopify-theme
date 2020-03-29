@@ -36,6 +36,9 @@ module.exports = {
         head: true,
         anonymize: true
       }
+    },
+    {
+      resolve: "gatsby-plugin-netlify"
     }
   ]
 };
