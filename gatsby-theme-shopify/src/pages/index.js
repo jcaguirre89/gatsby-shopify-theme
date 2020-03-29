@@ -11,6 +11,8 @@ const Content = styled.div`
   background: ${props => props.theme.white};
 `;
 
+const ctas = [{ text: 'Shop Now', link: '/store' }];
+
 export default function Home({ data }) {
   const products = data.products.nodes;
   const {
@@ -27,6 +29,7 @@ export default function Home({ data }) {
         subtitle={subtitle}
         contentLocation={content_location}
         imageFluid={background.asset.fluid}
+        ctas={ctas}
       />
       <Content>
         <ProductList products={products} />

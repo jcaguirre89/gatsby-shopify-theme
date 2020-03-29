@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 
 const handleHeroContentLocation = location => {
@@ -59,6 +60,41 @@ const Content = styled.div`
   }
 `;
 
+const CTAContainer = styled.div`
+  width: 100%;
+  height: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  place-items: start;
+  grid-gap: 30px;
+  margin: 0 20px;
+  a {
+    height: 100%;
+  }
+`;
+
+const CTA = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  width: 150px;
+  margin: 0;
+  padding: 10px 15px;
+  background: transparent;
+  transition: all 0.5s ease;
+  border: 2px solid ${props => props.theme.white};
+  cursor: pointer;
+  color: ${props => props.theme.white};
+  font-size: 1.3rem;
+  &:hover {
+    background: ${props => props.theme.offWhite};
+    border: 2px solid ${props => props.theme.offWhite};
+    color: ${props => props.theme.gold};
+  }
+`;
+
 export default function Hero({
   imageFluid,
   title,
@@ -74,7 +110,14 @@ export default function Hero({
       <Content color={color} location={contentLocation}>
         <h2>{title}</h2>
         <h3>{subtitle}</h3>
-        {ctas && ctas.map(cta => <p>cta placeholder</p>)}
+        <CTAContainer>
+          {ctas &&
+            ctas.map(cta => (
+              <Link to={cta.link}>
+                <CTA>{cta.text}</CTA>
+              </Link>
+            ))}
+        </CTAContainer>
       </Content>
     </HeroContainer>
   );
