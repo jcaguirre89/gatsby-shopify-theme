@@ -16,20 +16,23 @@ export default function Footer() {
     query {
       site {
         siteMetadata {
+          title
           email
           phone
         }
       }
     }
   `);
-  const { email, phone } = data.site.siteMetadata;
+  const { email, phone, title } = data.site.siteMetadata;
   return (
     <Container>
       <div>
         <Link to="/">
           <Logo color="black" />
         </Link>
-        <p>Copyright</p>
+        <p>
+          © {new Date().getFullYear()} {title}
+        </p>
       </div>
       <div>
         <h3>Have Questions?</h3>
