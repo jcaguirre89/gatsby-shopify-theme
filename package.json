@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-theme-shopify-workspace",
+  "name": "gatsby-shopify-theme-workspace",
   "private": true,
   "version": "0.0.1",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "build": "yarn workspace site build"
   },
   "workspaces": [
-    "gatsby-theme-shopify",
+    "gatsby-shopify-theme",
     "site"
   ]
 }

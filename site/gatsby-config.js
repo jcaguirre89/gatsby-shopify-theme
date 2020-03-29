@@ -20,7 +20,7 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-theme-shopify",
+      resolve: "@jcaguirre/gatsby-shopify-theme",
       options: {
         shopName: process.env.GATSBY_SHOP_NAME,
         accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
