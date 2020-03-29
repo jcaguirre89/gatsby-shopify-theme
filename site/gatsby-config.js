@@ -13,23 +13,6 @@ module.exports = {
         sanityDataset: process.env.SANITY_DATASET,
         sanityToken: process.env.SANITY_TOKEN
       }
-    },
-    {
-      resolve: "gatsby-plugin-google-analyitcs",
-      options: {
-        trackingId: process.env.GA_ID,
-        head: true,
-        anonymize: true
-      }
-    },
-    {
-      resolve: "gatsby-plugin-canonical-urls",
-      options: {
-        siteUrl: siteConfig.siteUrl,
-        stripQueryString: true
-      }
-    },
-    "gatsby-plugin-robots-txt",
-    "gatsby-plugin-netlify" // make sure to keep last
+    }
   ]
 };
