@@ -37,8 +37,7 @@ module.exports = {
         anonymize: true
       }
     },
-    {
-      resolve: "gatsby-plugin-netlify"
-    }
+    'gatsby-plugin-robots-txt',
+    "gatsby-plugin-netlify" // make sure to keep last
   ]
 };
