@@ -73,6 +73,10 @@ export default function Menu() {
           instagramHandle
           facebookHandle
           twitterHandle
+          gatsbyStorefrontConfig {
+            storePath
+            collectionsPath
+          }
         }
       }
     }
@@ -83,6 +87,7 @@ export default function Menu() {
     instagramHandle,
     facebookHandle,
     twitterHandle,
+    gatsbyStorefrontConfig: { storePath, collectionsPath },
   } = data.site.siteMetadata;
   const { isMenuOpen } = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
@@ -96,9 +101,7 @@ export default function Menu() {
         <FaLongArrowAltRight size={30} />
       </button>
       <ul>
-        <Link to="/store">
-          <a>Store</a>
-        </Link>
+        <Link to={`${storePath}`}>Store</Link>
       </ul>
       <div>
         <h3>Have Questions?</h3>

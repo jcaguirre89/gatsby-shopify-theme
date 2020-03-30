@@ -89,13 +89,11 @@ export default function Header({ smart }) {
         <StyledMenuIcon size={35} />
       </button>
       <Link to="/">
-        <a>
-          <Logo
-            width="50px"
-            height="50px"
-            color={isTransparent ? 'white' : 'black'}
-          />
-        </a>
+        <Logo
+          width="50px"
+          height="50px"
+          color={isTransparent ? 'white' : 'black'}
+        />
       </Link>
       <button type="button" onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
         {n > 0 && <BadgeContainer>{n}</BadgeContainer>}
