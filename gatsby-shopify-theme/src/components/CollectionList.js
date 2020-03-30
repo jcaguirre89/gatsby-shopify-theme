@@ -5,16 +5,24 @@ import CollectionCard from './CollectionCard';
 
 const CollectionsGrid = styled.div`
   margin: 50px 20px;
+  width: 100%;
   display: grid;
   grid-auto-flow: row dense;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(auto-fill, 500px);
   grid-gap: 20px;
 
+  @media (max-width: ${props => props.theme.breakpoints.m}) {
+    grid-template-columns: 1fr;
+  }
+
   main {
-    grid-column: 2/3;
     font-size: 3rem;
     &:nth-child(4n) {
       margin: 20px 40px;
+      grid-column: 1/2;
+    }
+    @media (max-width: ${props => props.theme.breakpoints.m}) {
       grid-column: 1/2;
     }
   }
@@ -22,6 +30,11 @@ const CollectionsGrid = styled.div`
     grid-column: 1/2;
     &:nth-child(3n) {
       grid-column: 2/3;
+    }
+    @media (max-width: ${props => props.theme.breakpoints.m}) {
+      &:nth-child(3n) {
+        grid-column: 1/2;
+      }
     }
   }
 `;

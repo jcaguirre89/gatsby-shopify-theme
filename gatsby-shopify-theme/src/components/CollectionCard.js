@@ -5,6 +5,10 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import BaseButton from './styles/BaseButton';
 
+const CTA = styled(BaseButton)`
+  width: 200px;
+`;
+
 export default function CollectionCard({ collection }) {
   const { title, handle, descriptionHtml, image } = collection;
   const data = useStaticQuery(graphql`
@@ -31,7 +35,7 @@ export default function CollectionCard({ collection }) {
         <h2>{title}</h2>
         <p dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
         <Link to={`${collectionsPath}/${handle}/`}>
-          <BaseButton type="button">Shop Now</BaseButton>
+          <CTA type="button">Shop Now</CTA>
         </Link>
       </main>
     </>
