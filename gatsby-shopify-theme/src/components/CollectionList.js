@@ -4,11 +4,10 @@ import styled from 'styled-components';
 import CollectionCard from './CollectionCard';
 
 const CollectionsGrid = styled.div`
-  margin-top: 50px;
+  margin: 50px 20px;
   display: grid;
   grid-auto-flow: row dense;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-template-columns: repeat(auto-fill, 500px);
   grid-gap: 20px;
 
   main {
