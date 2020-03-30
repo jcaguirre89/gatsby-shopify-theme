@@ -101,7 +101,12 @@ export default function Menu() {
         <FaLongArrowAltRight size={30} />
       </button>
       <ul>
-        <Link to={`${storePath}`}>Store</Link>
+        <Link
+          onClick={() => dispatch({ type: 'TOGGLE_MENU' })}
+          to={`${storePath}`}
+        >
+          Store
+        </Link>
       </ul>
       <div>
         <h3>Have Questions?</h3>
