@@ -74,5 +74,5 @@ const Layout = ({ children }) => (
 export default Layout;
 
 Layout.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.any,
 };
