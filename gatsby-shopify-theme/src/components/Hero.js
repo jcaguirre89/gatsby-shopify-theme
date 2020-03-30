@@ -107,8 +107,8 @@ export default function Hero({
         <h3>{subtitle}</h3>
         <CTAContainer>
           {ctas &&
-            ctas.map(cta => (
-              <Link to={cta.link}>
+            ctas.map((cta, i) => (
+              <Link to={cta.link} key={i}>
                 <CTA>{cta.text}</CTA>
               </Link>
             ))}

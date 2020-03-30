@@ -38,6 +38,7 @@ export const query = graphql`
         description
         descriptionHtml
         handle
+        title
         variants {
           id
           price
