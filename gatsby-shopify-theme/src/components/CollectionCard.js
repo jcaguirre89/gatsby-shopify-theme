@@ -28,9 +28,7 @@ export default function CollectionCard({ collection }) {
         />
       </Link>
       <main>
-        <Link to={`${collectionsPath}/${handle}/`}>
-          <h2>{title}</h2>
-        </Link>
+        <h2>{title}</h2>
         <p dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
         <Link to={`${collectionsPath}/${handle}/`}>
           <BaseButton type="button">Shop Now</BaseButton>
