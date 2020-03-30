@@ -19,7 +19,7 @@ const CollectionsGrid = styled.div`
       grid-column: 1/2;
     }
   }
-  div {
+  a {
     grid-column: 1/2;
     &:nth-child(3n) {
       grid-column: 2/3;
