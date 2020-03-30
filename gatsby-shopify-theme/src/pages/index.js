@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import ProductList from '../components/ProductList';
+import CollectionList from '../components/CollectionList';
 import Header from '../components/header';
 import Hero from '../components/Hero';
 
@@ -14,7 +14,7 @@ const Content = styled.div`
 const ctas = [{ text: 'Shop Now', link: '/store' }];
 
 export default function Home({ data }) {
-  const products = data.products.nodes;
+  const collections = data.collections.nodes;
   const {
     background,
     title,
@@ -32,7 +32,7 @@ export default function Home({ data }) {
         ctas={ctas}
       />
       <Content>
-        <ProductList products={products} />
+        <CollectionList collections={collections} />
       </Content>
     </Layout>
   );
@@ -40,21 +40,16 @@ export default function Home({ data }) {
 
 export const query = graphql`
   query HomeQuery {
-    products: allShopifyProduct(sort: { order: DESC, fields: handle }) {
+    collections: allShopifyCollection {
       nodes {
-        title
-        description
+        descriptionHtml
         handle
-        availableForSale
-        variants {
-          id
-          price
-        }
-        images {
+        title
+        image {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 910) {
-                ...GatsbyImageSharpFluid_withWebp_tracedSVG
+              fluid(maxWidth: 1200) {
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
