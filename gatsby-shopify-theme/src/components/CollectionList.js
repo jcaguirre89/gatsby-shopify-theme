@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import CollectionCard from './CollectionCard';
 
 const CollectionsGrid = styled.div`
-  margin: 50px 20px;
+  margin: 50px 0;
   width: 100%;
   display: grid;
   grid-auto-flow: row dense;

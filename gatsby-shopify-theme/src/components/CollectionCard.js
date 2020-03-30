@@ -28,7 +28,7 @@ export default function CollectionCard({ collection }) {
       <Link to={`${collectionsPath}/${handle}/`}>
         <Img
           fluid={image.localFile.childImageSharp.fluid}
-          style={{ height: '400px' }}
+          style={{ height: '100%' }}
         />
       </Link>
       <main>
