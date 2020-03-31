@@ -107,6 +107,15 @@ export default function Menu() {
         >
           Store
         </Link>
+        <Link
+          onClick={() => dispatch({ type: 'TOGGLE_MENU' })}
+          to={`${collectionsPath}`}
+        >
+          Collections
+        </Link>
+        <Link onClick={() => dispatch({ type: 'TOGGLE_MENU' })} to={`/about`}>
+          About
+        </Link>
       </ul>
       <div>
         <h3>Have Questions?</h3>
