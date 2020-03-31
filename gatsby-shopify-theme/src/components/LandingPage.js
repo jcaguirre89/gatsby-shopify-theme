@@ -14,12 +14,12 @@ const Wrapper = styled.div`
 
 const HeroWrapper = styled.div`
   width: 100%;
-  min-height: 100vh;
+  min-height: 500px;
   position: relative;
 
   img {
     width: 100%;
-    height: 90vh;
+    height: 600px;
     object-fit: cover;
   }
 `;
@@ -47,7 +47,7 @@ const BodyWrapper = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: 100%;
   margin: auto;
   padding: 0;
 
