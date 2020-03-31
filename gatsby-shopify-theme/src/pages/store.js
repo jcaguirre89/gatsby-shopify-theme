@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import ProductList from '../components/ProductList';
 import Header from '../components/header';
-import Hero from '../components/Hero';
+import LandingPage from '../components/LandingPage';
 
 const Content = styled.div`
   margin: 0;
@@ -12,22 +12,12 @@ const Content = styled.div`
 `;
 
 export default function Store({ data }) {
-  const products = data.products.nodes;
-  const {
-    background,
-    title,
-    subtitle,
-    content_location,
-  } = data.allSanityHero.edges[0].node;
+  const products = data && data.products.nodes;
+  const landingPage = data && data.landingPage;
   return (
     <Layout>
       <Header smart />
-      <Hero
-        title={title}
-        subtitle={subtitle}
-        contentLocation={content_location}
-        imageFluid={background.asset.fluid}
-      />
+      <LandingPage {...landingPage} />
       <Content>
         <ProductList products={products} />
       </Content>
@@ -37,6 +27,41 @@ export default function Store({ data }) {
 
 export const query = graphql`
   query StoreQuery {
+    landingPage: sanityLandingPage(handle: { current: { eq: "store" } }) {
+      id
+      _rawBody
+      title
+      subtitle
+      cta {
+        link
+        text
+      }
+      handle {
+        current
+      }
+      mainImage {
+        crop {
+          _key
+          _type
+          top
+          bottom
+          left
+          right
+        }
+        hotspot {
+          _key
+          _type
+          x
+          y
+          height
+          width
+        }
+        asset {
+          _id
+        }
+        alt
+      }
+    }
     products: allShopifyProduct(sort: { order: DESC, fields: handle }) {
       nodes {
         title
@@ -52,22 +77,6 @@ export const query = graphql`
             childImageSharp {
               fluid(maxWidth: 910) {
                 ...GatsbyImageSharpFluid_withWebp_tracedSVG
-              }
-            }
-          }
-        }
-      }
-    }
-    allSanityHero(filter: { publish: { eq: true } }) {
-      edges {
-        node {
-          title
-          subtitle
-          content_location
-          background {
-            asset {
-              fluid(maxWidth: 1400) {
-                ...GatsbySanityImageFluid_withWebp
               }
             }
           }
