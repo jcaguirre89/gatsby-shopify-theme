@@ -47,6 +47,16 @@ const StyledHeader = styled(HeaderBase)`
   transform: ${props => (props.show ? 'none' : 'translate(0, -100%)')};
 `;
 
+const MenuButton = styled.button`
+  height: 100%;
+  width: 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0;
+  padding: 10px;
+`;
+
 const StyledMenuIcon = styled(MdMenu)`
   transition: all 0.2s ease-in-out;
   &:hover {
@@ -85,9 +95,12 @@ export default function Header({ smart }) {
 
   return (
     <StyledHeader show={hideNavbarOnScroll} transparent={isTransparent}>
-      <button type="button" onClick={() => dispatch({ type: 'TOGGLE_MENU' })}>
+      <MenuButton
+        type="button"
+        onMouseEnter={() => dispatch({ type: 'TOGGLE_MENU' })}
+      >
         <StyledMenuIcon size={35} />
-      </button>
+      </MenuButton>
       <Link to="/">
         <Logo
           width="50px"
