@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { buildImageObj, imageUrlFor } from '../lib/sanity-helpers';
 import BlockContent from './styles/block-content';
+import BaseButton from './styles/BaseButton';
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ const HeroWrapper = styled.div`
 
   img {
     width: 100%;
+    height: 90vh;
     object-fit: cover;
   }
 `;
@@ -47,10 +49,47 @@ const BodyWrapper = styled.main`
   align-items: center;
   width: 90%;
   margin: auto;
+  padding: 0;
 
   img {
+    width: 100%;
     max-height: 100vh;
     object-fit: cover;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.m}) {
+    width: 100%;
+    margin: 0;
+    padding: 0 10px;
+  }
+`;
+
+const CTAContainer = styled.div`
+  width: 100%;
+  height: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  place-items: start;
+  grid-gap: 30px;
+  margin: 0 20px;
+  a {
+    height: 100%;
+  }
+`;
+
+const CTA = styled(BaseButton)`
+  width: 170px;
+  padding: 10px 15px;
+  background: transparent;
+  transition: all 0.5s ease;
+  border: 2px solid white;
+  cursor: pointer;
+  color: white;
+  font-size: 1.3rem;
+  &:hover {
+    background: ${props => props.theme.colors.secondary};
+    border: 2px solid ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.accent};
   }
 `;
 

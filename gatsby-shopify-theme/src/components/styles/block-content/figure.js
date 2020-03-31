@@ -2,14 +2,20 @@ import React from 'react';
 import { buildImageObj, imageUrlFor } from '../../../lib/sanity-helpers';
 import styled from 'styled-components';
 
+const FigureWrapper = styled.figure`
+  width: 100%;
+  margin: 0;
+`;
+
 const StyledImg = styled.img`
   width: 100%;
+  margin: 0;
   object-fit: cover;
 `;
 
 function Figure(props) {
   return (
-    <figure>
+    <FigureWrapper>
       {props.asset && (
         <StyledImg
           src={imageUrlFor(buildImageObj(props))
@@ -19,7 +25,7 @@ function Figure(props) {
         />
       )}
       <figcaption>{props.caption}</figcaption>
-    </figure>
+    </FigureWrapper>
   );
 }
 
