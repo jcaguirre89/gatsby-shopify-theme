@@ -6,7 +6,6 @@ import Layout from '../components/layout';
 import Header from '../components/header';
 
 export default function Home({ data }) {
-  console.log(process.env.SANITY_TOKEN);
   const landingPage = data && data.landingPage;
   return (
     <Layout>
