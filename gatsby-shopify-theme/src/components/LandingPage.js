@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'gatsby';
 import { buildImageObj, imageUrlFor } from '../lib/sanity-helpers';
 import BlockContent from './styles/block-content';
 import BaseButton from './styles/BaseButton';
@@ -38,6 +40,11 @@ const HeroContent = styled.div`
   h1 {
     font-family: Spartan;
     font-size: 3rem;
+    align-self: flex-start;
+  }
+  h2 {
+    font-family: Spartan;
+    font-size: 2.5rem;
     align-self: flex-start;
   }
 `;
@@ -94,12 +101,22 @@ const CTA = styled(BaseButton)`
 `;
 
 export default function LandingPage(props) {
-  const { _rawBody, title, mainImage } = props;
+  const { _rawBody, title, subtitle, cta, mainImage } = props;
+  console.log(cta);
   return (
     <Wrapper>
       <HeroWrapper>
         <HeroContent>
           <h1>{title}</h1>
+          <h2>{subtitle}</h2>
+          <CTAContainer>
+            {cta.length > 0 &&
+              cta.map(item => (
+                <Link to={item.link}>
+                  <CTA>{item.text}</CTA>
+                </Link>
+              ))}
+          </CTAContainer>
         </HeroContent>
         <img
           src={imageUrlFor(buildImageObj(mainImage))
@@ -116,3 +133,11 @@ export default function LandingPage(props) {
     </Wrapper>
   );
 }
+
+LandingPage.propTypes = {
+  _rawBody: PropTypes.any,
+  cta: PropTypes.array,
+  mainImage: PropTypes.any,
+  subtitle: PropTypes.string,
+  title: PropTypes.string,
+};

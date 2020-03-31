@@ -22,6 +22,11 @@ export const query = graphql`
       id
       _rawBody
       title
+      subtitle
+      cta {
+        link
+        text
+      }
       handle {
         current
       }
