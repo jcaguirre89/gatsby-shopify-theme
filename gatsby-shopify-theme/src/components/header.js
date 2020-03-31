@@ -47,12 +47,13 @@ const StyledHeader = styled(HeaderBase)`
   transform: ${props => (props.show ? 'none' : 'translate(0, -100%)')};
 `;
 
-const MenuButton = styled.button`
+const MenuIconContainer = styled.div`
   height: 100%;
   width: 80px;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  color: white;
   margin: 0;
   padding: 10px;
 `;
@@ -95,12 +96,12 @@ export default function Header({ smart }) {
 
   return (
     <StyledHeader show={hideNavbarOnScroll} transparent={isTransparent}>
-      <MenuButton
-        type="button"
-        onMouseEnter={() => dispatch({ type: 'TOGGLE_MENU' })}
-      >
-        <StyledMenuIcon size={35} />
-      </MenuButton>
+      <MenuIconContainer>
+        <StyledMenuIcon
+          onMouseEnter={() => dispatch({ type: 'TOGGLE_MENU' })}
+          size={35}
+        />
+      </MenuIconContainer>
       <Link to="/">
         <Logo
           width="50px"
