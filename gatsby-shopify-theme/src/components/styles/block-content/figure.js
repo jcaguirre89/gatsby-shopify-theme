@@ -1,11 +1,17 @@
 import React from 'react';
 import { buildImageObj, imageUrlFor } from '../../../lib/sanity-helpers';
+import styled from 'styled-components';
+
+const StyledImg = styled.img`
+  width: 100%;
+  object-fit: cover;
+`;
 
 function Figure(props) {
   return (
     <figure>
       {props.asset && (
-        <img
+        <StyledImg
           src={imageUrlFor(buildImageObj(props))
             .width(1200)
             .url()}
