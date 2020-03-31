@@ -1,14 +1,16 @@
+import imageUrlBuilder from '@sanity/image-url';
+
+const builder = imageUrlBuilder({
+  projectId: process.env.SANITY_PROJECT_ID,
+  dataset: process.env.SANITY_DATASET,
+});
+
+export function imageUrlFor(source) {
+  return builder.image(source);
+}
+
 export function buildImageObj(source) {
-  import sanityConfig from '../../../studio/sanity.json';
-  import imageUrlBuilder from '@sanity/image-url';
-
-  export const builder = imageUrlBuilder(sanityConfig.api);
-
-  export function imageUrlFor(source) {
-    return builder.image(source);
-  }
-
-  export const imageObj = {
+  const imageObj = {
     asset: { _ref: source.asset._ref || source.asset._id },
   };
 
