@@ -44,7 +44,7 @@ const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
-    color: ${theme.colors.primary}
+    color: ${theme.colors.accent}
   }
 `;
 
