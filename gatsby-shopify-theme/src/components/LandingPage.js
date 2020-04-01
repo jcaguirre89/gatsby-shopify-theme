@@ -6,6 +6,19 @@ import { buildImageObj, imageUrlFor } from '../lib/sanity-helpers';
 import BlockContent from './styles/block-content';
 import BaseButton from './styles/BaseButton';
 
+const handleContentLocation = location => {
+  switch (location) {
+    case 'left':
+      return 'align-self: flex-start';
+    case 'right':
+      return 'align-self: flex-end';
+    case 'center':
+      return 'align-self: center';
+    default:
+      return 'align-self: flex-start';
+  }
+};
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,21 +44,39 @@ const HeroContent = styled.div`
   flex-direction: column;
   align-items: center;
   position: absolute;
-  padding: 100px;
+  padding: 90px;
   width: 100%;
   transform: translateY(-40%);
   top: 50%;
   color: ${props => props.color};
 
   h1 {
+    width: 50%;
     font-family: Spartan;
     font-size: 3rem;
-    align-self: flex-start;
+    ${({ location }) => handleContentLocation(location)};
   }
   h2 {
+    width: 50%;
     font-family: Spartan;
     font-size: 2.5rem;
-    align-self: flex-start;
+    ${({ location }) => handleContentLocation(location)};
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.m}) {
+    transform: translateY(-20%);
+    justify-content: center;
+    padding: 10px;
+
+    h1 {
+      font-size: 2.5rem;
+      width: 100%;
+    }
+
+    h2 {
+      width: 100%;
+      font-size: 2rem;
+    }
   }
 `;
 
@@ -72,20 +103,26 @@ const BodyWrapper = styled.main`
 `;
 
 const CTAContainer = styled.div`
-  width: 100%;
+  ${({ location }) => handleContentLocation(location)};
   height: 50px;
+  width: 50%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   place-items: start;
   grid-gap: 30px;
-  margin: 0 20px;
+  margin: 0;
   a {
     height: 100%;
+  }
+  @media (max-width: ${props => props.theme.breakpoints.m}) {
+    width: 100%;
+    margin: 0;
+    padding: 0 10px;
   }
 `;
 
 const CTA = styled(BaseButton)`
-  width: 170px;
+  width: 130px;
   padding: 10px 15px;
   background: transparent;
   transition: all 0.5s ease;
@@ -101,15 +138,24 @@ const CTA = styled(BaseButton)`
 `;
 
 export default function LandingPage(props) {
-  const { _rawBody, title, subtitle, cta, mainImage, textColor } = props;
+  const {
+    _rawBody,
+    title,
+    subtitle,
+    cta,
+    mainImage,
+    textColor,
+    contentLocation,
+  } = props;
   const color = textColor ? textColor.hex : '#fff';
+  const location = contentLocation || 'left';
   return (
     <Wrapper>
       <HeroWrapper>
-        <HeroContent color={color}>
+        <HeroContent color={color} location={location}>
           <h1>{title}</h1>
           <h2>{subtitle}</h2>
-          <CTAContainer>
+          <CTAContainer location={location}>
             {cta.length > 0 &&
               cta.map(item => (
                 <Link to={item.link}>

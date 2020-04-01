@@ -32,6 +32,7 @@ export const query = graphql`
       _rawBody
       title
       subtitle
+      contentLocation
       textColor {
         hex
       }

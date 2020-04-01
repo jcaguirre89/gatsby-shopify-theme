@@ -25,6 +25,7 @@ export const query = graphql`
       textColor {
         hex
       }
+      contentLocation
       cta {
         link
         text
