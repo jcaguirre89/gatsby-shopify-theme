@@ -35,7 +35,7 @@ const HeroContent = styled.div`
   width: 100%;
   transform: translateY(-40%);
   top: 50%;
-  color: white;
+  color: ${props => props.color};
 
   h1 {
     font-family: Spartan;
@@ -89,9 +89,9 @@ const CTA = styled(BaseButton)`
   padding: 10px 15px;
   background: transparent;
   transition: all 0.5s ease;
-  border: 2px solid white;
+  border: 2px solid ${props => props.color};
   cursor: pointer;
-  color: white;
+  color: ${props => props.color};
   font-size: 1.3rem;
   &:hover {
     background: ${props => props.theme.colors.secondary};
@@ -101,19 +101,19 @@ const CTA = styled(BaseButton)`
 `;
 
 export default function LandingPage(props) {
-  const { _rawBody, title, subtitle, cta, mainImage } = props;
-  console.log(cta);
+  const { _rawBody, title, subtitle, cta, mainImage, textColor } = props;
+  const color = textColor ? textColor.hex : '#fff';
   return (
     <Wrapper>
       <HeroWrapper>
-        <HeroContent>
+        <HeroContent color={color}>
           <h1>{title}</h1>
           <h2>{subtitle}</h2>
           <CTAContainer>
             {cta.length > 0 &&
               cta.map(item => (
                 <Link to={item.link}>
-                  <CTA>{item.text}</CTA>
+                  <CTA color={color}>{item.text}</CTA>
                 </Link>
               ))}
           </CTAContainer>
@@ -140,4 +140,5 @@ LandingPage.propTypes = {
   mainImage: PropTypes.any,
   subtitle: PropTypes.string,
   title: PropTypes.string,
+  textColor: PropTypes.objectOf(PropTypes.string),
 };
