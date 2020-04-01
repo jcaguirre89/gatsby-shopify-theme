@@ -22,9 +22,7 @@ export const query = graphql`
       _rawBody
       title
       subtitle
-      textColor {
-        hex
-      }
+      textColor
       contentLocation
       cta {
         link

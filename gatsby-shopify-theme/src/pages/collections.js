@@ -34,9 +34,7 @@ export const query = graphql`
       title
       subtitle
       contentLocation
-      textColor {
-        hex
-      }
+      textColor
       cta {
         link
         text

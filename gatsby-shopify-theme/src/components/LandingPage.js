@@ -147,7 +147,7 @@ export default function LandingPage(props) {
     textColor,
     contentLocation,
   } = props;
-  const color = textColor ? textColor.hex : '#fff';
+  const color = textColor || '#fff';
   const location = contentLocation || 'left';
   return (
     <Wrapper>
