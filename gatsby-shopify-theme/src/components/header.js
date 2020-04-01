@@ -45,24 +45,21 @@ const StyledHeader = styled(HeaderBase)`
   visibility: ${props => (props.show ? 'visible' : 'hidden')};
   transition: all 200ms ${props => (props.show ? 'ease-in' : 'ease-out')};
   transform: ${props => (props.show ? 'none' : 'translate(0, -100%)')};
-`;
 
-const MenuIconContainer = styled.div`
-  height: 100%;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  margin: 0;
-  padding: 10px;
-`;
-
-const StyledMenuIcon = styled(MdMenu)`
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    color: ${props => props.theme.colors.primary};
-    transform: rotate(-90deg);
+  .menu-icon {
+    height: 100%;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${props => (props.transparent ? '#fff' : '#000')};
+    margin: 0;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      color: ${props => props.theme.colors.primary};
+      transform: rotate(-90deg);
+    }
   }
 `;
 
@@ -96,12 +93,12 @@ export default function Header({ smart }) {
 
   return (
     <StyledHeader show={hideNavbarOnScroll} transparent={isTransparent}>
-      <MenuIconContainer>
-        <StyledMenuIcon
+      <div className="menu-icon">
+        <MdMenu
           onMouseEnter={() => dispatch({ type: 'TOGGLE_MENU' })}
           size={35}
         />
-      </MenuIconContainer>
+      </div>
       <Link to="/">
         <Logo
           width="50px"
