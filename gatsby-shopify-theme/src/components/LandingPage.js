@@ -75,7 +75,7 @@ const CTAContainer = styled.div`
   width: 100%;
   height: 50px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   place-items: start;
   grid-gap: 30px;
   margin: 0 20px;
