@@ -61,13 +61,13 @@ module.exports = ({
     {
       resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
       options: {
-        fields: ['title', 'descripion', 'tags'],
+        fields: ['title', 'description'],
         resolvers: {
-          shopifyProduct: {
+          ShopifyProduct: {
             title: node => node.title,
             description: node => node.description,
-            tags: node => node.tags,
-            path: node => node.handle,
+            handle: node => node.handle,
+            // mainImage: (node, getNode) => getNode(node.images[0]),
           },
         },
       },
