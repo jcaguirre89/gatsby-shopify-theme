@@ -2,6 +2,27 @@ import React, { useState } from 'react';
 import { Index } from 'elasticlunr';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import { MdSearch } from 'react-icons/md';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  position: relative;
+
+  ul {
+    position: absolute;
+    width: 100%;
+    top: 58px;
+    right: 0px;
+    border: 1px solid red;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    padding: 0;
+    margin: 0;
+  }
+`;
 
 export default function Search() {
   const data = useStaticQuery(graphql`
@@ -32,7 +53,7 @@ export default function Search() {
   };
 
   return (
-    <div>
+    <Wrapper>
       <button type="button" onClick={() => setToggleInput(!toggleInput)}>
         <MdSearch />
       </button>
@@ -43,14 +64,12 @@ export default function Search() {
         onChange={e => search(e)}
       />
       <ul>
-        {results.map(page => (
-          <li key={page.id}>
-            <Link to={`/${page.path}`}>
-              <p>{page.title}</p>
-            </Link>
-          </li>
+        {results.map(result => (
+          <Link to={`/store/${result.handle}`}>
+            <li key={result.handle}>{result.title}</li>
+          </Link>
         ))}
       </ul>
-    </div>
+    </Wrapper>
   );
 }
