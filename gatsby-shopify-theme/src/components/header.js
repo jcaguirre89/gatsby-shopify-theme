@@ -10,6 +10,7 @@ import {
   GlobalStateContext,
 } from '../context/GlobalContextProvider';
 import useSmartHeader from '../hooks/useSmartHeader';
+import Search from './Search';
 
 const HeaderBase = styled.nav`
   background: transparent;
@@ -99,6 +100,7 @@ export default function Header({ smart }) {
           size={35}
         />
       </div>
+      <Search />
       <Link to="/">
         <Logo
           width="50px"

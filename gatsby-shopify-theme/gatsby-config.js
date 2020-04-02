@@ -58,6 +58,20 @@ module.exports = ({
         displayName: process.env.NODE_ENV !== 'production',
       },
     },
+    {
+      resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
+      options: {
+        fields: ['title', 'descripion', 'tags'],
+        resolvers: {
+          shopifyProduct: {
+            title: node => node.title,
+            description: node => node.description,
+            tags: node => node.tags,
+            path: node => node.handle,
+          },
+        },
+      },
+    },
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
   ],
