@@ -54,13 +54,6 @@ const SearchInput = styled.input`
   transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
   background-repeat: no-repeat;
   color: ${props => props.theme.colors.offBlack};
-
-  &:focus,
-  &:valid {
-    box-shadow: none;
-    outline: none;
-    background-position: 0 0;
-  }
 `;
 
 const ResultContainer = styled.div`
