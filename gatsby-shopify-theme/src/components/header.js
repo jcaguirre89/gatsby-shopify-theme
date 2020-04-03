@@ -45,7 +45,7 @@ const StyledHeader = styled(HeaderBase)`
   transition: all 200ms ${props => (props.show ? 'ease-in' : 'ease-out')};
   transform: ${props => (props.show ? 'none' : 'translate(0, -100%)')};
 
-  .menu-icon {
+  .icon {
     height: 100%;
     width: 80px;
     display: flex;
@@ -57,6 +57,10 @@ const StyledHeader = styled(HeaderBase)`
     transition: all 0.2s ease-in-out;
     &:hover {
       color: ${props => props.theme.colors.primary};
+    }
+  }
+  .menu {
+    &:hover {
       transform: rotate(-90deg);
     }
   }
@@ -105,7 +109,7 @@ export default function Header({ smart }) {
 
   return (
     <StyledHeader show={hideNavbarOnScroll} transparent={isTransparent}>
-      <div className="menu-icon">
+      <div className="menu icon">
         <MdMenu
           onMouseEnter={() => dispatch({ type: 'TOGGLE_MENU' })}
           size={35}
@@ -121,11 +125,16 @@ export default function Header({ smart }) {
       <div className="buttons">
         <SearchButton
           type="button"
+          className="icon"
           onClick={() => dispatch({ type: 'TOGGLE_SEARCH' })}
         >
           <MdSearch size={35} />
         </SearchButton>
-        <button type="button" onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
+        <button
+          className="icon"
+          type="button"
+          onClick={() => dispatch({ type: 'TOGGLE_CART' })}
+        >
           {n > 0 && <BadgeContainer>{n}</BadgeContainer>}
           <AiOutlineShopping size={35} />
         </button>

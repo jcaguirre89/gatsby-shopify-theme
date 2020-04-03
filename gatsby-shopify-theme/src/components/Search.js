@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext, useRef } from 'react';
 import { Index } from 'elasticlunr';
 import { graphql, useStaticQuery, Link } from 'gatsby';
+import { FaLongArrowAltLeft } from 'react-icons/fa';
 import styled from 'styled-components';
 import {
   GlobalStateContext,
@@ -15,7 +16,7 @@ const SideBar = styled.div`
   z-index: 5;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 20px 100px 1fr;
   min-width: 300px;
   max-width: 400px;
   width: 40%;
@@ -31,36 +32,58 @@ const SideBar = styled.div`
   }
   ul {
     width: 100%;
+    height: 100%;
+    overflow-y: scroll;
     list-style: none;
     padding: 0 20px;
     margin: 0;
+
+    h3 {
+      margin: 0;
+      margin-bottom: 5px;
+    }
+    p {
+      margin: 0;
+    }
   }
 
   li {
     padding: 0;
-    margin: 0;
+    margin-bottom: 10px;
     color: black;
   }
-`;
 
-const SearchInput = styled.input`
-  width: 90%;
-  margin: auto;
-  padding: 15px;
-  height: 40px;
-  display: block;
-  border: none;
-  border-bottom: 2px solid ${props => props.theme.colors.primary};
-  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-  background-repeat: no-repeat;
-  color: ${props => props.theme.colors.offBlack};
-`;
+  .close-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  input {
+    width: 90%;
+    font-size: 2rem;
+    margin: auto;
+    padding: 15px;
+    height: 50px;
+    display: block;
+    border: none;
+    border-bottom: 1px solid ${props => props.theme.colors.offBlack};
+    color: ${props => props.theme.colors.offBlack};
+  }
 
-const ResultContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  input:focus {
+    border-bottom: 2px solid ${props => props.theme.colors.primary};
+  }
+
+  .results {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
 `;
 
 export default function Search() {
@@ -101,7 +124,14 @@ export default function Search() {
   };
   return (
     <SideBar open={isSearchOpen}>
-      <SearchInput
+      <button
+        className="close-button"
+        type="button"
+        onClick={() => dispatch({ type: 'TOGGLE_CART' })}
+      >
+        <FaLongArrowAltLeft size={30} />
+      </button>
+      <input
         type="text"
         name="search"
         value={query}
@@ -116,10 +146,10 @@ export default function Search() {
             onClick={() => dispatch({ type: 'TOGGLE_SEARCH' })}
           >
             <li key={result.handle}>
-              <ResultContainer>
+              <div className="results">
                 <h3>{result.title}</h3>
                 <p>{result.description}</p>
-              </ResultContainer>
+              </div>
             </li>
           </Link>
         ))}
