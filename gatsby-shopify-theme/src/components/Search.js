@@ -144,6 +144,21 @@ export default function Search() {
         .map(({ ref }) => index.documentStore.getDoc(ref))
     );
   };
+
+  const trimDesc = (content, wordlimit) => {
+    const filter = content.replace(/\s+/g, ' ');
+    const wordsarr = filter.split(' ');
+
+    if (wordsarr.length < wordlimit) return content;
+
+    let result = '';
+    for (let i = 0; i < wordlimit; i++) {
+      result = `${result} ${wordsarr[i]} `;
+    }
+    result = `${result}...`;
+    return result;
+  };
+
   return (
     <SideBar open={isSearchOpen}>
       <button
@@ -170,7 +185,7 @@ export default function Search() {
             <li key={result.handle}>
               <div className="results">
                 <h3>{result.title}</h3>
-                <p>{result.description}</p>
+                <p>{trimDesc(result.description, 10)}</p>
               </div>
             </li>
           </Link>
