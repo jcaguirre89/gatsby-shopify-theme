@@ -4,6 +4,7 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import SEO from './SEO';
 import Cart from './Cart';
 import SideMenu from './SideMenu';
+import Search from './Search';
 import Footer from './Footer';
 import theme from './styles/theme';
 
@@ -64,6 +65,7 @@ const Layout = ({ children }) => (
         <SEO />
         <Cart />
         <SideMenu />
+        <Search />
         <Inner>{children}</Inner>
         <Footer />
       </Wrapper>

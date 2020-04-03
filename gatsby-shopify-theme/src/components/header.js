@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { MdMenu } from 'react-icons/md';
+import { MdSearch, MdMenu } from 'react-icons/md';
 import { AiOutlineShopping } from 'react-icons/ai';
 import Logo from './Logo';
 import {
@@ -10,7 +10,6 @@ import {
   GlobalStateContext,
 } from '../context/GlobalContextProvider';
 import useSmartHeader from '../hooks/useSmartHeader';
-import Search from './Search';
 
 const HeaderBase = styled.nav`
   background: transparent;
@@ -30,7 +29,6 @@ const HeaderBase = styled.nav`
   border-bottom: 1px solid ${props => props.theme.colors.secondary};
   a,
   button {
-    margin: 1rem 3rem;
     display: flex;
     align-items: center;
     position: relative;
@@ -62,6 +60,19 @@ const StyledHeader = styled(HeaderBase)`
       transform: rotate(-90deg);
     }
   }
+
+  .buttons {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+  }
+`;
+
+const SearchButton = styled.button`
+  margin: 0;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
 `;
 
 const BadgeContainer = styled.div`
@@ -100,7 +111,6 @@ export default function Header({ smart }) {
           size={35}
         />
       </div>
-      <Search />
       <Link to="/">
         <Logo
           width="50px"
@@ -108,10 +118,18 @@ export default function Header({ smart }) {
           color={isTransparent ? 'white' : 'black'}
         />
       </Link>
-      <button type="button" onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
-        {n > 0 && <BadgeContainer>{n}</BadgeContainer>}
-        <AiOutlineShopping size={35} />
-      </button>
+      <div className="buttons">
+        <SearchButton
+          type="button"
+          onClick={() => dispatch({ type: 'TOGGLE_SEARCH' })}
+        >
+          <MdSearch size={35} />
+        </SearchButton>
+        <button type="button" onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
+          {n > 0 && <BadgeContainer>{n}</BadgeContainer>}
+          <AiOutlineShopping size={35} />
+        </button>
+      </div>
     </StyledHeader>
   );
 }

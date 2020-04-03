@@ -6,6 +6,7 @@ export const GlobalDispatchContext = createContext();
 const initialState = {
   isCartOpen: false,
   isMenuOpen: false,
+  isSearchOpen: false,
   cartItems: [],
 };
 
@@ -20,6 +21,11 @@ function reducer(state, action) {
       return {
         ...state,
         isMenuOpen: !state.isMenuOpen,
+      };
+    case 'TOGGLE_SEARCH':
+      return {
+        ...state,
+        isSearchOpen: !state.isSearchOpen,
       };
     case 'UPDATE_CART': {
       const { variantId } = action.payload;
