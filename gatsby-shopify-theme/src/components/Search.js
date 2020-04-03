@@ -89,6 +89,9 @@ const SideBar = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    p {
+      color: ${props => props.theme.colors.grey};
+    }
   }
 `;
 
