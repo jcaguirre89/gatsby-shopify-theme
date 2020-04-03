@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useContext, useRef } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  useRef,
+  useCallback,
+} from 'react';
 import { Index } from 'elasticlunr';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
@@ -104,10 +110,26 @@ export default function Search() {
   const inputRef = useRef(null);
 
   useEffect(() => {
+    // Focus on input on render
     if (isSearchOpen) {
       inputRef.current.focus();
     }
   }, [isSearchOpen]);
+
+  const escFunction = useCallback(event => {
+    if (event.keyCode === 27) {
+      dispatch({ type: 'TOGGLE_SEARCH' });
+    }
+  }, []);
+
+  useEffect(() => {
+    // CLose on esc press
+    document.addEventListener('keydown', escFunction, false);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction, false);
+    };
+  }, [escFunction]);
 
   const getOrCreateIndex = () =>
     index || Index.load(data.siteSearchIndex.index);
