@@ -127,13 +127,14 @@ export default function Cart() {
       quantity: item.quantity,
     }));
     await shopifyClient.checkout.addLineItems(checkoutId, lineItems);
+    window.location.href = webUrl;
 
-    window.open(
-      webUrl,
-      'Popup',
-      'toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30'
-    );
-    setCheckoutLoading(false);
+    // window.open(
+    //   webUrl,
+    //   'Popup',
+    //   'toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30'
+    // );
+    // setCheckoutLoading(false);
   };
 
   return (
