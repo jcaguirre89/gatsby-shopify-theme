@@ -42,7 +42,7 @@ const MenuStyles = styled.div`
   }
 
   a {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-weight: ${props => props.theme.fontWeights.bold};
     color: ${props => props.theme.colors.primary};
     margin-right: 10px;
