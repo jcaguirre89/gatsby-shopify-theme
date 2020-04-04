@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
+import Spinner from 'react-svg-spinner';
 import {
   GlobalStateContext,
   GlobalDispatchContext,
@@ -11,6 +12,7 @@ import useCheckoutAmout from '../hooks/useCheckoutAmount';
 import { ShopifyClientContext } from '../context/ShopifyClientProvider';
 import MonetaryValue from './MonetaryValue';
 import BaseButton from './styles/BaseButton';
+import theme from './styles/theme'
 
 const CartInner = styled.div`
   display: grid;
@@ -160,12 +162,16 @@ export default function Cart() {
           <p>Total</p>
           <MonetaryValue amount={amount} />
         </footer>
-        <BaseButton
-          disabled={isCheckoutLoading}
-          onClick={() => handleCheckout()}
-        >
-          Checkout
-        </BaseButton>
+        {isCheckoutLoading ? (
+          <Spinner size="32px" color={theme.colors.primary} />
+        ) : (
+          <BaseButton
+            disabled={isCheckoutLoading}
+            onClick={() => handleCheckout()}
+          >
+            Checkout
+          </BaseButton>
+        )}
       </CartInner>
     </CartStyles>
   );
