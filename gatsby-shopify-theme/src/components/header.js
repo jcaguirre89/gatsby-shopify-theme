@@ -86,8 +86,8 @@ const BadgeContainer = styled.div`
   place-items: center center;
   border-radius: 20px;
   position: absolute;
-  top: 0px;
-  left: 30px;
+  top: 10px;
+  left: 40px;
   color: white;
   background: ${props => props.theme.colors.accent};
   font-size: 0.8em;
