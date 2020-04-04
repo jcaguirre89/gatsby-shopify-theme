@@ -1,16 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link, graphql, useStaticQuery } from 'gatsby';
-import {
-  FaLongArrowAltRight,
-  FaInstagram,
-  FaFacebookSquare,
-  FaTwitter,
-} from 'react-icons/fa';
+import { FaLongArrowAltRight } from 'react-icons/fa';
 import {
   GlobalStateContext,
   GlobalDispatchContext,
 } from '../context/GlobalContextProvider';
+import SocialLinks from './SocialLinks';
 
 const MenuStyles = styled.div`
   position: fixed;
@@ -84,9 +80,6 @@ export default function Menu() {
   const {
     email,
     phone,
-    instagramHandle,
-    facebookHandle,
-    twitterHandle,
     gatsbyStorefrontConfig: { storePath, collectionsPath },
   } = data.site.siteMetadata;
   const { isMenuOpen } = useContext(GlobalStateContext);
@@ -122,35 +115,7 @@ export default function Menu() {
         <p>{email}</p>
         <p>{phone}</p>
       </div>
-      <div>
-        {instagramHandle && (
-          <a
-            href={`https://www.instagram.com/${instagramHandle}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaInstagram />
-          </a>
-        )}
-        {facebookHandle && (
-          <a
-            href={`https://www.facebook.com/${facebookHandle}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaFacebookSquare />
-          </a>
-        )}
-        {twitterHandle && (
-          <a
-            href={`https://www.twitter.com/${twitterHandle}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaTwitter />
-          </a>
-        )}
-      </div>
+      <SocialLinks />
     </MenuStyles>
   );
 }
