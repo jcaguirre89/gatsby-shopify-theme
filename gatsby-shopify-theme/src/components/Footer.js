@@ -12,7 +12,7 @@ const Container = styled.div`
   place-items: center;
 `;
 
-const LogoContainer = styled.div`
+const SocialLinksContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,20 +34,20 @@ export default function Footer() {
   const { email, phone, title } = data.site.siteMetadata;
   return (
     <Container>
-      <LogoContainer>
-        <Link to="/">
-          <Logo color="black" />
-        </Link>
-        <p>
-          © {new Date().getFullYear()} {title}
-        </p>
-      </LogoContainer>
+      <Link to="/">
+        <Logo color="black" />
+      </Link>
       <div>
         <h3>Have Questions?</h3>
         <p>{email}</p>
         <p>{phone}</p>
       </div>
-      <SocialLinks />
+      <SocialLinksContainer>
+        <SocialLinks size="20px" />
+        <p>
+          © {new Date().getFullYear()} {title}
+        </p>
+      </SocialLinksContainer>
     </Container>
   );
 }

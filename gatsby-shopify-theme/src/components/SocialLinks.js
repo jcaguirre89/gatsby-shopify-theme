@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -6,17 +7,18 @@ import { FaInstagram, FaFacebookSquare, FaTwitter } from 'react-icons/fa';
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   a {
-    font-weight: ${props => props.theme.fontWeights.bold};
     margin-right: 10px;
+    font-size: ${props => props.size};
+    color: ${props => props.color};
     &:hover {
       color: ${props => props.theme.colors.primary};
     }
   }
 `;
 
-export default function SocialLinks() {
+export default function SocialLinks({ size, color }) {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -34,7 +36,7 @@ export default function SocialLinks() {
     twitterHandle,
   } = data.site.siteMetadata;
   return (
-    <Wrapper>
+    <Wrapper size={size} color={color}>
       {instagramHandle && (
         <a
           href={`https://www.instagram.com/${instagramHandle}`}
@@ -65,3 +67,13 @@ export default function SocialLinks() {
     </Wrapper>
   );
 }
+
+SocialLinks.propTypes = {
+  color: PropTypes.string,
+  size: PropTypes.string,
+};
+
+SocialLinks.defaultProps = {
+  color: 'black',
+  size: '24px',
+};
