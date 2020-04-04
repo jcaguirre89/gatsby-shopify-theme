@@ -10,6 +10,7 @@ import {
   GlobalStateContext,
 } from '../context/GlobalContextProvider';
 import useSmartHeader from '../hooks/useSmartHeader';
+import SocialLinks from './SocialLinks';
 
 const HeaderBase = styled.nav`
   background: transparent;
@@ -93,6 +94,12 @@ const BadgeContainer = styled.div`
   font-size: 0.8em;
 `;
 
+const SocialLinksContainer = styled.div`
+  @media (max-width: ${props => props.theme.breakpoints.m}) {
+    display: none;
+  }
+`;
+
 export default function Header({ smart }) {
   const dispatch = useContext(GlobalDispatchContext);
   const { cartItems } = useContext(GlobalStateContext);
@@ -123,6 +130,9 @@ export default function Header({ smart }) {
         />
       </Link>
       <div className="buttons">
+        <SocialLinksContainer>
+          <SocialLinks />
+        </SocialLinksContainer>
         <SearchButton
           type="button"
           className="icon"

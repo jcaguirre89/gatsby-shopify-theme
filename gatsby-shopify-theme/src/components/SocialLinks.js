@@ -8,7 +8,6 @@ const Wrapper = styled.div`
   align-items: flex-start;
   justify-content: center;
   a {
-    font-size: 3.5rem;
     font-weight: ${props => props.theme.fontWeights.bold};
     margin-right: 10px;
     &:hover {
