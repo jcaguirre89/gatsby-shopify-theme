@@ -3,7 +3,6 @@
 import React, { useContext } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
 import SEO from '../components/SEO';
 import Layout from '../components/layout';
 import Header from '../components/header';
@@ -14,6 +13,7 @@ import {
 } from '../context/GlobalContextProvider';
 import BaseButton from '../components/styles/BaseButton';
 import ImageSlider from '../components/ImageSlider';
+import ProductList from '../components/ProductList';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -21,7 +21,8 @@ const Container = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 100px;
   width: 100%;
-  margin: 100px 0;
+  margin: 0;
+  margin-top: 100px;
   padding: 0 20px;
 
   h2 {
@@ -30,13 +31,14 @@ const Container = styled.div`
   }
 
   .price {
-    color: ${props => props.theme.grey};
+    color: ${props => props.theme.colors.grey};
     font-size: 1.5rem;
   }
 
   @media (max-width: ${props => props.theme.breakpoints.m}) {
     grid-gap: 40px;
     padding: 0;
+    margin-bottom: 100px;
   }
 `;
 
@@ -61,6 +63,24 @@ const ImageContainer = styled.ul`
   height: 70vh;
 `;
 
+const RelatedContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  h2 {
+    font-size: 3rem;
+    margin-bottom: 50px;
+  }
+`;
+
+const StyledProductList = styled(ProductList)`
+  width: 90%;
+  margin: auto;
+`;
+
 export default function ProductPage({ data }) {
   const {
     title,
@@ -69,6 +89,7 @@ export default function ProductPage({ data }) {
     images,
     variants: [firstVariant],
   } = data.shopifyProduct;
+  const products = data.products.nodes;
   const { id: variantId, price } = firstVariant;
   const dispatch = useContext(GlobalDispatchContext);
   const { isCartOpen } = useContext(GlobalStateContext);
@@ -100,12 +121,37 @@ export default function ProductPage({ data }) {
           </BaseButton>
         </ContentContainer>
       </Container>
+      <RelatedContainer>
+        <h2>Related Products</h2>
+        <StyledProductList products={products} />
+      </RelatedContainer>
     </Layout>
   );
 }
 
 export const query = graphql`
   query($handle: String!) {
+    products: allShopifyProduct(sort: { order: DESC, fields: handle }) {
+      nodes {
+        title
+        description
+        handle
+        availableForSale
+        variants {
+          id
+          price
+        }
+        images {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 910) {
+                ...GatsbyImageSharpFluid_withWebp_tracedSVG
+              }
+            }
+          }
+        }
+      }
+    }
     shopifyProduct(handle: { eq: $handle }) {
       id
       title

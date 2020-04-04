@@ -10,14 +10,15 @@ const ProductGrid = styled.div`
   grid-gap: 10px;
   min-height: 500px;
 
-  @media (min-width: ${props => props.theme.breakpoints.m}) {
+  @media (max-width: ${props => props.theme.breakpoints.m}) {
     margin: 20px;
+    grid-gap: 100px;
   }
 `;
 
-export default function ProductList({ products }) {
+export default function ProductList({ products, className }) {
   return (
-    <ProductGrid>
+    <ProductGrid className={className}>
       {products
         .filter(p => p.availableForSale)
         .map(product => (
