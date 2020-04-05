@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 import useElementSize from '../hooks/useElementSizeDynamic';
+import { AnimateGroup, Animate } from 'react-animate-mount';
 
 const SliderContainer = styled.div`
   position: relative;
@@ -89,7 +90,11 @@ export default function ImageSlider({ imagesFluid, imagesFixed }) {
   return (
     <div>
       <SliderContainer ref={ref}>
-        <Img style={{ width: '100%' }} fluid={imagesFluid[activeIndex]} />
+        {imagesFluid.map((img, idx) => (
+          <Animate show={activeIndex === idx}>
+            <Img style={{ width: '100%' }} fluid={img} />
+          </Animate>
+        ))}
         <Arrow direction="left" onClick={() => prevSlide()}>
           <IoIosArrowBack />
         </Arrow>
