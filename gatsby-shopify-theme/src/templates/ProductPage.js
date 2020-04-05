@@ -60,7 +60,7 @@ const ContentContainer = styled.div`
 
 const ImageContainer = styled.ul`
   padding: 0;
-  height: 70vh;
+  min-height: 70vh;
 `;
 
 const RelatedContainer = styled.div`
@@ -103,6 +103,9 @@ export default function ProductPage({ data }) {
   const imagesFluid = images.map(
     image => image.localFile.childImageSharp.fluid
   );
+  const imagesFixed = images.map(
+    image => image.localFile.childImageSharp.fixed
+  );
 
   return (
     <Layout>
@@ -110,7 +113,7 @@ export default function ProductPage({ data }) {
       <Header smart={false} />
       <Container>
         <ImageContainer>
-          <ImageSlider images={imagesFluid} />
+          <ImageSlider imagesFluid={imagesFluid} imagesFixed={imagesFixed} />
         </ImageContainer>
         <ContentContainer>
           <h2>{title}</h2>
@@ -169,6 +172,9 @@ export const query = graphql`
           childImageSharp {
             fluid(maxWidth: 800) {
               ...GatsbyImageSharpFluid_withWebp
+            }
+            fixed(width: 100) {
+              ...GatsbyImageSharpFixed_withWebp
             }
           }
         }

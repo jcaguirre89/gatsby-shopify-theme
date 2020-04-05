@@ -7,7 +7,6 @@ import useElementSize from '../hooks/useElementSizeDynamic';
 
 const SliderContainer = styled.div`
   position: relative;
-  height: 100%;
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
@@ -19,6 +18,7 @@ const SliderContent = styled.div`
   height: 100%;
   width: ${props => props.width}px;
   display: flex;
+  margin-bottom: 20px;
 `;
 
 const Arrow = styled.button`
@@ -56,7 +56,20 @@ const Dots = styled.div`
   justify-content: center;
 `;
 
-export default function ImageSlider({ images }) {
+const ThumbnailContainer = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+const Thumbnail = styled.div`
+  margin-right: 10px;
+  height: 50px;
+  width: 50px;
+  transition: transform ease-in-out ${props => props.transition}s;
+  ${props => props.active && 'transform: scale(1.2)'};
+`;
+
+export default function ImageSlider({ imagesFluid, imagesFixed }) {
   const { ref, width } = useElementSize();
 
   const [translate, setTranslate] = useState(0);
@@ -65,7 +78,7 @@ export default function ImageSlider({ images }) {
 
   const nextSlide = () => {
     // If on the last slide
-    if (activeIndex === images.length - 1) {
+    if (activeIndex === imagesFluid.length - 1) {
       setTranslate(0);
       setActiveIndex(0);
       return;
@@ -77,8 +90,8 @@ export default function ImageSlider({ images }) {
   const prevSlide = () => {
     // If on first slide
     if (activeIndex === 0) {
-      setTranslate((images.length - 1) * width);
-      setActiveIndex(images.length - 1);
+      setTranslate((imagesFluid.length - 1) * width);
+      setActiveIndex(imagesFluid.length - 1);
       return;
     }
     setTranslate((activeIndex - 1) * width);
@@ -86,35 +99,45 @@ export default function ImageSlider({ images }) {
   };
 
   return (
-    <SliderContainer ref={ref}>
-      <SliderContent
-        translate={translate}
-        transition={transition}
-        width={width * images.length}
-      >
-        {images.map((image, i) => (
-          <Img
-            style={{ height: '100%', width: '100%' }}
-            key={i}
-            fluid={image}
-          />
+    <div>
+      <SliderContainer ref={ref}>
+        <SliderContent
+          translate={translate}
+          transition={transition}
+          width={width * imagesFluid.length}
+        >
+          {imagesFluid.map((image, i) => (
+            <Img style={{ width: '100%' }} key={i} fluid={image} />
+          ))}
+        </SliderContent>
+        <Arrow direction="left" onClick={() => prevSlide()}>
+          <IoIosArrowBack />
+        </Arrow>
+        <Arrow direction="right" onClick={() => nextSlide()}>
+          <IoIosArrowForward />
+        </Arrow>
+        <Dots>
+          {imagesFluid.map((_, i) => (
+            <Dot key={i} active={activeIndex === i} />
+          ))}
+        </Dots>
+      </SliderContainer>
+      <ThumbnailContainer>
+        {imagesFixed.map((image, i) => (
+          <Thumbnail transition={transition} active={activeIndex === i}>
+            <Img
+              style={{ height: '100%', width: '100%' }}
+              key={i}
+              fluid={image}
+            />
+          </Thumbnail>
         ))}
-      </SliderContent>
-      <Arrow direction="left" onClick={() => prevSlide()}>
-        <IoIosArrowBack />
-      </Arrow>
-      <Arrow direction="right" onClick={() => nextSlide()}>
-        <IoIosArrowForward />
-      </Arrow>
-      <Dots>
-        {images.map((_, i) => (
-          <Dot key={i} active={activeIndex === i} />
-        ))}
-      </Dots>
-    </SliderContainer>
+      </ThumbnailContainer>
+    </div>
   );
 }
 
 ImageSlider.propTypes = {
-  images: PropTypes.array.isRequired,
+  imagesFluid: PropTypes.array.isRequired,
+  imagesFixed: PropTypes.array.isRequired,
 };
