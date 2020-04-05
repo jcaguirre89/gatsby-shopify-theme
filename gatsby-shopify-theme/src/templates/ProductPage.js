@@ -121,17 +121,22 @@ export default function ProductPage({ data }) {
           </BaseButton>
         </ContentContainer>
       </Container>
-      <RelatedContainer>
-        <h2>Related Products</h2>
-        <StyledProductList products={products} />
-      </RelatedContainer>
+      {products && (
+        <RelatedContainer>
+          <h2>Shop other products</h2>
+          <StyledProductList products={products} />
+        </RelatedContainer>
+      )}
     </Layout>
   );
 }
 
 export const query = graphql`
   query($handle: String!) {
-    products: allShopifyProduct(sort: { order: DESC, fields: handle }) {
+    products: allShopifyProduct(
+      sort: { order: DESC, fields: handle }
+      filter: { handle: { ne: $handle }, availableForSale: { eq: true } }
+    ) {
       nodes {
         title
         description
@@ -173,5 +178,29 @@ export const query = graphql`
         price
       }
     }
+    # relatedProducts: shopifyCollection(
+    #   products: {
+    #     elemMatch: { availableForSale: { eq: true }, handle: { eq: $handle } }
+    #   }
+    # ) {
+    #   products {
+    #     title
+    #     handle
+    #     availableForSale
+    #     variants {
+    #       id
+    #       price
+    #     }
+    #     images {
+    #       localFile {
+    #         childImageSharp {
+    #           fluid(maxWidth: 910) {
+    #             ...GatsbyImageSharpFluid_withWebp_tracedSVG
+    #           }
+    #         }
+    #       }
+    #     }
+    #   }
+    # }
   }
 `;
