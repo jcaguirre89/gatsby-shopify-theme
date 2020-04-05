@@ -2,9 +2,8 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
+import { Animate } from 'react-animate-mount';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
-import useElementSize from '../hooks/useElementSizeDynamic';
-import { AnimateGroup, Animate } from 'react-animate-mount';
 
 const SliderContainer = styled.div`
   position: relative;
@@ -14,8 +13,8 @@ const SliderContainer = styled.div`
 `;
 
 const SliderContent = styled.div`
-  height: 100%;
-  width: ${props => props.width}px;
+  height: 400px;
+  width: 100%;
   display: flex;
   margin-bottom: 20px;
 `;
@@ -62,15 +61,14 @@ const ThumbnailContainer = styled.div`
 
 const Thumbnail = styled.div`
   margin-right: 10px;
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
   transition: transform ease-in-out 0.45s;
   ${props => props.active && 'transform: scale(1.2)'};
+  cursor: pointer;
 `;
 
 export default function ImageSlider({ imagesFluid, imagesFixed }) {
-  const { ref, width } = useElementSize();
-
   const [activeIndex, setActiveIndex] = useState(0);
 
   const nextSlide = useCallback(
@@ -89,10 +87,17 @@ export default function ImageSlider({ imagesFluid, imagesFixed }) {
 
   return (
     <div>
-      <SliderContainer ref={ref}>
+      <SliderContainer>
         {imagesFluid.map((img, idx) => (
-          <Animate show={activeIndex === idx}>
-            <Img style={{ width: '100%' }} fluid={img} />
+          <Animate
+            key={idx}
+            duration={450}
+            type="slide"
+            show={activeIndex === idx}
+          >
+            <SliderContent>
+              <Img style={{ width: '100%' }} fluid={img} />
+            </SliderContent>
           </Animate>
         ))}
         <Arrow direction="left" onClick={() => prevSlide()}>
@@ -110,6 +115,7 @@ export default function ImageSlider({ imagesFluid, imagesFixed }) {
       <ThumbnailContainer>
         {imagesFixed.map((image, i) => (
           <Thumbnail
+            key={i}
             active={activeIndex === i}
             onClick={() => setActiveIndex(i)}
           >
