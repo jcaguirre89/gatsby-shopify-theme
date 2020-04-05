@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
@@ -13,8 +13,6 @@ const SliderContainer = styled.div`
 `;
 
 const SliderContent = styled.div`
-  transform: translateX(-${props => props.translate}px);
-  transition: transform ease-in-out ${props => props.transition}s;
   height: 100%;
   width: ${props => props.width}px;
   display: flex;
@@ -65,51 +63,33 @@ const Thumbnail = styled.div`
   margin-right: 10px;
   height: 50px;
   width: 50px;
-  transition: transform ease-in-out ${props => props.transition}s;
+  transition: transform ease-in-out 0.45s;
   ${props => props.active && 'transform: scale(1.2)'};
 `;
 
 export default function ImageSlider({ imagesFluid, imagesFixed }) {
   const { ref, width } = useElementSize();
 
-  const [translate, setTranslate] = useState(0);
-  const [transition, setTransition] = useState(0.45);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const nextSlide = () => {
-    // If on the last slide
-    if (activeIndex === imagesFluid.length - 1) {
-      setTranslate(0);
-      setActiveIndex(0);
-      return;
-    }
-    setTranslate((activeIndex + 1) * width);
-    setActiveIndex(activeIndex + 1);
-  };
+  const nextSlide = useCallback(
+    () => setActiveIndex(state => (state + 1) % imagesFluid.length),
+    []
+  );
 
   const prevSlide = () => {
     // If on first slide
     if (activeIndex === 0) {
-      setTranslate((imagesFluid.length - 1) * width);
       setActiveIndex(imagesFluid.length - 1);
       return;
     }
-    setTranslate((activeIndex - 1) * width);
     setActiveIndex(activeIndex - 1);
   };
 
   return (
     <div>
       <SliderContainer ref={ref}>
-        <SliderContent
-          translate={translate}
-          transition={transition}
-          width={width * imagesFluid.length}
-        >
-          {imagesFluid.map((image, i) => (
-            <Img style={{ width: '100%' }} key={i} fluid={image} />
-          ))}
-        </SliderContent>
+        <Img style={{ width: '100%' }} fluid={imagesFluid[activeIndex]} />
         <Arrow direction="left" onClick={() => prevSlide()}>
           <IoIosArrowBack />
         </Arrow>
@@ -124,7 +104,7 @@ export default function ImageSlider({ imagesFluid, imagesFixed }) {
       </SliderContainer>
       <ThumbnailContainer>
         {imagesFixed.map((image, i) => (
-          <Thumbnail transition={transition} active={activeIndex === i}>
+          <Thumbnail active={activeIndex === i}>
             <Img
               style={{ height: '100%', width: '100%' }}
               key={i}
