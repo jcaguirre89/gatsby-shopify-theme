@@ -109,7 +109,10 @@ export default function ImageSlider({ imagesFluid, imagesFixed }) {
       </SliderContainer>
       <ThumbnailContainer>
         {imagesFixed.map((image, i) => (
-          <Thumbnail active={activeIndex === i}>
+          <Thumbnail
+            active={activeIndex === i}
+            onClick={() => setActiveIndex(i)}
+          >
             <Img
               style={{ height: '100%', width: '100%' }}
               key={i}
