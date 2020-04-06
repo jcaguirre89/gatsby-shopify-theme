@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { Animate } from 'react-animate-mount';
-import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
+import ZoomableImage from './ZoomableImage';
 
 const SliderContainer = styled.div`
   position: relative;
@@ -17,41 +17,6 @@ const SliderContent = styled.div`
   width: 100%;
   display: flex;
   margin-bottom: 20px;
-`;
-
-const Arrow = styled.button`
-  display: flex;
-  position: absolute;
-  top: 50%;
-  ${props => (props.direction === 'right' ? `right: 15px` : `left: 15px`)};
-  height: 50px;
-  width: 50px;
-  justify-content: center;
-  background: white;
-  border-radius: 50%;
-  cursor: pointer;
-  align-items: center;
-  transition: transform ease-in 0.1s;
-  &:hover {
-    transform: scale(1.1);
-  }
-`;
-
-const Dot = styled.span`
-  padding: 5px;
-  margin-right: 5px;
-  cursor: pointer;
-  border-radius: 50%;
-  background: ${props => (props.active ? 'black' : 'white')};
-`;
-
-const Dots = styled.div`
-  position: absolute;
-  bottom: 25px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const ThumbnailContainer = styled.div`
@@ -71,19 +36,6 @@ const Thumbnail = styled.div`
 export default function ImageSlider({ imagesFluid, imagesFixed }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const nextSlide = useCallback(
-    () => setActiveIndex(state => (state + 1) % imagesFluid.length),
-    []
-  );
-
-  const prevSlide = () => {
-    // If on first slide
-    if (activeIndex === 0) {
-      setActiveIndex(imagesFluid.length - 1);
-      return;
-    }
-    setActiveIndex(activeIndex - 1);
-  };
 
   return (
     <div>
@@ -96,21 +48,10 @@ export default function ImageSlider({ imagesFluid, imagesFixed }) {
             show={activeIndex === idx}
           >
             <SliderContent>
-              <Img style={{ width: '100%' }} fluid={img} />
+              <ZoomableImage style={{ width: '100%' }} fluid={img} />
             </SliderContent>
           </Animate>
         ))}
-        <Arrow direction="left" onClick={() => prevSlide()}>
-          <IoIosArrowBack />
-        </Arrow>
-        <Arrow direction="right" onClick={() => nextSlide()}>
-          <IoIosArrowForward />
-        </Arrow>
-        <Dots>
-          {imagesFluid.map((_, i) => (
-            <Dot key={i} active={activeIndex === i} />
-          ))}
-        </Dots>
       </SliderContainer>
       <ThumbnailContainer>
         {imagesFixed.map((image, i) => (
