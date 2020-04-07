@@ -41,8 +41,10 @@ const transition = {
 
 export default function ZoomableImage({ style, fluid }) {
   const [isZoomed, setZoomed] = useState(false);
+
   // exit zoom on scroll
-  useDomEvent(useRef(window), 'scroll', () => isZoomed && setZoomed(false));
+  const windowObj = typeof window !== 'undefined' ? null : window;
+  useDomEvent(useRef(windowObj), 'scroll', () => isZoomed && setZoomed(false));
 
   // exit zoom on esc key press
   const escFunction = useCallback(event => {
