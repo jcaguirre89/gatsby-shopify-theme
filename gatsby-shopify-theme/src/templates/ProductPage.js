@@ -55,6 +55,9 @@ const ContentContainer = styled.div`
   @media (max-width: ${props => props.theme.breakpoints.m}) {
     align-items: center;
     padding: 0;
+    p {
+      padding: 0 10px;
+    }
   }
 `;
 
