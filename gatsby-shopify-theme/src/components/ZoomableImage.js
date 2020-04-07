@@ -24,6 +24,7 @@ const Wrapper = styled.div`
     pointer-events: none;
     opacity: 0;
     background: rgba(0, 0, 0, 0.9);
+    z-index: 10;
   }
 
   .open .shade {
@@ -53,7 +54,6 @@ export default function ZoomableImage({ style, fluid }) {
       flip: true,
       zIndex: 1000,
       padding: '50px',
-      background: 'white',
     },
     idle: {
       position: 'relative',
