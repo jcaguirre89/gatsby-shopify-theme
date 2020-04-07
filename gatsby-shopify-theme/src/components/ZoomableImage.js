@@ -77,7 +77,7 @@ export default function ZoomableImage({ style, fluid }) {
       width: '100%',
       height: '100%',
       flip: true,
-      zIndex: 1000,
+      zIndex: 1,
     },
   };
   return (
