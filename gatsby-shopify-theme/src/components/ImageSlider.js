@@ -20,6 +20,7 @@ const SliderContent = styled.div`
 `;
 
 const ThumbnailContainer = styled.div`
+  margin-top: 20px;
   display: flex;
   width: 100%;
 `;
@@ -36,7 +37,6 @@ const Thumbnail = styled.div`
 export default function ImageSlider({ imagesFluid, imagesFixed }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
-
   return (
     <div>
       <SliderContainer>
@@ -48,7 +48,7 @@ export default function ImageSlider({ imagesFluid, imagesFixed }) {
             show={activeIndex === idx}
           >
             <SliderContent>
-              <ZoomableImage style={{ width: '100%' }} fluid={img} />
+              <ZoomableImage style={{ height: '100%' }} fluid={img} />
             </SliderContent>
           </Animate>
         ))}
