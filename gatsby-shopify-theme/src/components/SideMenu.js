@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { FaLongArrowAltRight } from 'react-icons/fa';
@@ -84,6 +84,25 @@ export default function Menu() {
   } = data.site.siteMetadata;
   const { isMenuOpen } = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
+
+  const escFunction = useCallback(
+    event => {
+      if (isMenuOpen && event.keyCode === 27) {
+        dispatch({ type: 'TOGGLE_MENU' });
+      }
+    },
+    [isMenuOpen]
+  );
+
+  useEffect(() => {
+    // CLose on esc press
+    document.addEventListener('keydown', escFunction, false);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction, false);
+    };
+  }, [escFunction]);
+
   return (
     <MenuStyles open={isMenuOpen}>
       <button

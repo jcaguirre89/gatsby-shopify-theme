@@ -119,6 +119,7 @@ export default function Header({ smart }) {
       <div className="menu icon">
         <MdMenu
           onMouseEnter={() => dispatch({ type: 'TOGGLE_MENU' })}
+          onClick={() => dispatch({ type: 'TOGGLE_MENU' })}
           size={35}
         />
       </div>
