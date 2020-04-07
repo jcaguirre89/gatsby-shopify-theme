@@ -119,11 +119,14 @@ export default function Search() {
     }
   }, [isSearchOpen]);
 
-  const escFunction = useCallback(event => {
-    if (event.keyCode === 27) {
-      dispatch({ type: 'TOGGLE_SEARCH' });
-    }
-  }, []);
+  const escFunction = useCallback(
+    event => {
+      if (isSearchOpen && event.keyCode === 27) {
+        dispatch({ type: 'TOGGLE_SEARCH' });
+      }
+    },
+    [isSearchOpen]
+  );
 
   useEffect(() => {
     // CLose on esc press
@@ -182,10 +185,11 @@ export default function Search() {
       <ul>
         {results.map(result => (
           <Link
+            key={result.handle}
             to={`/store/${result.handle}`}
             onClick={() => dispatch({ type: 'TOGGLE_SEARCH' })}
           >
-            <li key={result.handle}>
+            <li>
               <div className="results">
                 <h3>{result.title}</h3>
                 <p>{trimDesc(result.description, 10)}</p>
