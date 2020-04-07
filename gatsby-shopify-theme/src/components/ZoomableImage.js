@@ -1,5 +1,5 @@
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import React, { useState, useRef } from 'react';
 import Img from 'gatsby-image';
 import { motion, useDomEvent } from 'framer-motion';
 import styled from 'styled-components';
@@ -41,7 +41,24 @@ const transition = {
 
 export default function ZoomableImage({ style, fluid }) {
   const [isZoomed, setZoomed] = useState(false);
+  // exit zoom on scroll
   useDomEvent(useRef(window), 'scroll', () => isZoomed && setZoomed(false));
+
+  // exit zoom on esc key press
+  const escFunction = useCallback(event => {
+    if (event.keyCode === 27) {
+      setZoomed(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    // CLose on esc press
+    document.addEventListener('keydown', escFunction, false);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction, false);
+    };
+  }, [escFunction]);
 
   const variants = {
     fullscreen: {
