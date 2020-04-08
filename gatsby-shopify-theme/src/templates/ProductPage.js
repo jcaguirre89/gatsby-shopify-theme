@@ -67,6 +67,8 @@ const ImageContainer = styled.ul`
 `;
 
 const RelatedContainer = styled.div`
+  background: ${props => props.theme.colors.muted};
+  padding: 50px 0 100px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;

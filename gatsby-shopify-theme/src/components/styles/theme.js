@@ -12,7 +12,7 @@ const theme = {
     primary: '#eead0e',
     secondary: '#ffc',
     accent: 'rgb(43, 20, 83)',
-    muted: '#d1d1cf',
+    muted: '#F7F7F7',
     // extra colors
     red: '#FF0000',
     gold: '#9d8755',
