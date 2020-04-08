@@ -117,11 +117,7 @@ export default function Header({ smart }) {
   return (
     <StyledHeader show={hideNavbarOnScroll} transparent={isTransparent}>
       <div className="menu icon">
-        <MdMenu
-          onMouseEnter={() => dispatch({ type: 'TOGGLE_MENU' })}
-          onClick={() => dispatch({ type: 'TOGGLE_MENU' })}
-          size={35}
-        />
+        <MdMenu onClick={() => dispatch({ type: 'TOGGLE_MENU' })} size={35} />
       </div>
       <Link to="/">
         <Logo
