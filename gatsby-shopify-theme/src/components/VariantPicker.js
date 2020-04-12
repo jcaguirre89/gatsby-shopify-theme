@@ -46,6 +46,7 @@ export default function VariantPicker({
 }
 
 VariantPicker.propTypes = {
+  selectedVariantId: PropTypes.string.isRequired,
   setSelectedVariant: PropTypes.func.isRequired,
   variants: PropTypes.array.isRequired,
 };
