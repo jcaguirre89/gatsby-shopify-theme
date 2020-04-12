@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types, react/no-danger */
 
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import styled from 'styled-components';
 import SEO from '../components/SEO';
 import Layout from '../components/layout';
@@ -14,6 +15,7 @@ import {
 import BaseButton from '../components/styles/BaseButton';
 import ImageSlider from '../components/ImageSlider';
 import ProductList from '../components/ProductList';
+import VariantPicker from '../components/VariantPicker';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -63,7 +65,7 @@ const ContentContainer = styled.div`
 
 const ImageContainer = styled.ul`
   padding: 0;
-  min-height: 70vh;
+  height: 400px;
 `;
 
 const RelatedContainer = styled.div`
@@ -92,25 +94,24 @@ export default function ProductPage({ data }) {
     description,
     descriptionHtml,
     images,
-    variants: [firstVariant],
+    variants,
   } = data.shopifyProduct;
+
+  const [selectedVariant, setSelectedVariant] = useState(variants[0]);
+
   const products = data.products.nodes;
-  const { id: variantId, price } = firstVariant;
   const dispatch = useContext(GlobalDispatchContext);
   const { isCartOpen } = useContext(GlobalStateContext);
 
   const handleClick = () => {
-    dispatch({ type: 'UPDATE_CART', payload: { variantId, quantity: 1 } });
+    dispatch({
+      type: 'UPDATE_CART',
+      payload: { variantId: selectedVariant.id, quantity: 1 },
+    });
     if (!isCartOpen) {
       dispatch({ type: 'TOGGLE_CART' });
     }
   };
-  const imagesFluid = images.map(
-    image => image.localFile.childImageSharp.fluid
-  );
-  const imagesFixed = images.map(
-    image => image.localFile.childImageSharp.fixed
-  );
 
   return (
     <Layout>
@@ -118,11 +119,20 @@ export default function ProductPage({ data }) {
       <Header smart={false} />
       <Container>
         <ImageContainer>
-          <ImageSlider imagesFluid={imagesFluid} imagesFixed={imagesFixed} />
+          <Img
+            style={{ height: '100%' }}
+            fluid={selectedVariant.image.localFile.childImageSharp.fluid}
+          />
         </ImageContainer>
         <ContentContainer>
           <h2>{title}</h2>
-          <p className="price">{formatMoney(price)}</p>
+          <p className="price">{formatMoney(selectedVariant.price)}</p>
+          {variants.length > 1 && (
+            <VariantPicker
+              variants={variants}
+              setSelectedVariant={setSelectedVariant}
+            />
+          )}
           <p dangerouslySetInnerHTML={{ __html: descriptionHtml }}></p>
           <BaseButton type="button" onClick={() => handleClick()}>
             Add to Cart
@@ -187,31 +197,18 @@ export const query = graphql`
       variants {
         id
         price
+        title
+        availableForSale
+        image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 910) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
+        }
       }
     }
-    # relatedProducts: shopifyCollection(
-    #   products: {
-    #     elemMatch: { availableForSale: { eq: true }, handle: { eq: $handle } }
-    #   }
-    # ) {
-    #   products {
-    #     title
-    #     handle
-    #     availableForSale
-    #     variants {
-    #       id
-    #       price
-    #     }
-    #     images {
-    #       localFile {
-    #         childImageSharp {
-    #           fluid(maxWidth: 910) {
-    #             ...GatsbyImageSharpFluid_withWebp_tracedSVG
-    #           }
-    #         }
-    #       }
-    #     }
-    #   }
-    # }
   }
 `;

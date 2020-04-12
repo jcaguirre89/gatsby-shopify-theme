@@ -1,0 +1,26 @@
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+import BaseButton from './styles/BaseButton';
+
+const Grid = styled.div`
+  display: grid;
+  width: 100%;
+  max-width: 350px;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  grid-gap: 5px;
+`;
+
+export default function VariantPicker({ variants, setSelectedVariant }) {
+  const pickVariant = variants.map(variant => (
+    <BaseButton onClick={() => setSelectedVariant(variant)}>
+      {variant.title}
+    </BaseButton>
+  ));
+  return <Grid>{pickVariant}</Grid>;
+}
+
+VariantPicker.propTypes = {
+  setSelectedVariant: PropTypes.func.isRequired,
+  variants: PropTypes.array.isRequired,
+};
