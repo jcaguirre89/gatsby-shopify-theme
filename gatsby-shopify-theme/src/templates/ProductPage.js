@@ -181,19 +181,6 @@ export const query = graphql`
       handle
       description
       descriptionHtml
-      images {
-        id
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 1400) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-            fixed(width: 100) {
-              ...GatsbyImageSharpFixed_withWebp
-            }
-          }
-        }
-      }
       variants {
         id
         price
@@ -202,7 +189,10 @@ export const query = graphql`
         image {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 910) {
+              fixed(width: 80, height: 80) {
+                ...GatsbyImageSharpFixed_withWebp
+              }
+              fluid(maxWidth: 1400) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }

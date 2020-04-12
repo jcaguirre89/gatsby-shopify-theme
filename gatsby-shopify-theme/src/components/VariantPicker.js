@@ -12,6 +12,7 @@ const Grid = styled.div`
 
   button {
     background: white;
+    height: 80px;
     padding: 0;
     margin: 0;
     border: 0;
@@ -24,7 +25,7 @@ export default function VariantPicker({ variants, setSelectedVariant }) {
     <button type="button" onClick={() => setSelectedVariant(variant)}>
       <Img
         key={variant.id}
-        fluid={variant.image.localFile.childImageSharp.fluid}
+        fixed={variant.image.localFile.childImageSharp.fixed}
         style={{ height: '100%' }}
       />
     </button>
