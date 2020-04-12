@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types, react/no-danger */
 
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
 import styled from 'styled-components';
 import SEO from '../components/SEO';
 import Layout from '../components/layout';
@@ -13,9 +12,9 @@ import {
   GlobalStateContext,
 } from '../context/GlobalContextProvider';
 import BaseButton from '../components/styles/BaseButton';
-import ImageSlider from '../components/ImageSlider';
 import ProductList from '../components/ProductList';
 import VariantPicker from '../components/VariantPicker';
+import ZoomableImage from '../components/ZoomableImage';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -127,7 +126,7 @@ export default function ProductPage({ data }) {
       <Header smart={false} />
       <Container>
         <ImageContainer>
-          <Img
+          <ZoomableImage
             style={{ height: '100%' }}
             fluid={selectedVariant.image.localFile.childImageSharp.fluid}
           />
@@ -135,13 +134,13 @@ export default function ProductPage({ data }) {
         <ContentContainer>
           <h2>{title}</h2>
           {variants.length > 1 && <h3>{selectedVariant.title}</h3>}
-          <p className="price">{formatMoney(selectedVariant.price)}</p>
           {variants.length > 1 && (
             <VariantPicker
               variants={variants}
               setSelectedVariant={setSelectedVariant}
             />
           )}
+          <p className="price">{formatMoney(selectedVariant.price)}</p>
           <p dangerouslySetInnerHTML={{ __html: descriptionHtml }}></p>
           <BaseButton type="button" onClick={() => handleClick()}>
             Add to Cart
