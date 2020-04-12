@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import { graphql, useStaticQuery } from 'gatsby';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
 import Spinner from 'react-svg-spinner';
 import {
@@ -12,7 +11,7 @@ import useCheckoutAmout from '../hooks/useCheckoutAmount';
 import { ShopifyClientContext } from '../context/ShopifyClientProvider';
 import MonetaryValue from './MonetaryValue';
 import BaseButton from './styles/BaseButton';
-import theme from './styles/theme'
+import theme from './styles/theme';
 
 const CartInner = styled.div`
   display: grid;
@@ -75,49 +74,12 @@ const CartStyles = styled.div`
   }
 `;
 
-const filterCart = (products, cartItems) => {
-  // takes query of all shopify products and returns only ones in cart
-  const idsInCart = cartItems.map(item => item.variantId);
-  const filteredProducts = products.filter(item =>
-    idsInCart.includes(item.variants[0].id)
-  );
-  return filteredProducts;
-};
-
 export default function Cart() {
   const { isCartOpen, cartItems } = useContext(GlobalStateContext);
   const [isCheckoutLoading, setCheckoutLoading] = useState(false);
   const dispatch = useContext(GlobalDispatchContext);
   const shopifyClient = useContext(ShopifyClientContext);
   const amount = useCheckoutAmout();
-
-  const data = useStaticQuery(graphql`
-    query CartQuery {
-      allShopifyProduct {
-        nodes {
-          description
-          handle
-          images {
-            id
-            localFile {
-              childImageSharp {
-                fixed(width: 80, height: 80) {
-                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
-                }
-              }
-            }
-          }
-          title
-          variants {
-            id
-            price
-          }
-        }
-      }
-    }
-  `);
-  const products = data.allShopifyProduct.nodes;
-  const productsInCart = filterCart(products, cartItems);
 
   const handleCheckout = async () => {
     setCheckoutLoading(true);
@@ -130,13 +92,6 @@ export default function Cart() {
     }));
     await shopifyClient.checkout.addLineItems(checkoutId, lineItems);
     window.location.href = webUrl;
-
-    // window.open(
-    //   webUrl,
-    //   'Popup',
-    //   'toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30'
-    // );
-    // setCheckoutLoading(false);
   };
 
   return (
@@ -153,9 +108,9 @@ export default function Cart() {
           <h3>YOUR BAG</h3>
         </header>
         <ul>
-          {productsInCart &&
-            productsInCart.map(item => (
-              <CartItem key={item.handle} item={item} />
+          {cartItems.length > 0 &&
+            cartItems.map(item => (
+              <CartItem key={item.variantId} variantId={item.variantId} />
             ))}
         </ul>
         <footer>

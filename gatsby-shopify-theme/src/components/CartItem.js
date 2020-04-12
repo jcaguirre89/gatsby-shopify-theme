@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import { formatMoney } from './MonetaryValue';
 import {
@@ -17,13 +18,21 @@ const CartItemStyle = styled.div`
   grid-template-columns: 70px 1fr 40px;
   grid-gap: 5px;
   grid-template-rows: minmax(0, 1fr);
-  .title {
+  h2,
+  h3 {
     font-family: ${props => props.theme.fonts.body};
-    text-transform: uppercase;
-    font-weight: ${props => props.theme.fontWeights.bold};
     margin: 0;
     font-size: 1.2rem;
     padding: 0 5px;
+  }
+
+  h2 {
+    text-transform: uppercase;
+    font-weight: ${props => props.theme.fontWeights.bold};
+  }
+
+  h3 {
+    color: ${props => props.theme.colors.grey};
   }
   .middle-col {
     height: 80px;
@@ -69,30 +78,63 @@ const getQuantityInCart = (id, cartItems) => {
   return item[0].quantity;
 };
 
-export default function CartItem({ item }) {
+export default function CartItem({ variantId }) {
   const dispatch = useContext(GlobalDispatchContext);
   const { cartItems } = useContext(GlobalStateContext);
+  const data = useStaticQuery(graphql`
+    query CartItem {
+      products: allShopifyProduct {
+        nodes {
+          title
+          variants {
+            id
+          }
+        }
+      }
+      variants: allShopifyProductVariant {
+        nodes {
+          id
+          price
+          title
+          image {
+            localFile {
+              childImageSharp {
+                fixed(width: 80, height: 80) {
+                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
 
-  const {
-    title,
-    description,
-    variants: [firstVariant],
-    images: [firstImage],
-  } = item;
-  const { id: variantId, price } = firstVariant;
+  const getTitle = id => {
+    // Get product title for given variantId
+    const [product] = data.products.nodes.filter(p => {
+      const productVariant = p.variants && p.variants.filter(v => v.id === id);
+      if (productVariant.length > 0) return p.title;
+      return null;
+    });
+    return product.title;
+  };
+  const title = getTitle(variantId);
 
   const quantityInCart = getQuantityInCart(variantId, cartItems);
+  const [variant] = data.variants.nodes.filter(v => v.id === variantId);
+  const variantTitle = variant.title !== 'Default Title' ? variant.title : null;
   return (
     <CartItemStyle>
       <Img
-        fixed={firstImage.localFile.childImageSharp.fixed}
-        alt={description}
-        key={firstImage.id}
+        fixed={variant.image.localFile.childImageSharp.fixed}
+        alt={title}
         style={{ height: '100%', width: '100%' }}
       />
       <div className="middle-col">
-        <h3 className="title">{title}</h3>
-        <p className="price">{formatMoney(price)}</p>
+        <h2>{title}</h2>
+        <h3>{variantTitle}</h3>
+        <p className="price">{formatMoney(variant.price)}</p>
         <button
           className="remove-button"
           type="button"
@@ -116,5 +158,5 @@ export default function CartItem({ item }) {
 }
 
 CartItem.propTypes = {
-  item: PropTypes.object.isRequired,
+  variantId: PropTypes.string.isRequired,
 };
