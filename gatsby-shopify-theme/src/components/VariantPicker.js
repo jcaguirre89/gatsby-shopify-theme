@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import BaseButton from './styles/BaseButton';
+import Img from 'gatsby-image';
 
 const Grid = styled.div`
   display: grid;
@@ -9,13 +9,25 @@ const Grid = styled.div`
   max-width: 350px;
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   grid-gap: 5px;
+
+  button {
+    background: white;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    cursor: pointer;
+  }
 `;
 
 export default function VariantPicker({ variants, setSelectedVariant }) {
   const pickVariant = variants.map(variant => (
-    <BaseButton onClick={() => setSelectedVariant(variant)}>
-      {variant.title}
-    </BaseButton>
+    <button type="button" onClick={() => setSelectedVariant(variant)}>
+      <Img
+        key={variant.id}
+        fluid={variant.image.localFile.childImageSharp.fluid}
+        style={{ height: '100%' }}
+      />
+    </button>
   ));
   return <Grid>{pickVariant}</Grid>;
 }
