@@ -28,8 +28,16 @@ const Container = styled.div`
   padding: 0 20px;
 
   h2 {
-    font-size: 4rem;
     text-transform: uppercase;
+    font-size: 4rem;
+    margin-bottom: 0;
+    color: ${props => props.theme.colors.primary};
+  }
+
+  h3 {
+    text-transform: uppercase;
+    font-family: ${props => props.theme.fonts.body};
+    font-size: 2.5rem;
   }
 
   .price {
@@ -126,6 +134,7 @@ export default function ProductPage({ data }) {
         </ImageContainer>
         <ContentContainer>
           <h2>{title}</h2>
+          {variants.length > 1 && <h3>{selectedVariant.title}</h3>}
           <p className="price">{formatMoney(selectedVariant.price)}</p>
           {variants.length > 1 && (
             <VariantPicker
