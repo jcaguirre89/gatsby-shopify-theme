@@ -106,6 +106,6 @@ export default function ZoomableImage({ style, fluid }) {
 }
 
 ZoomableImage.propTypes = {
-  fluid: PropTypes.string,
+  fluid: PropTypes.object,
   style: PropTypes.object,
 };

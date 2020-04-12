@@ -137,6 +137,7 @@ export default function ProductPage({ data }) {
           {variants.length > 1 && (
             <VariantPicker
               variants={variants}
+              selectedVariantId={selectedVariant.id}
               setSelectedVariant={setSelectedVariant}
             />
           )}

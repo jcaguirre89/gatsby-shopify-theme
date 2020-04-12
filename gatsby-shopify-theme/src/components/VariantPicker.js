@@ -17,12 +17,24 @@ const Grid = styled.div`
     margin: 0;
     border: 0;
     cursor: pointer;
+    transition: all ease-in 0.25s;
+  }
+  .selected {
+    transform: scale(1.1);
   }
 `;
 
-export default function VariantPicker({ variants, setSelectedVariant }) {
+export default function VariantPicker({
+  variants,
+  selectedVariantId,
+  setSelectedVariant,
+}) {
   const pickVariant = variants.map(variant => (
-    <button type="button" onClick={() => setSelectedVariant(variant)}>
+    <button
+      className={variant.id === selectedVariantId ? 'selected' : ''}
+      type="button"
+      onClick={() => setSelectedVariant(variant)}
+    >
       <Img
         key={variant.id}
         fixed={variant.image.localFile.childImageSharp.fixed}
