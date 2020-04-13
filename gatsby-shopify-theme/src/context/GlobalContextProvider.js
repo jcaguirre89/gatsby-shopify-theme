@@ -7,7 +7,7 @@ const initialState = {
   isCartOpen: false,
   isMenuOpen: false,
   isSearchOpen: false,
-  cartItems: [],
+  cartItems: JSON.parse(localStorage.getItem('cart_items')) || [],
 };
 
 function reducer(state, action) {
@@ -28,14 +28,17 @@ function reducer(state, action) {
         isSearchOpen: !state.isSearchOpen,
       };
     case 'UPDATE_CART': {
-      const { variantId } = action.payload;
+      const { variantId, quantity } = action.payload;
       // remove from cart
       const updatedCartItems = state.cartItems.filter(
         i => i.variantId !== variantId
       );
+      const cartItems = [...updatedCartItems, { variantId, quantity }];
+      // write to localStorage
+      localStorage.setItem('cart_items', JSON.stringify(cartItems));
       return {
         ...state,
-        cartItems: [...updatedCartItems, action.payload],
+        cartItems,
       };
     }
     case 'REMOVE_FROM_CART': {
@@ -43,9 +46,12 @@ function reducer(state, action) {
       const updatedCartItems = state.cartItems.filter(
         i => i.variantId !== variantId
       );
+      const cartItems = updatedCartItems;
+      localStorage.setItem('cart_items', JSON.stringify(cartItems));
+
       return {
         ...state,
-        cartItems: updatedCartItems,
+        cartItems,
       };
     }
     default:
