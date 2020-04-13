@@ -31,7 +31,7 @@ const Grid = styled.div`
     width: 80px;
     height: 80px;
     pointer-events: none;
-    z-index: 999;
+    z-index: 1;
   }
 
   .selected {
