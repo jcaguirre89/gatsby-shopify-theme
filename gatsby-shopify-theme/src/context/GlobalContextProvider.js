@@ -7,7 +7,10 @@ const initialState = {
   isCartOpen: false,
   isMenuOpen: false,
   isSearchOpen: false,
-  cartItems: JSON.parse(localStorage.getItem('cart_items')) || [],
+  cartItems:
+    typeof window !== 'undefined'
+      ? JSON.parse(localStorage.getItem('cart_items')) || []
+      : [],
 };
 
 function reducer(state, action) {
@@ -35,7 +38,9 @@ function reducer(state, action) {
       );
       const cartItems = [...updatedCartItems, { variantId, quantity }];
       // write to localStorage
-      localStorage.setItem('cart_items', JSON.stringify(cartItems));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cart_items', JSON.stringify(cartItems));
+      }
       return {
         ...state,
         cartItems,
@@ -47,8 +52,9 @@ function reducer(state, action) {
         i => i.variantId !== variantId
       );
       const cartItems = updatedCartItems;
-      localStorage.setItem('cart_items', JSON.stringify(cartItems));
-
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cart_items', JSON.stringify(cartItems));
+      }
       return {
         ...state,
         cartItems,
