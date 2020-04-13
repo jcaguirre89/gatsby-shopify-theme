@@ -19,6 +19,11 @@ const Grid = styled.div`
     cursor: pointer;
     transition: all ease-in 0.25s;
   }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
   .selected {
     transform: scale(1.1);
   }
@@ -34,6 +39,7 @@ export default function VariantPicker({
       className={variant.id === selectedVariantId ? 'selected' : ''}
       type="button"
       onClick={() => setSelectedVariant(variant)}
+      disabled={!variant.availableForSale}
     >
       <Img
         key={variant.id}
