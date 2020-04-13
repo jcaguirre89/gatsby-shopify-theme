@@ -14,7 +14,7 @@ import {
 import BaseButton from '../components/styles/BaseButton';
 import ProductList from '../components/ProductList';
 import VariantPicker from '../components/VariantPicker';
-import ZoomableImage from '../components/ZoomableImage';
+import ImgZoom from '../components/ImgZoom';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -70,11 +70,6 @@ const ContentContainer = styled.div`
   }
 `;
 
-const ImageContainer = styled.ul`
-  padding: 0;
-  height: 400px;
-`;
-
 const RelatedContainer = styled.div`
   background: ${props => props.theme.colors.muted};
   padding: 50px 0 100px 0;
@@ -96,13 +91,7 @@ const StyledProductList = styled(ProductList)`
 `;
 
 export default function ProductPage({ data }) {
-  const {
-    title,
-    description,
-    descriptionHtml,
-    images,
-    variants,
-  } = data.shopifyProduct;
+  const { title, description, descriptionHtml, variants } = data.shopifyProduct;
 
   const [selectedVariant, setSelectedVariant] = useState(variants[0]);
 
@@ -125,12 +114,9 @@ export default function ProductPage({ data }) {
       <SEO title={title} description={description} />
       <Header smart={false} />
       <Container>
-        <ImageContainer>
-          <ZoomableImage
-            style={{ height: '100%' }}
-            fluid={selectedVariant.image.localFile.childImageSharp.fluid}
-          />
-        </ImageContainer>
+        <ImgZoom
+          fluid={selectedVariant.image.localFile.childImageSharp.fluid}
+        />
         <ContentContainer>
           <h2>{title}</h2>
           {variants.length > 1 && <h3>{selectedVariant.title}</h3>}
@@ -201,7 +187,7 @@ export const query = graphql`
               fixed(width: 80, height: 80) {
                 ...GatsbyImageSharpFixed_withWebp
               }
-              fluid(maxWidth: 1400) {
+              fluid(maxWidth: 1024) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
