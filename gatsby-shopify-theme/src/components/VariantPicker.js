@@ -24,6 +24,16 @@ const Grid = styled.div`
     cursor: not-allowed;
   }
 
+  button:disabled::before {
+    position: absolute;
+    content: '';
+    background: rgba(0, 0, 0, 0.5);
+    width: 80px;
+    height: 80px;
+    pointer-events: none;
+    z-index: 999;
+  }
+
   .selected {
     transform: scale(1.1);
   }
