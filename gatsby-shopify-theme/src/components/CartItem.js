@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { graphql, useStaticQuery } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import { formatMoney } from './MonetaryValue';
 import {
@@ -83,9 +83,17 @@ export default function CartItem({ variantId }) {
   const { cartItems } = useContext(GlobalStateContext);
   const data = useStaticQuery(graphql`
     query CartItem {
+      site {
+        siteMetadata {
+          gatsbyStorefrontConfig {
+            storePath
+          }
+        }
+      }
       products: allShopifyProduct {
         nodes {
           title
+          handle
           variants {
             id
           }
@@ -121,9 +129,21 @@ export default function CartItem({ variantId }) {
   };
   const title = getTitle(variantId);
 
+  const getHandle = id => {
+    // Get product handle for given variantId
+    const [product] = data.products.nodes.filter(p => {
+      const productVariant = p.variants && p.variants.filter(v => v.id === id);
+      if (productVariant.length > 0) return p.handle;
+      return null;
+    });
+    return product.handle;
+  };
+  const handle = getHandle(variantId);
+
   const quantityInCart = getQuantityInCart(variantId, cartItems);
   const [variant] = data.variants.nodes.filter(v => v.id === variantId);
   const variantTitle = variant.title !== 'Default Title' ? variant.title : null;
+  const { storePath } = data.site.siteMetadata.gatsbyStorefrontConfig;
   return (
     <CartItemStyle>
       <Img
@@ -132,7 +152,9 @@ export default function CartItem({ variantId }) {
         style={{ height: '100%', width: '100%' }}
       />
       <div className="middle-col">
-        <h2>{title}</h2>
+        <Link to={`${storePath}/${handle}/`}>
+          <h2>{title}</h2>
+        </Link>
         <h3>{variantTitle}</h3>
         <p className="price">{formatMoney(variant.price)}</p>
         <button
