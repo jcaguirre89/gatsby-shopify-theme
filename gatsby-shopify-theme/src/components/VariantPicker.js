@@ -27,7 +27,7 @@ const Grid = styled.div`
   button:disabled::before {
     position: absolute;
     content: '';
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.5);
     width: 80px;
     height: 80px;
     pointer-events: none;
