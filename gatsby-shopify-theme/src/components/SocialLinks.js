@@ -5,6 +5,8 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { FaInstagram, FaFacebookSquare, FaTwitter } from 'react-icons/fa';
 
 const Wrapper = styled.div`
+  width: 150px;
+  height: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;

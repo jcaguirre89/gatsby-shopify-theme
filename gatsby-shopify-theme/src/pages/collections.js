@@ -28,7 +28,7 @@ export default function Collections({ data }) {
 
 export const query = graphql`
   query CollectionsQuery {
-    landingPage: sanityLandingPage(handle: { current: { eq: "collections" } }) {
+    landingPage: sanityLandingPage(page: { eq: "collections" }) {
       id
       _rawBody
       title

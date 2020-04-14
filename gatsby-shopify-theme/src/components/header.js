@@ -32,11 +32,20 @@ const HeaderBase = styled.nav`
   button {
     display: flex;
     align-items: center;
+    justify-content: center;
     position: relative;
     border: 0;
     background: none;
     cursor: pointer;
-    color: ${props => (props.transparent ? 'white' : 'black')};
+    height: 100%;
+    width: 80px;
+    color: ${props => (props.transparent ? '#fff' : '#000')};
+    margin: 0;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      color: ${props => props.theme.colors.primary};
+    }
   }
 `;
 
@@ -46,30 +55,8 @@ const StyledHeader = styled(HeaderBase)`
   transition: all 200ms ${props => (props.show ? 'ease-in' : 'ease-out')};
   transform: ${props => (props.show ? 'none' : 'translate(0, -100%)')};
 
-  .icon {
-    height: 100%;
-    width: 80px;
+  ul {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    color: ${props => (props.transparent ? '#fff' : '#000')};
-    margin: 0;
-    padding: 10px;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      color: ${props => props.theme.colors.primary};
-    }
-  }
-  .menu {
-    &:hover {
-      transform: rotate(-90deg);
-    }
-  }
-
-  .buttons {
-    display: flex;
-    justify-items: center;
-    align-items: center;
   }
 `;
 
@@ -78,6 +65,7 @@ const SearchButton = styled.button`
   height: 70px;
   width: 70px;
   border-radius: 50%;
+  align-self: flex-end;
 `;
 
 const BadgeContainer = styled.div`
@@ -95,6 +83,7 @@ const BadgeContainer = styled.div`
 `;
 
 const SocialLinksContainer = styled.div`
+  width: 150px;
   @media (max-width: ${props => props.theme.breakpoints.m}) {
     display: none;
   }
@@ -116,9 +105,13 @@ export default function Header({ smart }) {
 
   return (
     <StyledHeader show={hideNavbarOnScroll} transparent={isTransparent}>
-      <div className="menu icon">
-        <MdMenu onClick={() => dispatch({ type: 'TOGGLE_MENU' })} size={35} />
-      </div>
+      <button
+        type="button"
+        onClick={() => dispatch({ type: 'TOGGLE_MENU' })}
+        className="menu"
+      >
+        <MdMenu size={35} />
+      </button>
       <Link to="/">
         <Logo
           width="50px"
@@ -126,26 +119,21 @@ export default function Header({ smart }) {
           color={isTransparent ? 'white' : 'black'}
         />
       </Link>
-      <div className="buttons">
+      <ul>
         <SocialLinksContainer>
           <SocialLinks />
         </SocialLinksContainer>
         <SearchButton
           type="button"
-          className="icon"
           onClick={() => dispatch({ type: 'TOGGLE_SEARCH' })}
         >
           <MdSearch size={35} />
         </SearchButton>
-        <button
-          className="icon"
-          type="button"
-          onClick={() => dispatch({ type: 'TOGGLE_CART' })}
-        >
+        <button type="button" onClick={() => dispatch({ type: 'TOGGLE_CART' })}>
           {n > 0 && <BadgeContainer>{n}</BadgeContainer>}
           <AiOutlineShopping size={35} />
         </button>
-      </div>
+      </ul>
     </StyledHeader>
   );
 }

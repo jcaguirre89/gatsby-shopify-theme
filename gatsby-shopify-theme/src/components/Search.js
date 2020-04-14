@@ -170,7 +170,7 @@ export default function Search() {
       <button
         className="close-button"
         type="button"
-        onClick={() => dispatch({ type: 'TOGGLE_CART' })}
+        onClick={() => dispatch({ type: 'TOGGLE_SEARCH' })}
       >
         <FaLongArrowAltLeft size={30} />
       </button>

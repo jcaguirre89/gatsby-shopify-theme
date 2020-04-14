@@ -27,7 +27,7 @@ export default function Store({ data }) {
 
 export const query = graphql`
   query StoreQuery {
-    landingPage: sanityLandingPage(handle: { current: { eq: "store" } }) {
+    landingPage: sanityLandingPage(page: { eq: "store" }) {
       id
       _rawBody
       title
