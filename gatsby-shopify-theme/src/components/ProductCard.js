@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useStaticQuery, graphql } from 'gatsby';
@@ -11,6 +12,7 @@ const ProductCardStyle = styled.div`
   flex-direction: column;
   margin: 0;
   width: 100%;
+  max-height: 400px;
 `;
 
 const Content = styled.div`
@@ -56,7 +58,7 @@ export default function ProductCard({ product }) {
       <ProductCardImage
         handle={handle}
         variantId={variantId}
-        image={firstImage.localFile.childImageSharp.fluid}
+        fluid={firstImage.localFile.childImageSharp.fluid}
         storePath={storePath}
       />
       <Content>
@@ -68,3 +70,12 @@ export default function ProductCard({ product }) {
     </ProductCardStyle>
   );
 }
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    handle: PropTypes.string.isRequired,
+    images: PropTypes.array.isRequired,
+    variants: PropTypes.array.isRequired,
+  }),
+};

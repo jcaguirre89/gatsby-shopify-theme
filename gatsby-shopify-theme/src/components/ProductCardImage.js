@@ -21,7 +21,7 @@ export default function ProductCardImage({
   storePath,
   handle,
   variantId,
-  image,
+  fluid,
 }) {
   const dispatch = useContext(GlobalDispatchContext);
   const { isCartOpen } = useContext(GlobalStateContext);
@@ -36,7 +36,7 @@ export default function ProductCardImage({
   return (
     <Container>
       <Link to={`${storePath}/${handle}`}>
-        <Img fluid={image} style={{ height: '100%' }} />
+        <Img fluid={fluid} style={{ height: '100%' }} />
       </Link>
       <CTA onClick={() => handleClick()}>
         <AiOutlineShopping size={30} />
@@ -46,8 +46,9 @@ export default function ProductCardImage({
 }
 
 ProductCardImage.propTypes = {
-  storePath: PropTypes.string,
+  fluid: PropTypes.object.isRequired,
   handle: PropTypes.string.isRequired,
+  storePath: PropTypes.string.isRequired,
   variantId: PropTypes.string.isRequired,
 };
 
