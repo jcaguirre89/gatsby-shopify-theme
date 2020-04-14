@@ -17,7 +17,7 @@ export default function Home({ data }) {
 
 export const query = graphql`
   query HomeLandingQuery {
-    landingPage: sanityLandingPage(handle: { current: { eq: "home-page" } }) {
+    landingPage: sanityLandingPage(page: { eq: "home" }) {
       id
       _rawBody
       title
