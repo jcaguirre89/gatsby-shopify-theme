@@ -5,12 +5,10 @@ import { GlobalStateContext } from '../context/GlobalContextProvider';
 export default function useCheckoutAmount() {
   const data = useStaticQuery(graphql`
     query CheckoutAmountQuery {
-      allShopifyProduct {
+      variants: allShopifyProductVariant {
         nodes {
-          variants {
-            id
-            price
-          }
+          id
+          price
         }
       }
     }
@@ -18,11 +16,8 @@ export default function useCheckoutAmount() {
   const { cartItems } = useContext(GlobalStateContext);
   if (cartItems.length === 0) return 0;
 
-  const enhancedCartItems = data.allShopifyProduct.nodes.map(node => {
-    const {
-      variants: [firstVariant],
-    } = node;
-    const { id: variantId, price } = firstVariant;
+  const enhancedCartItems = data.variants.nodes.map(variant => {
+    const { id: variantId, price } = variant;
     const [cartItem] = cartItems.filter(item => item.variantId === variantId);
     const quantity = typeof cartItem === 'undefined' ? 0 : cartItem.quantity;
     return { variantId, price, quantity };
