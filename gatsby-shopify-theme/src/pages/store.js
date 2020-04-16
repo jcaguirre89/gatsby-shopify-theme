@@ -38,9 +38,6 @@ export const query = graphql`
         link
         text
       }
-      handle {
-        current
-      }
       mainImage {
         crop {
           _key
