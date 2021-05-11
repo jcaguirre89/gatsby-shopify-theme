@@ -957,6 +957,36 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@jcaguirre/gatsby-shopify-theme@^1.0.0":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@jcaguirre/gatsby-shopify-theme/-/gatsby-shopify-theme-1.2.2.tgz#6dca29f7b16aae81616ec05f3a6ef8255345fc5a"
+  integrity sha512-XmMDBqpKFZr1xkQ3bS69BZ2K1yJd5WSmQcmZ1Am2I8UBZxrUXaLvEuWmhBNgSsyMyVMU68xGS0sXCn7YqkGHhA==
+  dependencies:
+    "@gatsby-contrib/gatsby-plugin-elasticlunr-search" "^2.3.0"
+    "@n8tb1t/use-scroll-position" "^1.0.43"
+    "@sanity/block-content-to-react" "^2.0.7"
+    "@sanity/image-url" "^0.140.17"
+    babel-plugin-styled-components "^1.10.7"
+    elasticlunr "^0.9.5"
+    framer-motion "^1.10.3"
+    gatsby-image "^2.2.41"
+    gatsby-plugin-react-svg "^3.0.0"
+    gatsby-plugin-sharp "^2.4.5"
+    gatsby-plugin-sitemap "^2.3.1"
+    gatsby-plugin-styled-components "^3.2.0"
+    gatsby-source-filesystem "^2.1.48"
+    gatsby-source-sanity "^5.0.6"
+    gatsby-source-shopify "^3.0.43"
+    gatsby-transformer-sharp "^2.3.14"
+    gatsby-transformer-yaml "^2.2.25"
+    prop-types "^15.7.2"
+    react-animate-mount "^1.0.1"
+    react-helmet "^5.2.1"
+    react-icons "^3.9.0"
+    react-svg-spinner "^1.0.4"
+    shopify-buy "^2.9.1"
+    styled-components "^5.0.1"
+
 "@jimp/bmp@^0.9.8":
   version "0.9.8"
   resolved "https://registry.yarnpkg.com/@jimp/bmp/-/bmp-0.9.8.tgz#5933ab8fb359889bec380b0f7802163374933624"
@@ -8221,9 +8251,9 @@ lodash.uniq@^4.5.0:
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
 lodash@^4.0.0, lodash@^4.11.1, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 log-update@^3.0.0:
   version "3.4.0"
