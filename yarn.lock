@@ -957,6 +957,36 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@jcaguirre/gatsby-shopify-theme@^1.0.0":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@jcaguirre/gatsby-shopify-theme/-/gatsby-shopify-theme-1.2.2.tgz#6dca29f7b16aae81616ec05f3a6ef8255345fc5a"
+  integrity sha512-XmMDBqpKFZr1xkQ3bS69BZ2K1yJd5WSmQcmZ1Am2I8UBZxrUXaLvEuWmhBNgSsyMyVMU68xGS0sXCn7YqkGHhA==
+  dependencies:
+    "@gatsby-contrib/gatsby-plugin-elasticlunr-search" "^2.3.0"
+    "@n8tb1t/use-scroll-position" "^1.0.43"
+    "@sanity/block-content-to-react" "^2.0.7"
+    "@sanity/image-url" "^0.140.17"
+    babel-plugin-styled-components "^1.10.7"
+    elasticlunr "^0.9.5"
+    framer-motion "^1.10.3"
+    gatsby-image "^2.2.41"
+    gatsby-plugin-react-svg "^3.0.0"
+    gatsby-plugin-sharp "^2.4.5"
+    gatsby-plugin-sitemap "^2.3.1"
+    gatsby-plugin-styled-components "^3.2.0"
+    gatsby-source-filesystem "^2.1.48"
+    gatsby-source-sanity "^5.0.6"
+    gatsby-source-shopify "^3.0.43"
+    gatsby-transformer-sharp "^2.3.14"
+    gatsby-transformer-yaml "^2.2.25"
+    prop-types "^15.7.2"
+    react-animate-mount "^1.0.1"
+    react-helmet "^5.2.1"
+    react-icons "^3.9.0"
+    react-svg-spinner "^1.0.4"
+    shopify-buy "^2.9.1"
+    styled-components "^5.0.1"
+
 "@jimp/bmp@^0.9.8":
   version "0.9.8"
   resolved "https://registry.yarnpkg.com/@jimp/bmp/-/bmp-0.9.8.tgz#5933ab8fb359889bec380b0f7802163374933624"
@@ -10392,9 +10422,9 @@ qs@6.7.0:
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
 qs@~6.5.2:
-  version "6.5.2"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
-  integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
+  version "6.5.3"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.3.tgz#3aeeffc91967ef6e35c0e488ef46fb296ab76aad"
+  integrity sha512-qxXIEh4pCGfHICj1mAJQ2/2XVZkjCDTcEgfoSQxc/fYivUZxTkk7L3bDBJSoNrEzXI17oUO5Dp07ktqE5KzczA==
 
 query-string@^4.1.0:
   version "4.3.4"
